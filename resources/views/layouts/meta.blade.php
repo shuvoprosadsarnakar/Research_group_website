@@ -45,7 +45,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li {{{ (Request::is('project') ? 'class=active' : '') }}}>
-                                <a href="/project">Projects</a>
+                                <a href="{{ route('project') }}">Projects</a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li {{{ (Request::is('deliverable') ? 'class=active' : '') }}}>
@@ -95,8 +95,6 @@
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <a href="{{ route('admin') }}">admin panel</a>
-                    <br> coded with&#10084;by
-                    <a href="">shuvo prosad</a>
 
                 </div>
             </div>

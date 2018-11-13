@@ -169,7 +169,8 @@ Route::post('/contact', [
 // project view
 Route::get('/project', [
     
-    'uses'=>'ProjectController@index'
+    'uses'=>'ProjectController@index',
+    'as'=>'project'
     
 ]);
 
