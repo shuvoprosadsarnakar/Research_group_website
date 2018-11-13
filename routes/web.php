@@ -13,7 +13,8 @@
 
 Route::get('/', [
 
-    'uses'=>'HomeController@index'
+    'uses'=>'HomeController@index',
+    'as'=>'home'
 
 ]);
 
@@ -31,7 +32,8 @@ Route::get('/members', [
 
 Route::get('/admin', [
 
-    'uses'=>'AdminController@index'
+    'uses'=>'AdminController@index',
+    'as'=>'admin'
 
 ]);
 
