@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOpenpositionsTable extends Migration
+class CreateVideosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateOpenpositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('openpositions', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('details');
+            $table->string('title');
             $table->string('link');
+            $table->unsignedInteger('postId');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateOpenpositionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('openpositions');
+        Schema::dropIfExists('videos');
     }
 }
