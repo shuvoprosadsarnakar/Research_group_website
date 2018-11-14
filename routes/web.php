@@ -13,7 +13,8 @@
 
 Route::get('/', [
 
-    'uses'=>'HomeController@index'
+    'uses'=>'HomeController@index',
+    'as'=>'home'
 
 ])->name('home');
 
@@ -31,7 +32,8 @@ Route::get('/members', [
 
 Route::get('/admin', [
 
-    'uses'=>'AdminController@index'
+    'uses'=>'AdminController@index',
+    'as'=>'admin'
 
 ])->name('admin');
 
@@ -167,7 +169,8 @@ Route::post('/contact', [
 // project view
 Route::get('/project', [
     
-    'uses'=>'ProjectController@index'
+    'uses'=>'ProjectController@index',
+    'as'=>'project'
     
 ]);
 

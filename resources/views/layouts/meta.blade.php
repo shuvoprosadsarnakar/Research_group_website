@@ -32,12 +32,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Ai researchers</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li {{{ (Request::is( '/') ? 'class=active' : '') }}}>
-                        <a href="/">Home</a>
+                        <a href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -46,7 +45,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li {{{ (Request::is('project') ? 'class=active' : '') }}}>
-                                <a href="/project">Projects</a>
+                                <a href="{{ route('project') }}">Projects</a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li {{{ (Request::is('deliverable') ? 'class=active' : '') }}}>
@@ -95,9 +94,7 @@
                 </div>
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
-                    <a href="{!! route('admin') !!}">admin panel</a>
-                    <br> coded with&#10084;by
-                    <a href="">shuvo prosad</a>
+                    <a href="{{ route('admin') }}">admin panel</a>
 
                 </div>
             </div>
