@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeliverablesTable extends Migration
+class CreateReferencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateDeliverablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('deliverables', function (Blueprint $table) {
+        Schema::create('references', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('image');
-            $table->string('details');
+            $table->string('title');
             $table->string('link');
+            $table->unsignedInteger('postId');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateDeliverablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deliverables');
+        Schema::dropIfExists('references');
     }
 }
