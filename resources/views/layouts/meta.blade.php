@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
-                    <a href="/admin">admin panel</a>
+                    <a href="{!! route('admin') !!}">admin panel</a>
                     <br> coded with&#10084;by
                     <a href="">shuvo prosad</a>
 
