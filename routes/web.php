@@ -16,7 +16,7 @@ Route::get('/', [
     'uses'=>'HomeController@index',
     'as'=>'home'
 
-])->name('home');
+]);
 
 Route::get('/publications', [
 
@@ -35,7 +35,7 @@ Route::get('/admin', [
     'uses'=>'AdminController@index',
     'as'=>'admin'
 
-])->name('admin');
+]);
 
 Route::post('/adminlogin', [
 

@@ -2,22 +2,24 @@
 <html lang="en">
 
 <head>
-    <title>Diu research team</title>
+    <title>Diu research lab</title>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="diu research lab,research lab,artificial intelligence researh lab,ai research lab,daffodil international university research lab,Daffodil,University,DIU,Private University,daffodil university Bangladesh,daffodil university,private university of Bangladesh,daffodil varsity">
+    <meta name="description" content="Daffodil International University Research lab is a ">
 
-    <!-- Bootstrap CSS -->
+    <!-- Fav icon -->
+    <link rel="icon" href="https://daffodilvarsity.edu.bd/images/diu/favicon.ico" type="image/gif">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-
-    <!-- Javascripts -->
-    <script type="text/javascript" src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/toastr.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-
 
 </head>
 
@@ -102,6 +104,12 @@
         </div>
     </nav>
 
+
+
+    <!-- Javascripts -->
+    <script type="text/javascript" src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/toastr.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
     <script>
         @if(Session::has('success'))
         toastr.success("{{Session::get('success')}}")
@@ -119,6 +127,9 @@
 
         @endif
     </script>
+
+    @yield('javascript')
+
 
 </body>
 
