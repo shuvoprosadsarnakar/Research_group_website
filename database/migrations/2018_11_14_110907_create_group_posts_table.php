@@ -28,6 +28,6 @@ class CreateGroupPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_posts');
+        Schema::dropIfExists('groupPosts');
     }
 }

@@ -28,6 +28,6 @@ class CreateMemberPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('member_posts');
+        Schema::dropIfExists('memberPosts');
     }
 }
