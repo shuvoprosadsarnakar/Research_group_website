@@ -16,8 +16,8 @@ class CreatePostTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->unsignedInteger('typeId');
             $table->string('status');
-            $table->string('type');
             $table->string('description');
             $table->date('startDate');
             $table->date('finishDate');
@@ -32,6 +32,6 @@ class CreatePostTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('posts');
     }
 }

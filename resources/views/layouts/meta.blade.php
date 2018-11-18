@@ -4,22 +4,21 @@
 <head>
     <title>Diu research lab</title>
 
+    <!-- Fav icon -->
+    <link rel="icon" href="https://daffodilvarsity.edu.bd/images/diu/favicon.ico" type="image/gif">
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="diu research lab,research lab,artificial intelligence researh lab,ai research lab,daffodil international university research lab,Daffodil,University,DIU,Private University,daffodil university Bangladesh,daffodil university,private university of Bangladesh,daffodil varsity">
     <meta name="description" content="Daffodil International University Research lab is a ">
 
-    <!-- Fav icon -->
-    <link rel="icon" href="https://daffodilvarsity.edu.bd/images/diu/favicon.ico" type="image/gif">
-
     <!-- CSS -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    @yield('stylesheet')
 
 </head>
 
@@ -51,16 +50,16 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             <li {{{ (Request::is('deliverable') ? 'class=active' : '') }}}>
-                                <a href="/deliverable">Deliverable</a>
+                                <a href="{{ route('deliverable') }}">Deliverable</a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li {{{ (Request::is('members') ? 'class=active' : '') }}}>
-                                <a href="/members">Members</a>
+                                <a href="{{ route('members') }}">Members</a>
                             </li>
                         </ul>
                     </li>
-                    <li {{{ (Request::is('publications') ? 'class=active' : '') }}}>
-                        <a href="/publications">Publications</a>
+                    <li {{{ (Request::is('posts') ? 'class=active' : '') }}}>
+                        <a href="{{ route('posts') }}">post</a>
                     </li>
                     <li {{{ (Request::is('openpositions') ? 'class=active' : '') }}}>
                         <a href="/openpositions">Open positions</a>

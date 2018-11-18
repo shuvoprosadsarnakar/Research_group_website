@@ -1,16 +1,19 @@
 @extends('layouts.meta') 
 
+@section('stylesheet')
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+@endsection
+
+
 @section('body')
-
 <div id="fullbackground">
-
   <div id="content">
     <div id="inner">
       <h1>Ai research group </h1>
       <h3>Daffodil international university</h3>
     </div>
   </div>
-
 </div>
 
 
@@ -27,13 +30,11 @@
     </div>
 </div>
 <!-- End image slider or carousel home page -->
-
 @endsection
 
+
 @section('javascript')
-
 <script type="text/javascript" src="{{asset('js/owl.carousel.min.js')}}"></script>
-
 <script>
 /* Javascript for the image slider or carousel */
     $('.owl-carousel').owlCarousel({
@@ -58,5 +59,4 @@
       }
     })
 </script>
-
 @endsection

@@ -18,16 +18,21 @@ Route::get('/', [
 
 ]);
 
+Route::get('post',[
+    'uses' => 'PostController@index',
+    'as' => 'posts'
+]);
+
 Route::get('/publications', [
 
-    'uses'=>'PublicationsController@index'
-
+    'uses'=>'PublicationsController@index',
+    'as'=>'publications'
 ]);
 
 Route::get('/members', [
 
-    'uses'=>'MembersController@index'
-
+    'uses'=>'MembersController@index',
+    'as'=>'members'
 ]);
 
 Route::get('/admin', [
@@ -236,7 +241,7 @@ Route::post('/save/Openposition/{id}', [
 Route::get('deliverable', [
     
     'uses'=>'DeliverableController@index',
-    
+    'as'=>'deliverable'
 ]);
 Route::post('/create/deliverable', [
     

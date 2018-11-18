@@ -90,6 +90,7 @@ html,body{
 }
 
 .wrap{
+    /*keep the footer below even if no content is displayed inside body*/
     min-height: 90vh;
 }
 

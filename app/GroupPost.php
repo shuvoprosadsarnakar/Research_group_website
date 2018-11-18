@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class GroupPost extends Model
 {
-    //
+    public function post()
+    {
+        return $this->belongsTo('App\Post');
+    }
 }
