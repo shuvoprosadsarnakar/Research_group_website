@@ -96,6 +96,7 @@
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <a href="{{ route('admin') }}">admin panel</a>
+                    <a href="{{ route('posts_create') }}">post create</a>
 
                 </div>
             </div>

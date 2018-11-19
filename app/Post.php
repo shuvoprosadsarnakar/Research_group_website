@@ -34,4 +34,9 @@ class Post extends Model
         return $this->belongsToMany('App\Group', 'groupposts', 'postId', 'groupId');
     }
 
+    public function member()
+    {
+        return $this->belongsToMany('App\Member', 'membergroups', 'postId', 'memberId');
+    }
+
 }

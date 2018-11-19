@@ -23,6 +23,11 @@ Route::get('/posts',[
     'as' => 'posts'
 ]);
 
+Route::get('/posts/create',[
+    'uses' => 'PostController@create',
+    'as' => 'posts_create'
+]);
+
 Route::get('/publications', [
 
     'uses'=>'PublicationsController@index',

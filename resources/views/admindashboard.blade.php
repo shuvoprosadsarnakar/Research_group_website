@@ -1,10 +1,9 @@
 @extends('layouts.meta') 
 @section('body')
 
-
-
 @component('edit')
 @endcomponent
+
 <div class="container">
 
     <div class="panel-body">
