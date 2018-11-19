@@ -18,7 +18,7 @@ Route::get('/', [
 
 ]);
 
-Route::get('/post',[
+Route::get('/posts',[
     'uses' => 'PostController@index',
     'as' => 'posts'
 ]);

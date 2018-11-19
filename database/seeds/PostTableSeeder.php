@@ -11,10 +11,13 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('post')->insert([
-            'name' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
+        DB::table('posts')->insert([
+            'title' => str_random(10),
+            'typeId'=> 3,
+            'status'=> 'incomplete',
+            'description'=> str_random(50),
+            'startDate'=>'2018-11-15',
+            'finishDate'=>'2018-11-20',
         ]);
     }
 }

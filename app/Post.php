@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    protected $table = 'posts';
+
     public function postType()
     {
         return $this->belongsTo('App\PostType', 'id', 'typeId');
@@ -26,8 +29,9 @@ class Post extends Model
         return $this->hasMany('App\Reference', 'id', 'postId');
     }
 
-    public function groupPost()
+    public function group()
     {
-        return $this->hasMany('App\GroupPost', 'id', 'postId');
+        return $this->belongsToMany('App\Group', 'groupposts', 'postId', 'groupId');
     }
+
 }
