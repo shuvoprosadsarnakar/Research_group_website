@@ -1,7 +1,8 @@
 @extends('layouts.meta')
 
 @section('stylesheet')
-
+    <link rel="stylesheet" href="{{asset('css/chosenCss/prism.css')}}">
+    <link rel="stylesheet" href="{{asset('css/chosenCss/chosen.css')}}">
 @endsection
 
 
@@ -29,8 +30,8 @@
                         <input type="file" name="image" class="form-control" id="image" />
                     </div>
                     <div class="form-group">
-                        <label for="dropdownMenu1">Type:</label>
-                        <select name="type" size="1" class="form-control" id="dropdownMenu1">
+                        <label for="chosen-select-type">Type:</label>
+                        <select name="type" size="1" class="chosen-select-type form-control"  data-placeholder="Choose a post type...">
                             <option value="Project">Project</option>
                             <option value="Thesis" selected>Thesis</option>
                             <option value="Research" disabled>Research</option>
@@ -70,5 +71,14 @@
 
 
 @section('javascript')
+    <script src="{{asset('js/chosenJs/chosen.jquery.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/chosenJs/prism.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{asset('js/chosenJs/init.js')}}" type="text/javascript" charset="utf-8"></script>
 
+    <script>
+        $(".chosen-select-type").chosen({
+            no_results_text: "Oops, nothing found!",
+            width: "95%"
+        });
+    </script>
 @endsection
