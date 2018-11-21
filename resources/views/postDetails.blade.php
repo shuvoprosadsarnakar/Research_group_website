@@ -16,21 +16,22 @@
 
         <div class="panel-body">
             <div class="col-md-4">
-                        <img src="{{asset('images/kmisir.jpg')}}" alt="" style="width:100%">
+                <img src="{{asset('images/kmisir.jpg')}}" alt="" style="width:100%">
             </div>
             <div class="col-md-8">
                 <h4>
                     <b>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        {{$post->title}}
                     </b>
                     <br>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <p>Start Date: {{$post->startDate}}</p>
+                    <p>Finish Date: {{$post->finishDate}}</p>
+                    <p>Status: {{$post->status}}</p>
+                    <p>Type: {{$post->type}}</p>
                 </h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.   
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam quia impedit velit eaque a modi unde, odio optio error nam 
-                        itaque provident culpa incidunt explicabo nemo inventore libero magnam eum. 
-                    </p>
+                <p>
+                    {{$post->description}}
+                </p>
             </div>
         </div>
     </div>

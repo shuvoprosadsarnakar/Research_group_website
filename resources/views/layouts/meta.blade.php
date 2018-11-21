@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top navbar-fix">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
@@ -87,7 +87,11 @@
         @yield('body')
     </div>
 
-    <nav class="navbar navbar-default navbar-static-bottom">
+        <div class="navbar navbar-static-bottom navbar-fix footer-up ">
+            <h5>sgdthfyuhkil</h5>
+        </div>
+
+    <footer class="navbar navbar-static-bottom navbar-fix footer-down">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
@@ -100,9 +104,8 @@
 
                 </div>
             </div>
-
         </div>
-    </nav>
+    </footer>
 
 
 

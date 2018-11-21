@@ -11,6 +11,7 @@
 |
 */
 
+//home / starting page
 Route::get('/', [
 
     'uses'=>'HomeController@index',
@@ -18,9 +19,15 @@ Route::get('/', [
 
 ]);
 
+//posts start
 Route::get('/posts',[
     'uses' => 'PostController@index',
     'as' => 'posts'
+]);
+
+Route::get('/posts/{criteria}/{order}',[
+    'uses' => 'PostController@orderedIndex',
+    'as' => 'posts_order'
 ]);
 
 Route::get('/post/create',[
@@ -37,6 +44,17 @@ Route::get('/postdetails/{id}',[
     'uses' => 'PostController@show',
     'as' => 'post_details'
 ]);
+
+Route::get('/post/delete/{id}',[
+    'uses' => 'PostController@destroy',
+    'as' => 'post_delete'
+]);
+
+Route::get('/post/edit/{id}',[
+    'uses' => 'PostController@edit',
+    'as' => 'post_edit'
+]);
+//posts end
 
 Route::get('/publications', [
 

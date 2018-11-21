@@ -14,22 +14,54 @@ use App\Post;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the post.
+     * Display a listing of the posts.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //$posts = Post::with('group')->get();
         //$posts = Post::with('group')->orderBy('startDate','asc')->get();
-        $posts = Post::with('group')->orderBy('startDate','desc')->get();
+        $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(2);
         //$posts = Post::with('group')->orderBy('title','asc')->get();
         //$posts = Post::with('group')->orderBy('title','desc')->get();
         //$posts = Post::with('group')->orderBy('finishDate','asc')->get();
         //$posts = Post::with('group')->orderBy('finishDate','desc')->get();
-
         //dd($posts);
-        return view('postPublic')->with('posts',$posts);
+        return view('postList')->with('posts',$posts);
+    }
+    /**
+     * Display a listing of the posts ordered by user preference.
+     *
+     */
+    public function orderedIndex($criteria,$order)
+    {
+        if(isset($criteria) && isset($order)){
+            if(strtolower($criteria)=='title' && strtolower($order)=='asc'){
+                $posts = Post::with('group')->orderBy('title','asc')->simplePaginate(6);
+                return view('postList')->with('posts',$posts);
+            }
+            elseif(strtolower($criteria)=='title' && strtolower($order)=='desc'){
+                $posts = Post::with('group')->orderBy('title','desc')->simplePaginate(6);
+                return view('postList')->with('posts',$posts);
+            }
+            elseif(strtolower($criteria)=='startdate' && strtolower($order)=='asc'){
+                $posts = Post::with('group')->orderBy('startDate','asc')->simplePaginate(6);
+                return view('postList')->with('posts',$posts);
+            }
+            elseif(strtolower($criteria)=='startdate' && strtolower($order)=='desc'){
+                $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(6);
+                return view('postList')->with('posts',$posts);
+            }
+            elseif(strtolower($criteria)=='finishdate' && strtolower($order)=='asc'){
+                $posts = Post::with('group')->orderBy('finishDate','asc')->simplePaginate(6);
+                return view('postList')->with('posts',$posts);
+            }
+            elseif(strtolower($criteria)=='finishdate' && strtolower($order)=='desc'){
+                $posts = Post::with('group')->orderBy('finishDate','desc')->simplePaginate(6);
+                return view('postList')->with('posts',$posts);
+            }
+        }
+        return redirect()->back();
     }
 
     /**
@@ -66,7 +98,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('postDetails');
+        $post = Post::where('id', $id)->first();
+        return view('postDetails')->with('post',$post);
     }
 
     /**
@@ -77,7 +110,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('postCreateOrEdit')->with('post',$post);
     }
 
     /**
