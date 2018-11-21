@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="well">
-                <form action="/create/member" method="post" enctype="multipart/form-data">
+                <form action="{{ route ('posts_store') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="title">Title:</label>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Groups:</label>
-                        <select name="group" size="1" class="chosen-select-group form-control"  data-placeholder="Choose group names..." multiple>
+                        <select name="group[]" size="1" class="chosen-select-group form-control"  data-placeholder="Choose group names..." multiple="multiple">
                             <option value="A">A</option>
                             <option value="B" selected>B</option>
                             <option value="C" disabled>C</option>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Members:</label>
-                        <select name="group" size="1" class="chosen-select-member form-control"  data-placeholder="Choose members..." multiple>
+                        <select name="member[]" size="1" class="chosen-select-member form-control"  data-placeholder="Choose members..." multiple="multiple">
                             <option value="Arif islam">Arif islam</option>
                             <option value="Shuvo " selected>Shuvo</option>
                             <option value="Mujahid " disabled>Mujahid </option>
