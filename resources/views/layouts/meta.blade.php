@@ -14,11 +14,11 @@
     <meta name="description" content="Daffodil International University Research lab is a ">
 
     <!-- CSS -->
+    @yield('stylesheet')
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    @yield('stylesheet')
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
 </head>
 

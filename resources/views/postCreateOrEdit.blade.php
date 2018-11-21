@@ -2,7 +2,7 @@
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{asset('css/chosenCss/prism.css')}}">
-    <link rel="stylesheet" href="{{asset('css/chosenCss/chosen.css')}}">
+    <link rel="stylesheet" href="{{asset('css/chosenCss/chosen.min.css')}}">
 @endsection
 
 
@@ -30,13 +30,33 @@
                         <input type="file" name="image" class="form-control" id="image" />
                     </div>
                     <div class="form-group">
-                        <label for="chosen-select-type">Type:</label>
+                        <label for="">Type:</label>
                         <select name="type" size="1" class="chosen-select-type form-control"  data-placeholder="Choose a post type...">
                             <option value="Project">Project</option>
-                            <option value="Thesis" selected>Thesis</option>
+                            <!-- <option value="Thesis" selected>Thesis</option> -->
                             <option value="Research" disabled>Research</option>
                             <option value="Professional work">Professional work</option>
                             <option value="Course work">Course work</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Groups:</label>
+                        <select name="group" size="1" class="chosen-select-group form-control"  data-placeholder="Choose group names..." multiple>
+                            <option value="A">A</option>
+                            <option value="B" selected>B</option>
+                            <option value="C" disabled>C</option>
+                            <option value="Y work" selected>Y work</option>
+                            <option value="G work">G work</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Members:</label>
+                        <select name="group" size="1" class="chosen-select-member form-control"  data-placeholder="Choose members..." multiple>
+                            <option value="Arif islam">Arif islam</option>
+                            <option value="Shuvo " selected>Shuvo</option>
+                            <option value="Mujahid " disabled>Mujahid </option>
+                            <option value="Diganta biswas" selected>Diganta biswas</option>
+                            <option value="Avee">Avee</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-default">Create post</button>
@@ -71,14 +91,23 @@
 
 
 @section('javascript')
-    <script src="{{asset('js/chosenJs/chosen.jquery.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/chosenJs/chosen.jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/chosenJs/prism.js')}}" type="text/javascript" charset="utf-8"></script>
-    <script src="{{asset('js/chosenJs/init.js')}}" type="text/javascript" charset="utf-8"></script>
 
     <script>
         $(".chosen-select-type").chosen({
             no_results_text: "Oops, nothing found!",
-            width: "95%"
+            width: "100%"
+        });
+
+        $(".chosen-select-group").chosen({
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
+        });
+
+        $(".chosen-select-member").chosen({
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
         });
     </script>
 @endsection
