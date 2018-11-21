@@ -59,7 +59,7 @@
                         </ul>
                     </li>
                     <li {{{ (Request::is('posts') ? 'class=active' : '') }}}>
-                        <a href="{{ route('posts') }}">post</a>
+                        <a href="{{ route('posts') }}">Post</a>
                     </li>
                     <li {{{ (Request::is('openpositions') ? 'class=active' : '') }}}>
                         <a href="/openpositions">Open positions</a>
@@ -96,7 +96,7 @@
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <a href="{{ route('admin') }}">admin panel</a>
-                    <a href="{{ route('posts_create') }}">post create</a>
+                    <a href="{{ route('post_create') }}">post create</a>
 
                 </div>
             </div>

@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use Illuminate\Http\Request;
+use Auth;
+use \Input as Input;
+use Session;
+use File;
+
+use App\Post;
+
 
 class PostController extends Controller
 {
@@ -15,8 +21,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('group')->get();
-        dd($posts);
-        return view('postPublic');
+
+        return view('postList')->with('posts',$posts);
     }
 
     /**
@@ -39,7 +45,10 @@ class PostController extends Controller
     {
         //var_dump($request);
         //dd($request);
-        
+
+
+        Session::flash('success','post created ');
+        return redirect()->back();
     }
 
     /**
@@ -50,7 +59,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('postDetails');
     }
 
     /**

@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="well">
-                <form action="{{ route ('posts_store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route ('post_store') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="title">Title:</label>

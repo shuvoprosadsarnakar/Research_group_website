@@ -23,14 +23,19 @@ Route::get('/posts',[
     'as' => 'posts'
 ]);
 
-Route::get('/posts/create',[
+Route::get('/post/create',[
     'uses' => 'PostController@create',
-    'as' => 'posts_create'
+    'as' => 'post_create'
 ]);
 
-Route::post('/posts/store',[
+Route::post('/post/store',[
     'uses' => 'PostController@store',
-    'as' => 'posts_store'
+    'as' => 'post_store'
+]);
+
+Route::get('/postdetails/{id}',[
+    'uses' => 'PostController@show',
+    'as' => 'post_details'
 ]);
 
 Route::get('/publications', [
