@@ -36,6 +36,8 @@
                             <p>
                                 {{$post->description}}
                             </p>
+                            <p>Start Date: {{$post->startDate}}</p>
+                            <p>Finish Date: {{$post->finishDate}}</p>
                         </div>
                     </li>
                 @endforeach

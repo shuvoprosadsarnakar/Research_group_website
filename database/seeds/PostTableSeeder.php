@@ -19,5 +19,29 @@ class PostTableSeeder extends Seeder
             'startDate'=>'2018-11-15',
             'finishDate'=>'2018-11-20',
         ]);
+        DB::table('posts')->insert([
+            'title' => str_random(10),
+            'typeId'=> 3,
+            'status'=> 'incomplete',
+            'description'=> str_random(50),
+            'startDate'=>'2018-11-15',
+            'finishDate'=>'2018-11-20',
+        ]);
+        DB::table('posts')->insert([
+            'title' => str_random(10),
+            'typeId'=> 3,
+            'status'=> 'incomplete',
+            'description'=> str_random(50),
+            'startDate'=>'2018-11-15',
+            'finishDate'=>'2018-11-20',
+        ]);
+        DB::table('posts')->insert([
+            'title' => str_random(10),
+            'typeId'=> 3,
+            'status'=> 'incomplete',
+            'description'=> str_random(50),
+            'startDate'=>'2018-11-15',
+            'finishDate'=>'2018-11-20',
+        ]);
     }
 }

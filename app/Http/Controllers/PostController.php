@@ -20,9 +20,16 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('group')->get();
+        //$posts = Post::with('group')->get();
+        //$posts = Post::with('group')->orderBy('startDate','asc')->get();
+        $posts = Post::with('group')->orderBy('startDate','desc')->get();
+        //$posts = Post::with('group')->orderBy('title','asc')->get();
+        //$posts = Post::with('group')->orderBy('title','desc')->get();
+        //$posts = Post::with('group')->orderBy('finishDate','asc')->get();
+        //$posts = Post::with('group')->orderBy('finishDate','desc')->get();
 
-        return view('postList')->with('posts',$posts);
+        //dd($posts);
+        return view('postPublic')->with('posts',$posts);
     }
 
     /**
