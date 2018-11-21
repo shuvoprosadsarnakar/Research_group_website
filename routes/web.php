@@ -28,6 +28,11 @@ Route::get('/posts/create',[
     'as' => 'posts_create'
 ]);
 
+Route::post('/posts/store',[
+    'uses' => 'PostController@store',
+    'as' => 'posts_store'
+]);
+
 Route::get('/publications', [
 
     'uses'=>'PublicationsController@index',
