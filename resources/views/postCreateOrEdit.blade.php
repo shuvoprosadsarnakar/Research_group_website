@@ -69,7 +69,7 @@
                         <select name="type" size="1" class="chosen-select-type form-control"  data-placeholder="Choose a post type...">
                             <option value="Project">Project</option>
                             <!-- <option value="Thesis" selected>Thesis</option> -->
-                            <option value="Research" disabled>Research</option>
+                            <option value="Research" selected>Research</option>
                             <option value="Professional work">Professional work</option>
                             <option value="Course work">Course work</option>
                         </select>
@@ -79,7 +79,7 @@
                         <select name="group[]" size="1" class="chosen-select-group form-control"  data-placeholder="Choose group names..." multiple="multiple">
                             <option value="A">A</option>
                             <option value="B" selected>B</option>
-                            <option value="C" disabled>C</option>
+                            <option value="C" >C</option>
                             <option value="Y work" selected>Y work</option>
                             <option value="G work">G work</option>
                         </select>
@@ -89,18 +89,18 @@
                         <select name="member[]" size="1" class="chosen-select-member form-control"  data-placeholder="Choose members..." multiple="multiple">
                             <option value="Ariful islam">Arif islam</option>
                             <option value="Shuvo " selected>Shuvo</option>
-                            <option value="Mujahid " disabled>Mujahid </option>
+                            <option value="Mujahid " >Mujahid </option>
                             <option value="Diganta biswas" selected>Diganta biswas</option>
                             <option value="Avee">Avee</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="startdate">Start date:</label>
-                        <input type="text" name="startdate" class="form-control" id="startdate" />
+                        <input type="text" name="startDate" class="form-control" id="startdate" />
                     </div>
                     <div class="form-group">
                         <label for="finishdate">Finish date:</label>
-                        <input type="text" name="finishdate" class="form-control" id="finishdate" />
+                        <input type="text" name="finishDate" class="form-control" id="finishdate" />
                     </div>
                     <button type="submit" class="btn btn-default">Create post</button>
                 </form>
