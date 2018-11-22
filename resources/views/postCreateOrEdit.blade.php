@@ -9,8 +9,42 @@
 
 @section('body')
 <div class="container">
+
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-8">
+            <div class="well">
+                <h4> Post edit panel</h4>
+                <table class="table-edit" >
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Start date</th>
+                        <th>Finish date</th>
+                        <th>Action</th>
+                    </tr>
+                    @foreach($posts as $post)
+                    <tr>
+                        <td> {{$post->id}} </td>
+                        <td> {{$post->title}} </td>
+                        <td> {{$post->type}} </td>
+                        <td> {{$post->status}} </td>
+                        <td> {{$post->startDate}} </td>
+                        <td> {{$post->finishDate}} </td>
+                        <td>
+                            <a href="{{route('post_delete',['id'=>$post->id])}}" class="btn btn-danger">X</a>
+                            <a href="{{route('post_edit',['id'=>$post->id])}}" class="btn btn-info">E</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </table>
+            </div>
+            <div class="text-center">
+                {{$posts->links()}}
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="well">
                 <form action="{{ route ('post_store') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
@@ -72,9 +106,6 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-7">
-
-        </div>
     </div>
 </div>
 @endsection
@@ -84,7 +115,7 @@
     <script src="{{asset('js/chosenJs/chosen.jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/chosenJs/prism.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript" charset="utf-8"></script>
-
+    
     <script>
         $(".chosen-select-type").chosen({
             no_results_text: "Oops, nothing found!",

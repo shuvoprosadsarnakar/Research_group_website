@@ -103,7 +103,7 @@
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <a href="{{ route('admin') }}">admin panel</a>
-                    <a href="{{ route('post_create') }}">post create</a>
+                    <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">post create</a>
 
                 </div>
             </div>

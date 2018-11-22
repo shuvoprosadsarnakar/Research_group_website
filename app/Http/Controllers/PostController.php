@@ -21,7 +21,7 @@ class PostController extends Controller
     public function index()
     {
         //$posts = Post::with('group')->orderBy('startDate','asc')->get();
-        $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(2);
+        $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(3);
         //$posts = Post::with('group')->orderBy('title','asc')->get();
         //$posts = Post::with('group')->orderBy('title','desc')->get();
         //$posts = Post::with('group')->orderBy('finishDate','asc')->get();
@@ -36,28 +36,10 @@ class PostController extends Controller
     public function orderedIndex($criteria,$order)
     {
         if(isset($criteria) && isset($order)){
-            if(strtolower($criteria)=='title' && strtolower($order)=='asc'){
-                $posts = Post::with('group')->orderBy('title','asc')->simplePaginate(6);
-                return view('postList')->with('posts',$posts);
-            }
-            elseif(strtolower($criteria)=='title' && strtolower($order)=='desc'){
-                $posts = Post::with('group')->orderBy('title','desc')->simplePaginate(6);
-                return view('postList')->with('posts',$posts);
-            }
-            elseif(strtolower($criteria)=='startdate' && strtolower($order)=='asc'){
-                $posts = Post::with('group')->orderBy('startDate','asc')->simplePaginate(6);
-                return view('postList')->with('posts',$posts);
-            }
-            elseif(strtolower($criteria)=='startdate' && strtolower($order)=='desc'){
-                $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(6);
-                return view('postList')->with('posts',$posts);
-            }
-            elseif(strtolower($criteria)=='finishdate' && strtolower($order)=='asc'){
-                $posts = Post::with('group')->orderBy('finishDate','asc')->simplePaginate(6);
-                return view('postList')->with('posts',$posts);
-            }
-            elseif(strtolower($criteria)=='finishdate' && strtolower($order)=='desc'){
-                $posts = Post::with('group')->orderBy('finishDate','desc')->simplePaginate(6);
+            if( $criteria=='title' || $criteria=='description' || $criteria=='startDate' || $criteria=='finishDate' && $order=='asc' || $order=='desc'){
+                
+                $posts = Post::with('group')->orderBy($criteria,$order)->simplePaginate(3);
+                
                 return view('postList')->with('posts',$posts);
             }
         }
@@ -69,9 +51,17 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($criteria,$order)
     {
-        return view('postCreateOrEdit');
+        if(isset($criteria) && isset($order)){
+            if( $criteria=='title' || $criteria=='description' || $criteria=='startDate' || $criteria=='finishDate' && $order=='asc' || $order=='desc'){
+                
+                $posts = Post::with('group')->orderBy($criteria,$order)->simplePaginate(3);
+                
+                return view('postCreateOrEdit')->with('posts',$posts);
+            }
+        }
+        return redirect()->back();   
     }
 
     /**
@@ -110,7 +100,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('postCreateOrEdit')->with('post',$post);
+        //return view('postCreateOrEdit')->with('post',$post);
     }
 
     /**

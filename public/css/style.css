@@ -106,3 +106,18 @@ html,body{
     height: 100px;
     background-color:#000000cc;
 }
+
+.table-edit{
+    width: 100%;
+}
+
+.table-edit td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+}
+
+
+.table-edit tr:nth-child(even) {
+    background-color: #dddddd;
+}

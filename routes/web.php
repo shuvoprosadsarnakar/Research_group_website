@@ -30,7 +30,7 @@ Route::get('/posts/{criteria}/{order}',[
     'as' => 'posts_order'
 ]);
 
-Route::get('/post/create',[
+Route::get('/post/create/{criteria}/{order}',[
     'uses' => 'PostController@create',
     'as' => 'post_create'
 ]);
