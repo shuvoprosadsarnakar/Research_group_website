@@ -94,6 +94,120 @@ Route::get('/member/edit/{id}',[
 ]);
 //members end
 
+//type start
+// Route::get('/types',[
+//     'uses' => 'TypeController@index',
+//     'as' => 'types'
+// ]);
+
+
+// Route::get('/type/{criteria}/{order}',[
+//     'uses' => 'TypeController@orderedIndex',
+//     'as' => 'type_order'
+// ]);
+
+Route::get('/type/create',[
+    'uses' => 'TypeController@create',
+    'as' => 'type_create'
+]);
+
+Route::post('/type/store',[
+    'uses' => 'TypeController@store',
+    'as' => 'type_store'
+]);
+
+// Route::get('/type/details/{id}',[
+//     'uses' => 'TypeController@show',
+//     'as' => 'type_details'
+// ]);
+
+Route::get('/type/delete/{id}',[
+    'uses' => 'TypeController@destroy',
+    'as' => 'type_delete'
+]);
+
+Route::get('/type/edit/{id}',[
+    'uses' => 'TypeController@edit',
+    'as' => 'type_edit'
+]);
+//type end
+
+//image start
+// Route::get('/image',[
+//     'uses' => 'ImageController@index',
+//     'as' => 'image'
+// ]);
+
+
+// Route::get('/type/{criteria}/{order}',[
+//     'uses' => 'ImageController@orderedIndex',
+//     'as' => 'image_order'
+// ]);
+
+Route::get('/image/create',[
+    'uses' => 'ImageController@create',
+    'as' => 'image_create'
+]);
+
+Route::post('/image/store',[
+    'uses' => 'TypeController@store',
+    'as' => 'image_store'
+]);
+
+// Route::get('/image/details/{id}',[
+//     'uses' => 'ImageController@show',
+//     'as' => 'image_details'
+// ]);
+
+Route::get('/image/delete/{id}',[
+    'uses' => 'ImageController@destroy',
+    'as' => 'image_delete'
+]);
+
+Route::get('/image/edit/{id}',[
+    'uses' => 'ImageController@edit',
+    'as' => 'image_edit'
+]);
+//image end
+
+//video start
+// Route::get('/video',[
+//     'uses' => 'VideoController@index',
+//     'as' => 'video'
+// ]);
+
+
+// Route::get('/video/{criteria}/{order}',[
+//     'uses' => 'VideoController@orderedIndex',
+//     'as' => 'image_order'
+// ]);
+
+Route::get('/video/create',[
+    'uses' => 'VideoController@create',
+    'as' => 'video_create'
+]);
+
+Route::post('/video/store',[
+    'uses' => 'VideoController@store',
+    'as' => 'video_store'
+]);
+
+// Route::get('/video/details/{id}',[
+//     'uses' => 'VideoController@show',
+//     'as' => 'video_details'
+// ]);
+
+Route::get('/video/delete/{id}',[
+    'uses' => 'VideoController@destroy',
+    'as' => 'video_delete'
+]);
+
+Route::get('/video/edit/{id}',[
+    'uses' => 'VideoController@edit',
+    'as' => 'video_edit'
+]);
+//video end
+
 
 
 

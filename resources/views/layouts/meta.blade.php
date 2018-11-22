@@ -91,7 +91,7 @@
     </div>
 
         <div class="navbar navbar-static-bottom navbar-fix footer-up ">
-            <h5>sgdthfyuhkil</h5>
+            <h5></h5>
         </div>
 
     <footer class="navbar navbar-static-bottom navbar-fix footer-down">
@@ -105,6 +105,9 @@
                     <a href="{{ route('admin') }}">admin panel</a>
                     <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">post create</a>
                     <a href="{{ route('member_create') }}">member create</a>
+                    <a href="{{ route('type_create') }}">type create</a>
+                    <a href="{{ route('image_create') }}">image create</a>
+                    <a href="{{ route('video_create') }}">videocreate</a>
                 </div>
             </div>
         </div>

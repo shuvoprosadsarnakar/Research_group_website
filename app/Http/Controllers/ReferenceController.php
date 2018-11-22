@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TypeController extends Controller
+class ReferenceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('typeCreateOrEdit');
+        //
     }
 
     /**
