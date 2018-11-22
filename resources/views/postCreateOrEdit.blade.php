@@ -62,7 +62,7 @@
                     </div>
                     <div class="form-group">
                         <label for="image">Image:</label>
-                        <input type="file" name="image" class="form-control" id="image" />
+                        <input type="file" accept="image/*" name="image" class="form-control" id="image" />
                     </div>
                     <div class="form-group">
                         <label for="">Type:</label>
@@ -87,7 +87,7 @@
                     <div class="form-group">
                         <label for="">Members:</label>
                         <select name="member[]" size="1" class="chosen-select-member form-control"  data-placeholder="Choose members..." multiple="multiple">
-                            <option value="Arif islam">Arif islam</option>
+                            <option value="Ariful islam">Arif islam</option>
                             <option value="Shuvo " selected>Shuvo</option>
                             <option value="Mujahid " disabled>Mujahid </option>
                             <option value="Diganta biswas" selected>Diganta biswas</option>
