@@ -28,7 +28,11 @@
                         </a>
                     </th>
                     <th>
-                        <a href="{{ route('posts_order',['criteria' => 'title','order' => 'asc']) }}">
+                        <a href="@if(Request::path()=='posts/description/asc')
+                                    {{ route('posts_order',['criteria' => 'description','order' => 'desc']) }}
+                                @else
+                                    {{ route('posts_order',['criteria' => 'description','order' => 'asc']) }}
+                                @endif">
                             Description
                         </a>
                     </th>

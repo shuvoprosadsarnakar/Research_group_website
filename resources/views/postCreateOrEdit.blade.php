@@ -3,13 +3,14 @@
 @section('stylesheet')
     <link rel="stylesheet" href="{{asset('css/chosenCss/prism.css')}}">
     <link rel="stylesheet" href="{{asset('css/chosenCss/chosen.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}">
 @endsection
 
 
 @section('body')
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="well">
                 <form action="{{ route ('post_store') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
@@ -59,31 +60,20 @@
                             <option value="Avee">Avee</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="startdate">Start date:</label>
+                        <input type="text" name="startdate" class="form-control" id="startdate" />
+                    </div>
+                    <div class="form-group">
+                        <label for="finishdate">Finish date:</label>
+                        <input type="text" name="finishdate" class="form-control" id="finishdate" />
+                    </div>
                     <button type="submit" class="btn btn-default">Create post</button>
                 </form>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="well">
-                    <form action="/create/member" method="post" enctype="multipart/form-data">
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            <label for="name">Add new post type:</label>
-                            <input type="text" name="name" class="form-control" id="name">
-                        </div>
-                        <button type="submit" class="btn btn-default">Create type</button>
-                    </form>
-            </div>
-            <div class="well">
-                    <form action="/create/member" method="post" enctype="multipart/form-data">
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            <label for="name">Add new group:</label>
-                            <input type="text" name="name" class="form-control" id="name">
-                        </div>
-                        <button type="submit" class="btn btn-default">Create group</button>
-                    </form>
-            </div>
+        <div class="col-md-7">
+
         </div>
     </div>
 </div>
@@ -93,6 +83,7 @@
 @section('javascript')
     <script src="{{asset('js/chosenJs/chosen.jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/chosenJs/prism.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript" charset="utf-8"></script>
 
     <script>
         $(".chosen-select-type").chosen({
@@ -108,6 +99,17 @@
         $(".chosen-select-member").chosen({
             no_results_text: "Oops, nothing found!",
             width: "100%"
+        });
+
+        
+        $( "#startdate" ).datepicker({
+            inline: true,
+            changeYear: true
+        });
+        
+        $( "#finishdate" ).datepicker({
+            inline: true,
+            changeYear: true
         });
     </script>
 @endsection
