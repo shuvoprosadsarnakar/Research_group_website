@@ -9,11 +9,10 @@
 
 @section('body')
 <div class="container">
-
     <div class="row">
         <div class="col-md-8">
             <div class="well">
-                <h4> Post edit panel</h4>
+                <h4> Post list</h4>
                 <table class="table-edit" >
                     <tr>
                         <th>Id</th>
@@ -46,6 +45,7 @@
         </div>
         <div class="col-md-4">
             <div class="well">
+                <h4> Create post </h4>
                 <form action="{{ route ('post_store') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">

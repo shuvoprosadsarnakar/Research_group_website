@@ -59,7 +59,7 @@
             <ul class="media-list">
 <!-- start list of posts repeat this list item to add more posts -->
                 @foreach($posts as $post)
-                    <li class="media">
+                    <li class="media card">
                         <div class="media-left">
                             <a href="{{ route('post_details',['id' => $post->id]) }}">
                                 <!-- Image/thumbnail of the post -->

@@ -24,7 +24,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('memberCreateOrEdit');
     }
 
     /**
@@ -46,7 +46,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +57,7 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
