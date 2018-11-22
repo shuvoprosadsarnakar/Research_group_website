@@ -61,6 +61,9 @@
                     <li {{{ (Request::is('posts') ? 'class=active' : '') }}}>
                         <a href="{{ route('posts') }}">Post</a>
                     </li>
+                    <li {{{ (Request::is('members') ? 'class=active' : '') }}}>
+                        <a href="{{ route('members') }}">Members</a>
+                    </li>
                     <li {{{ (Request::is('openpositions') ? 'class=active' : '') }}}>
                         <a href="/openpositions">Open positions</a>
                     </li>

@@ -40,7 +40,7 @@ Route::post('/post/store',[
     'as' => 'post_store'
 ]);
 
-Route::get('/postdetails/{id}',[
+Route::get('/post/details/{id}',[
     'uses' => 'PostController@show',
     'as' => 'post_details'
 ]);
@@ -56,16 +56,51 @@ Route::get('/post/edit/{id}',[
 ]);
 //posts end
 
+//members start
+Route::get('/members',[
+    'uses' => 'MemberController@index',
+    'as' => 'members'
+]);
+
+
+Route::get('/member/{criteria}/{order}',[
+    'uses' => 'MemberController@orderedIndex',
+    'as' => 'member_order'
+]);
+
+Route::get('/member/create',[
+    'uses' => 'MemberController@create',
+    'as' => 'member_create'
+]);
+
+Route::post('/member/store',[
+    'uses' => 'MemberController@store',
+    'as' => 'member_store'
+]);
+
+Route::get('/member/details/{id}',[
+    'uses' => 'MemberController@show',
+    'as' => 'member_details'
+]);
+
+Route::get('/member/delete/{id}',[
+    'uses' => 'MemberController@destroy',
+    'as' => 'member_delete'
+]);
+
+Route::get('/member/edit/{id}',[
+    'uses' => 'MemberController@edit',
+    'as' => 'member_edit'
+]);
+//members end
+
+
+
+
 Route::get('/publications', [
 
     'uses'=>'PublicationsController@index',
     'as'=>'publications'
-]);
-
-Route::get('/members', [
-
-    'uses'=>'MembersController@index',
-    'as'=>'members'
 ]);
 
 Route::get('/admin', [
@@ -116,36 +151,6 @@ Route::get('/admindashboard5', [
     'uses'=>'AdminController@dashboard5'
 
 ]);
-
-
-
-//member start
-Route::post('/create/member', [
-    
-    'uses'=>'AdminController@dbmember'
-    
-]);
-
-Route::get('/delete/member/{id}', [
-    
-    'uses'=>'AdminController@deletemember',
-    'as'=>'delete.member'
-    
-]);
-
-Route::get('/update/member/{id}', [
-    
-    'uses'=>'AdminController@updatemember',
-    'as'=>'update.member'
-    
-]);
-Route::post('/save/member/{id}', [
-    
-    'uses'=>'AdminController@savemember',
-    'as'=>'save.member'
-    
-]);
-//member end
 
 
 //publication start
