@@ -7,6 +7,8 @@ use Auth;
 use \Input as Input;
 use Session;
 use File;
+use DB;
+
 
 use App\Post;
 
@@ -70,14 +72,37 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
         //var_dump($request);
         //dd($request);
+        $title = $req->input('title');
+        $status = $req->input('status');
+        $description = $req->input('description');
+        $startDate = $req->input('startDate');
+        $finishDate = $req->input('finishDate');
+        $image = $req->input('image');
+        $type = $req->input('type');
+        $group = $req->input('group[]');
+        $member = $req->input('member[]');
+
+       
+        $types = array('name'=> $type);
+        //$groups = array('groupName'=>$group);
+        //$members = array('');
+        $typesId = DB::table('posttypes')->where(['name'=>$types])->value('id');
+        $data = array('title'=> $title,'typeId'=> $typesId,'status'=> $status,'description'=> $description,
+        'startDate'=> $startDate,'finishDate'=> $finishDate);
+
+        DB::table('posts')->insert($data);
 
 
-        Session::flash('success','post created ');
-        return redirect()->back();
+
+
+
+
+        //Session::flash('success','post created ');
+        //return redirect()->back();
     }
 
     /**
