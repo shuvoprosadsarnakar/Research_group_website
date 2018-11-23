@@ -8,61 +8,27 @@
 
 
 @section('body')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="well">
-                <h4> Members list</h4>
-                <table class="table-edit" >
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Designation</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Image</th>
-                        <th>actions</th>
-                    </tr>
-                    @foreach ($data as $member)
-                    <tr>
-                        <td> {{ $member->id }} </td>
-                        <td> {{ $member->name }} </td>
-                        <td> {{ $member->designation }} </td>
-                        <td> {{ $member->email }} </td>
-                        <td> {{ $member->phone }} </td>
-                        <td> {{ $member->imagePath }} </td>
-                        <td>
-                        <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a> | 
-                <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteMember',$member->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
-                        </td>
-                    </tr>
-                    @endforeach                    
-                </table>
-            </div>
-            <div class="text-center">
-                
-            </div>
-        </div>
-        <div class="col-md-4">
+<div class="container center_div">
+ 
             <div class="well">
                 <h4> Create member </h4>
-                <form action="{{ route ('member_store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('/updateMember', array($data->id)) }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" class="form-control" id="name">
+                        <input type="text" name="name" class="form-control" id="name" value="<?php echo $data->name; ?>">
                     </div>
                     <div class="form-group">
                         <label for="designation">Designation:</label>
-                        <input type="text" name="designation" class="form-control" id="designation">
+                        <input type="text" name="designation" class="form-control" id="designation" value="<?php echo $data->designation; ?>">
                     </div>
                     <div class="form-group">
                         <label for="email">email:</label>
-                        <input type="text" name="email" class="form-control" id="email">
+                        <input type="text" name="email" class="form-control" id="email" value="<?php echo $data->email; ?>">
                     </div>
                     <div class="form-group">
                         <label for="phone">phone:</label>
-                        <input type="text" name="phone" class="form-control" id="phone">
+                        <input type="text" name="phone" class="form-control" id="phone" value="<?php echo $data->phone; ?>">
                     </div>
                     <div class="form-group">
                         <label for="image">Image:</label>
@@ -70,19 +36,19 @@
                     </div>
                     <div class="form-group">
                         <label for="github">github:</label>
-                        <input type="text" name="github" class="form-control" id="github">
+                        <input type="text" name="github" class="form-control" id="github" value="<?php echo $data->github; ?>">
                     </div>
                     <div class="form-group">
                         <label for="linkedin">linkedin:</label>
-                        <input type="text" name="linkedin" class="form-control" id="linkedin">
+                        <input type="text" name="linkedin" class="form-control" id="linkedin" value="<?php echo $data->linkedin; ?>">
                     </div>
                     <div class="form-group">
                         <label for="researcharea">Research area:</label>
-                        <input type="text" name="researchArea" class="form-control" id="researcharea">
+                        <input type="text" name="researchArea" class="form-control" id="researcharea" value="<?php echo $data->researchArea; ?>">
                     </div>
                     <div class="form-group">
                         <label for="interest">Interest:</label>
-                        <input type="text" name="interest" class="form-control" id="interest">
+                        <input type="text" name="interest" class="form-control" id="interest" value="<?php echo $data->interest; ?>">
                     </div>
                     <div class="form-group">
                         <label for="">Groups:</label>
@@ -94,12 +60,10 @@
                             <option value="G work">G work</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default">Create member</button>
+                    <button type="submit" class="btn btn-default">Update member</button>
                 </form>
             </div>
         </div>
-    </div>
-</div>
 @endsection
 
 
