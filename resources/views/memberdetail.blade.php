@@ -9,19 +9,17 @@
             </h2>
         </div>
         <div class="panel-body">
+
             <div class="col-md-6">
-            <img src="{{ asset('uploads/'.$data->imagePath) }}" alt="{{$data->name}}" style="width:100%">
+                <img src="{{asset($m->image)}}" alt="{{$m->image}}" style="width:100%">
+            </div>
+            <div class="col-md-6">
                 <h4>
-                    <b>{{ $data->name }}</b>
+                    <b>{{$m->name}}</b>
                     <br>
-                    <p>{{$data->designation}}</p>
+                    <p>{{$m->designation}}</p>
                 </h4>
-                <h6>{{$data->researchArea}}</h6>
-                <p>{{$data->github}}</p>
-                <p>{{$data->linkedin}}</p>
-                <p>{{$data->interest}}</p>
-                <p>{{$data->phone}}</p>
-                <p>{{$data->email}}</p>
+                <h6>{{$m->details}}</h6>
             </div>
         </div>
     </div>

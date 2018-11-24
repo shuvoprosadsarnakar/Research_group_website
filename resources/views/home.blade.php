@@ -10,7 +10,7 @@
 <div id="fullbackground">
   <div id="content">
     <div id="inner">
-      <h1>Ambient Intelligence Lab</h1>
+      <h1>Ai research group </h1>
       <h3>Daffodil international university</h3>
     </div>
   </div>

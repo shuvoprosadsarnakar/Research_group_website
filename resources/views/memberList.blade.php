@@ -13,30 +13,28 @@
             </h2>
         </div>
         <div class="panel-body">
-        @foreach ($data as $member)
-            <div class="row-fluid">
+            <div class="row">
 <!-- start list of posts repeat this item to add more member -->
-                <a href="{{route('memberDetails',$member->id)}}">
+                <a href="">
                     <div class="col-md-3 col-sm-4 col-xs-12">
                         <div class="card">
                             <!-- Image/thumbnail of the member -->
-                            <img src="{{ asset('uploads/'.$member->imagePath) }}" alt="{{$member->name}}" style="width:100%">
+                            <img src="{{asset('images/p.jpg')}}" alt="" style="width:100%">
                             <div class="cardcontainer">
                                 <h5>
                                     <!-- Name of the member -->
-                                    <b>{{ $member->name }}</b>
+                                    <b>Shuvo prosad sarnakar</b>
                                 </h5>
                                 <!-- Designation of the member -->
-                                <p>{{ $member->designation }} </p>
+                                <p>Student </p>
                                 <!-- Institution of the member -->
-                                <p>{{ $member->email }}</p>
+                                <p>Daffodil international university</p>
                             </div>
                         </div>
                     </div>
                 </a>
 <!-- end list of posts repeat this item to add more members -->
             </div>
-            @endforeach
         </div>
     </div>
 </div>

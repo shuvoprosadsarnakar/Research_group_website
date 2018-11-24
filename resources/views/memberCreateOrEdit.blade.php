@@ -10,39 +10,41 @@
 @section('body')
 <div class="container">
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-8">
             <div class="well">
                 <h4> Members list</h4>
                 <table class="table-edit" >
                     <tr>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Designation</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Image</th>
                         <th>actions</th>
                     </tr>
-                    @foreach ($data as $member)
                     <tr>
-                        <td> {{ $member->name }} </td>
-                        <td> {{ $member->designation }} </td>
-                        <td> {{ $member->email }} </td>
-                        <td> {{ $member->phone }} </td>
+                        <td>  </td>
+                        <td>  </td>
+                        <td>  </td>
+                        <td>  </td>
+                        <td>  </td>
+                        <td>  </td>
                         <td>
-                        <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>|
-                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteMember',$member->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
+                            <a href="" class="btn btn-danger">X</a>
+                            <a href="" class="btn btn-info">E</a>
                         </td>
-                    </tr>
-                    @endforeach                    
+                    </tr>                    
                 </table>
             </div>
             <div class="text-center">
                 
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="well">
                 <h4> Create member </h4>
-                <form action="{{ route ('member_store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route ('post_store') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="name">Name:</label>
@@ -62,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="image">Image:</label>
-                        <input type="file" accept="image/*" name="imagePath" class="form-control" id="image" />
+                        <input type="file" accept="image/*" name="image" class="form-control" id="image" />
                     </div>
                     <div class="form-group">
                         <label for="github">github:</label>
@@ -74,7 +76,7 @@
                     </div>
                     <div class="form-group">
                         <label for="researcharea">Research area:</label>
-                        <input type="text" name="researchArea" class="form-control" id="researcharea">
+                        <input type="text" name="researcharea" class="form-control" id="researcharea">
                     </div>
                     <div class="form-group">
                         <label for="interest">Interest:</label>
