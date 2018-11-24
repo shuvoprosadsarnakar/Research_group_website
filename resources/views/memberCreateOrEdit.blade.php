@@ -13,27 +13,33 @@
         <div class="col-md-7">
             <div class="well">
                 <h4> Members list</h4>
-                <table class="table-edit" >
-                    <tr>
-                        <th>Name</th>
-                        <th>Designation</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>actions</th>
-                    </tr>
-                    @foreach ($data as $member)
-                    <tr>
-                        <td> {{ $member->name }} </td>
-                        <td> {{ $member->designation }} </td>
-                        <td> {{ $member->email }} </td>
-                        <td> {{ $member->phone }} </td>
-                        <td>
-                        <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>|
-                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteMember',$member->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
-                        </td>
-                    </tr>
-                    @endforeach                    
-                </table>
+                <div class="table-fix">
+                    <table class="table-edit" >
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Designation</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>actions</th>
+                        </tr>
+                        @foreach($data as $member)
+                        <tr>
+                            <td> {{ $member->name }} </td>
+                            <td>
+                                <img src="{{ asset('uploads/'.$member->imagePath)  }}" alt="" style="width: 200px;"> 
+                            </td>
+                            <td> {{ $member->designation }} </td>
+                            <td> {{ $member->email }} </td>
+                            <td> {{ $member->phone }} </td>
+                            <td>
+                            <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>|
+                            <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteMember',$member->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
+                            </td>
+                        </tr>
+                        @endforeach                    
+                    </table>
+                </div>
             </div>
             <div class="text-center">
                 
@@ -41,24 +47,30 @@
         </div>
         <div class="col-md-5">
             <div class="well">
-                <h4> Create member </h4>
-                <form action="{{ route ('member_store') }}" method="post" enctype="multipart/form-data">
+                @if(isset($memberEditInfo)) 
+                    <h4>Edit member </h4>
+                @else
+                    <h4>Create member </h4>
+                @endif
+                
+                <form action="@if(isset($memberEditInfo)) {{ route ('updateMember',['id'=>$memberEditInfo->id]) }} @else {{ route ('member_store') }}@endif" method="post" enctype="multipart/form-data">
+                    
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" class="form-control" id="name">
+                        <input type="text" name="name" class="form-control" id="name" @if(isset($memberEditInfo)) value='{{$memberEditInfo->name}}' @endif >
                     </div>
                     <div class="form-group">
                         <label for="designation">Designation:</label>
-                        <input type="text" name="designation" class="form-control" id="designation">
+                        <input type="text" name="designation" class="form-control" id="designation" @if(isset($memberEditInfo)) value='{{$memberEditInfo->designation}}' @endif>
                     </div>
                     <div class="form-group">
                         <label for="email">email:</label>
-                        <input type="text" name="email" class="form-control" id="email">
+                        <input type="text" name="email" class="form-control" id="email" @if(isset($memberEditInfo)) value='{{$memberEditInfo->email}}' @endif>
                     </div>
                     <div class="form-group">
                         <label for="phone">phone:</label>
-                        <input type="text" name="phone" class="form-control" id="phone">
+                        <input type="text" name="phone" class="form-control" id="phone" @if(isset($memberEditInfo)) value='{{$memberEditInfo->phone}}' @endif>
                     </div>
                     <div class="form-group">
                         <label for="image">Image:</label>
@@ -66,19 +78,19 @@
                     </div>
                     <div class="form-group">
                         <label for="github">github:</label>
-                        <input type="text" name="github" class="form-control" id="github">
+                        <input type="text" name="github" class="form-control" id="github" @if(isset($memberEditInfo)) value='{{$memberEditInfo->github}}' @endif>
                     </div>
                     <div class="form-group">
                         <label for="linkedin">linkedin:</label>
-                        <input type="text" name="linkedin" class="form-control" id="linkedin">
+                        <input type="text" name="linkedin" class="form-control" id="linkedin" @if(isset($memberEditInfo)) value='{{$memberEditInfo->linkedin}}' @endif>
                     </div>
                     <div class="form-group">
-                        <label for="researcharea">Research area:</label>
-                        <input type="text" name="researchArea" class="form-control" id="researcharea">
+                        <label for="researchArea">Research area:</label>
+                        <input type="text" name="researchArea" class="form-control" id="researchArea" @if(isset($memberEditInfo)) value='{{$memberEditInfo->researchArea}}' @endif>
                     </div>
                     <div class="form-group">
                         <label for="interest">Interest:</label>
-                        <input type="text" name="interest" class="form-control" id="interest">
+                        <input type="text" name="interest" class="form-control" id="interest" @if(isset($memberEditInfo)) value='{{$memberEditInfo->interest}}' @endif>
                     </div>
                     <div class="form-group">
                         <label for="">Groups:</label>
@@ -90,7 +102,13 @@
                             <option value="G work">G work</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default">Create member</button>
+                    <button type="submit" class="btn btn-default">
+                    @if(isset($memberEditInfo)) 
+                        Edit member 
+                    @else
+                        Create member
+                    @endif
+                    </button>
                 </form>
             </div>
         </div>

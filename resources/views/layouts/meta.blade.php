@@ -46,11 +46,11 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li {{{ (Request::is('project') ? 'class=active' : '') }}}>
-                                <a href="{{ route('project') }}">Projects</a>
+                                <a href="">Projects</a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li {{{ (Request::is('deliverable') ? 'class=active' : '') }}}>
-                                <a href="{{ route('deliverable') }}">Deliverable</a>
+                                <a href="">Deliverable</a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li {{{ (Request::is('papers') ? 'class=active' : '') }}}>
