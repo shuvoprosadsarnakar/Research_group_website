@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use PostType;
+
+
 
 class TypeController extends Controller
 {
@@ -34,7 +38,27 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $typeName = $request->input('name');
+        $existingData = DB::table('posttypes')->pluck('name')->toArray();
+        if(in_array($typeName,$existingData)){   //case sensitive data can not be compared
+        //    session()->flash('existmessage','Post Type Already Exists');
+        //    return view('typeCreateOrEdit');
+        return "Post Type Already Exists";
+
+        }else {
+            $rak=array("name"=>$typeName);
+            DB::table('posttypes')->insert($rak);
+           
+        }
+
+        // $insert =PostType::firstOrCreate(['name' => $typeName]);
+        // $insert->save();
+
+        
+
+     
+        
+
     }
 
     /**

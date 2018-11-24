@@ -293,14 +293,6 @@ Route::post('/search/publications', [
 
 
 
-//member details
-Route::get('/memberdetail/{id}', [
-    
-    'uses'=>'MembersController@memberdetail',
-    'as'=>'memberdetail'
-    
-]);
-
    //contact view     
 Route::get('/contact', [
         

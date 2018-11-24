@@ -11,7 +11,11 @@
 <div class="container center_div">
  
             <div class="well">
+<<<<<<< HEAD
                 <h4> Create member </h4>
+=======
+                <h4> Update member </h4>
+>>>>>>> 6fe0f716b9bc0c99d0fbed4c96a1f9bd976ab9aa
                 <form action="{{ url('/updateMember', array($data->id)) }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
