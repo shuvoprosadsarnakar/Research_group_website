@@ -14,7 +14,7 @@
         </div>
         <div class="panel-body">
         @foreach ($data as $member)
-            <div class="row">
+            <div class="row-fluid">
 <!-- start list of posts repeat this item to add more member -->
                 <a href="{{route('memberDetails',$member->id)}}">
                     <div class="col-md-3 col-sm-4 col-xs-12">
