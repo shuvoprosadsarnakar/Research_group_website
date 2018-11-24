@@ -90,9 +90,7 @@
         @yield('body')
     </div>
 
-        <div class="navbar navbar-static-bottom navbar-fix footer-up ">
-            <h5></h5>
-        </div>
+       
 
     <footer class="navbar navbar-static-bottom navbar-fix footer-down">
         <div class="container">
@@ -107,6 +105,7 @@
                     <a href="{{ route('member_create') }}">member create</a>
                     <a href="{{ route('type_create') }}">type create</a>
                     <a href="{{ route('image_create') }}">image create</a>
+                    <a href="{{ route('video_create') }}">videocreate</a>
                     <a href="{{ route('video_create') }}">videocreate</a>
                 </div>
             </div>
