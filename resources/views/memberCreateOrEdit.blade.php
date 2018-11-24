@@ -23,24 +23,13 @@
                     </tr>
                     @foreach ($data as $member)
                     <tr>
-<<<<<<< HEAD
-                        <td> {{ $member->id }} </td>
-=======
->>>>>>> 6fe0f716b9bc0c99d0fbed4c96a1f9bd976ab9aa
                         <td> {{ $member->name }} </td>
                         <td> {{ $member->designation }} </td>
                         <td> {{ $member->email }} </td>
                         <td> {{ $member->phone }} </td>
-<<<<<<< HEAD
-                        <td> {{ $member->imagePath }} </td>
-                        <td>
-                        <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a> | 
-                <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteMember',$member->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
-=======
                         <td>
                         <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>|
                         <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteMember',$member->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
->>>>>>> 6fe0f716b9bc0c99d0fbed4c96a1f9bd976ab9aa
                         </td>
                     </tr>
                     @endforeach                    

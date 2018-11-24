@@ -11,11 +11,7 @@
 <div class="container center_div">
  
             <div class="well">
-<<<<<<< HEAD
-                <h4> Create member </h4>
-=======
                 <h4> Update member </h4>
->>>>>>> 6fe0f716b9bc0c99d0fbed4c96a1f9bd976ab9aa
                 <form action="{{ url('/updateMember', array($data->id)) }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
@@ -36,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="image">Image:</label>
-                        <input type="file" accept="image/*" name="imagePath" class="form-control" id="image" />
+                        <input type="file" accept="image/*" name="imagePath" class="form-control" id="image" value="<?php echo $data->imagePath; ?> />
                     </div>
                     <div class="form-group">
                         <label for="github">github:</label>
