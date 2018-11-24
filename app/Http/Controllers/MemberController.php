@@ -100,8 +100,11 @@ class MemberController extends Controller
                 } catch (Illuminate\Filesystem\FileNotFoundException $e) {
         
                 }
-            } 
-        }
+            }
+        }else{
+            $data=Member::find($id);
+            $imagePath=$data->imagePath;
+        } 
         $email = $request->input('email');
         $phone = $request->input('phone');
             
