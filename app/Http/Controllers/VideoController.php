@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class VideoController extends Controller
 {
@@ -32,9 +33,16 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
         //
+        $postId = $req->input('postid');
+        $link = $req->input('videourl');
+        $title = DB::table('posts')->where(['id'=>$postId])->value('title');
+
+        $data = array('title'=> $title,'link'=> $link,'postid'=> $postId);
+        DB::table('videos')->insert($data);
+        
     }
 
     /**
