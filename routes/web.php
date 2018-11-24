@@ -200,13 +200,6 @@ Route::get('/video/edit/{id}',[
 
 
 
-
-Route::get('/publications', [
-
-    'uses'=>'PublicationsController@index',
-    'as'=>'publications'
-]);
-
 Route::get('/admin', [
 
     'uses'=>'AdminController@index',
@@ -257,41 +250,6 @@ Route::get('/admindashboard5', [
 ]);
 
 
-//publication start
-Route::post('/create/publications', [
-    
-    'uses'=>'AdminController@dbpublications'
-    
-]);
-
-Route::get('/delete/publications/{id}', [
-    
-    'uses'=>'AdminController@deletepublications',
-    'as'=>'delete.publications'
-    
-]);
-
-Route::get('/update/publications/{id}', [
-    
-    'uses'=>'AdminController@updatepublications',
-    'as'=>'update.publications'
-    
-]);
-Route::post('/save/publications/{id}', [
-    
-    'uses'=>'AdminController@savepublications',
-    'as'=>'save.publications'
-    
-]);
-Route::post('/search/publications', [
-    
-    'uses'=>'AdminController@searchpublications',
-    'as'=>'search.publications'
-    
-]);
-//publication end
-
-
 
    //contact view     
 Route::get('/contact', [
@@ -305,95 +263,3 @@ Route::post('/contact', [
         
 ]);
 
-// project view
-Route::get('/project', [
-    
-    'uses'=>'ProjectController@index',
-    'as'=>'project'
-    
-]);
-
-//project details start
-Route::get('/projectdetails/{id}', [
-    
-    'uses'=>'ProjectController@projectdetails'
-    
-]);
-
-Route::post('/create/project', [
-    
-    'uses'=>'ProjectController@createproject'
-    
-]);
-Route::get('/delete/project/{id}', [
-    
-    'uses'=>'ProjectController@deleteproject',
-    'as'=>'delete.project'
-]);
-Route::get('/update/project/{id}', [
-    
-    'uses'=>'ProjectController@updateproject',
-    'as'=>'update.project'
-]);
-Route::post('/save/project/{id}', [
-    
-    'uses'=>'ProjectController@saveproject',
-    'as'=>'save.project'
-]);
-//project end
-
-
-
-//Open position start
-Route::get('openpositions', [
-    
-    'uses'=>'OpenpositionController@index',
-    
-]);
-Route::post('/create/Openposition', [
-    
-    'uses'=>'OpenpositionController@createOpenposition'
-    
-]);
-Route::get('/delete/Openposition/{id}', [
-    
-    'uses'=>'OpenpositionController@deleteOpenposition',
-    'as'=>'delete.Openposition'
-]);
-Route::get('/update/Openposition/{id}', [
-    
-    'uses'=>'OpenpositionController@updateOpenposition',
-    'as'=>'update.Openposition'
-]);
-Route::post('/save/Openposition/{id}', [
-    
-    'uses'=>'OpenpositionController@saveOpenposition',
-    'as'=>'save.Openposition'
-]);
-
-
-Route::get('deliverable', [
-    
-    'uses'=>'DeliverableController@index',
-    'as'=>'deliverable'
-]);
-Route::post('/create/deliverable', [
-    
-    'uses'=>'DeliverableController@createdeliverable'
-    
-]);
-Route::get('/delete/deliverable/{id}', [
-    
-    'uses'=>'DeliverableController@deletedeliverable',
-    'as'=>'delete.deliverable'
-]);
-Route::get('/update/deliverable/{id}', [
-    
-    'uses'=>'DeliverableController@updatedeliverable',
-    'as'=>'update.deliverable'
-]);
-Route::post('/save/deliverable/{id}', [
-    
-    'uses'=>'DeliverableController@savedeliverable',
-    'as'=>'save.deliverable'
-]);

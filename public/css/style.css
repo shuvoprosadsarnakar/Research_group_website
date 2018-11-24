@@ -107,6 +107,11 @@ html,body{
 
 .table-edit{
     width: 100%;
+    border-collapse: collapse;
+}
+
+.table-fix{
+    overflow-x:auto;
 }
 
 .table-edit td, th {
