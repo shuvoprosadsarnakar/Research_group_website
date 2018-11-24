@@ -58,40 +58,30 @@ Route::get('/post/edit/{id}',[
 
 //members start
 Route::get('/members',[
-    'uses' => 'MemberController@index',
+    'uses' => 'MemberController@memberList',
     'as' => 'members'
 ]);
 
-
-Route::get('/member/{criteria}/{order}',[
-    'uses' => 'MemberController@orderedIndex',
-    'as' => 'member_order'
-]);
-
 Route::get('/member/create',[
-    'uses' => 'MemberController@create',
+    'uses' => 'MemberController@add_member',
     'as' => 'member_create'
 ]);
 
 Route::post('/member/store',[
-    'uses' => 'MemberController@store',
+    'uses' => 'MemberController@insertMember',
     'as' => 'member_store'
 ]);
 
-Route::get('/member/details/{id}',[
-    'uses' => 'MemberController@show',
-    'as' => 'member_details'
+Route::get('/memberDetails/{id}',[
+    'uses' => 'MemberController@memberDetails',
+    'as' => 'memberDetails'
 ]);
+Route::get('/deleteMember/{id}', 'MemberController@deleteMember')->name('deleteMember');
 
-Route::get('/member/delete/{id}',[
-    'uses' => 'MemberController@destroy',
-    'as' => 'member_delete'
-]);
+Route::get('/editMember/{id}', 'MemberController@editMember')->name('editMember');
 
-Route::get('/member/edit/{id}',[
-    'uses' => 'MemberController@edit',
-    'as' => 'member_edit'
-]);
+Route::post('/updateMember/{id}', 'MemberController@updateMember')->name('updateMember');
+
 //members end
 
 //type start
@@ -302,14 +292,6 @@ Route::post('/search/publications', [
 //publication end
 
 
-
-//member details
-Route::get('/memberdetail/{id}', [
-    
-    'uses'=>'MembersController@memberdetail',
-    'as'=>'memberdetail'
-    
-]);
 
    //contact view     
 Route::get('/contact', [
