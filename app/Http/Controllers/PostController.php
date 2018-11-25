@@ -93,6 +93,17 @@ class PostController extends Controller
         $data = array('title'=> $title,'typeId'=> $typesId,'status'=> $status,'description'=> $description,
         'startDate'=> $startDate,'finishDate'=> $finishDate);
 
+        //$groups = array('groupName')
+
+        $groupId = DB::table('groups')->where(['name'=>$group])->value('id');
+        $memberId = DB::table('members')->where(['name'=>$member])->value('id');
+        $postId =  DB::table('posts')->where(['title'=>$title])->value('id');
+
+        $groupPostData = array('groupId'=> $groupId,'postId'=> $postId);
+        $memberPostData = array('memberId'=> $memberId,'postId'=> $postId);
+        
+        DB::table('groupposts')->insert($groupPostData);
+        DB::table('memberposts')->insert($groupPostData);
         DB::table('posts')->insert($data);
 
 
