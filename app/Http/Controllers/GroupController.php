@@ -27,7 +27,7 @@ class GroupController extends Controller
     */
     public function addGroup(){
         $data['data'] = DB::table('groups')->get();
-        return view('memberCreateOrEdit',$data);
+        return view('groupCreateOrEdit',$data);
     }
 
         
@@ -39,18 +39,18 @@ class GroupController extends Controller
         $data=array('groupName'=>$groupName);
         DB::table('groups')->insert($data);
         $request->session()->flash('alert-success', 'Group was successful added!');
-        return redirect()->route("member_create");
+        return redirect()->route("groupCreate");
     }
 
     public function editGroup($id) {
         $data['data'] = DB::table('groups')->get();
-        $memberEditInfo = Member::find($id);
-        return view('memberCreateOrEdit',$data,$memberEditInfo);
+        $groupEditInfo = Member::find($id);
+        return view('memberCreateOrEdit',$data,$groupEditInfo);
     }
     public function deleteGroup($id){
         $data=Group::find($id);
         Group::destroy($id);
-        return redirect()->route("addGroup")->with('flash_message', 'Group deleted!');
+        return redirect()->route("groupCreate")->with('flash_message', 'Group deleted!');
     }
     public function updateGroup(Request $request, $id){
        
@@ -58,7 +58,7 @@ class GroupController extends Controller
         $data=array('groupName'=>$groupName);
         Member::where('id',$id)->update($data);
         $request->session()->flash('alert-success', 'Group was successful Updated!');
-        return redirect()->route("member_create");
+        return redirect()->route("groupCreate");
         }
 
         
