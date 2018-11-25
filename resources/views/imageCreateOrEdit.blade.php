@@ -45,7 +45,7 @@
                 @else
                     <h4>Upload Image </h4>
                 @endif
-                <h4> Preview of current image </h4>
+                <h4> Preview of last Uploaded image </h4>
                 <form action="@if(isset($iEditInfo)) {{ route ('image_update',['id'=>$iEditInfo->id]) }} @else {{ route ('image_store') }}@endif" method="post" enctype="multipart/form-data">
                 <img  @if(isset($data3)) src="{{ asset('uploads/'.$data3->path)  }}"@endif alt="" style="width:100%"> 
                 <form action="{{ route ('image_store') }}" method="post" enctype="multipart/form-data">

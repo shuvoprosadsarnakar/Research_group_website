@@ -50,7 +50,7 @@
                     <h4>Insert Video Url </h4>
                 @endif
                 <!-- <h4> Preview of current video </h4> -->
-                <!-- <form action="@if(isset($vEditInfo)) {{ route ('video_update',['id'=>$vEditInfo->id]) }} @else {{ route ('video_store') }}@endif" method="post" enctype="multipart/form-data"> -->
+                <form action="@if(isset($vEditInfo)) {{ route ('video_update',['id'=>$vEditInfo->id]) }} @else {{ route ('video_store') }}@endif" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="Link">Video url:</label>
