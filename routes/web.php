@@ -126,18 +126,34 @@ Route::post('/groupmembers/update/{id}',[
 
 //group end
 
+//start reference
+Route::get('/references',[
+    'uses' => 'ReferenceController@create',
+    'as' => 'reference_create'
+]);
+
+Route::post('/reference/store',[
+    'uses' => 'ReferenceController@store',
+    'as' => 'reference_store'
+]);
+
+Route::get('/reference/edit/{id}',[
+    'uses' => 'ReferenceController@edit',
+    'as' => 'reference_edit'
+]);
+
+Route::post('/reference/update/{id}',[
+    'uses' => 'ReferenceController@update',
+    'as' => 'reference_update'
+]);
+
+Route::get('/reference/delete/{id}',[
+    'uses' => 'ReferenceController@destroy',
+    'as' => 'reference_delete'
+]);
+//end reference
+
 //type start
-// Route::get('/types',[
-//     'uses' => 'TypeController@index',
-//     'as' => 'types'
-// ]);
-
-
-// Route::get('/type/{criteria}/{order}',[
-//     'uses' => 'TypeController@orderedIndex',
-//     'as' => 'type_order'
-// ]);
-
 Route::get('/type/create',[
     'uses' => 'TypeController@create',
     'as' => 'type_create'
@@ -212,12 +228,6 @@ Route::get('/image/edit/{id}',[
 //     'as' => 'video'
 // ]);
 
-
-// Route::get('/video/{criteria}/{order}',[
-//     'uses' => 'VideoController@orderedIndex',
-//     'as' => 'image_order'
-// ]);
-
 Route::get('/video/create',[
     'uses' => 'VideoController@create',
     'as' => 'video_create'
@@ -253,6 +263,7 @@ Route::get('/admin', [
 
 ]);
 
+//start admin panel
 Route::post('/adminlogin', [
 
     'uses'=>'AdminController@login'
@@ -265,39 +276,9 @@ Route::post('/adminlogout', [
     'as'=>'logout'
 
 ]);
+//end admin panel
 
-Route::get('/admindashboard', [
-
-    'uses'=>'AdminController@dashboard'
-
-]);
-
-Route::get('/admindashboard2', [
-
-    'uses'=>'AdminController@dashboard2'
-
-]);
-
-Route::get('/admindashboard3', [
-
-    'uses'=>'AdminController@dashboard3'
-
-]);
-
-Route::get('/admindashboard4', [
-
-    'uses'=>'AdminController@dashboard4'
-
-]);
-Route::get('/admindashboard5', [
-
-    'uses'=>'AdminController@dashboard5'
-
-]);
-
-
-
-   //contact view     
+//contact view     
 Route::get('/contact', [
         
     'uses'=>'ContactController@index',

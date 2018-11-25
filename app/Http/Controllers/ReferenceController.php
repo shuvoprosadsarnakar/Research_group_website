@@ -23,7 +23,7 @@ class ReferenceController extends Controller
      */
     public function create()
     {
-        //
+        return view('referenceCreateOrEdit');
     }
 
     /**
