@@ -88,8 +88,7 @@ class PostController extends Controller
 
        
         $types = array('name'=> $type);
-        //$groups = array('groupName'=>$group);
-        //$members = array('');
+    
         $typesId = DB::table('posttypes')->where(['name'=>$types])->value('id');
         $data = array('title'=> $title,'typeId'=> $typesId,'status'=> $status,'description'=> $description,
         'startDate'=> $startDate,'finishDate'=> $finishDate);

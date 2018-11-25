@@ -9,8 +9,12 @@ use File;
 use DB;
 use App\Http\Requests;
 use App\Member;
+<<<<<<< HEAD
 use App\Group;
 use App\MemberGroup;
+=======
+use App\Post;
+>>>>>>> ee8d26300040abdab78f132d2e746db2a993423b
 
 class MemberController extends Controller
 {
@@ -26,9 +30,14 @@ class MemberController extends Controller
     }
     */
     public function add_member(){
+<<<<<<< HEAD
         $data['data'] = DB::table('members')->get();
         $groupData['groupData']=DB::table('groups')->get();
         return view('memberCreateOrEdit',$data, $groupData);
+=======
+        $data = Member::get();
+        return view('memberCreateOrEdit',compact('data'));
+>>>>>>> ee8d26300040abdab78f132d2e746db2a993423b
     }
 
         
@@ -36,7 +45,7 @@ class MemberController extends Controller
         $this->validate($request,[
             'name'=>'required|max:255',
             'designation'=>'required|max:255',
-            'github'=>'required|max:255|url',
+            'github'=>'nullable|max:255|url',
             'linkedin'=>'required|max:255|url',
             'researchArea'=>'required|max:1024',
             'interest'=>'nullable|max:1024',
@@ -75,19 +84,39 @@ class MemberController extends Controller
         $request->session()->flash('alert-success', 'User was successful added!');
         return redirect()->route("member_create");
     }
+
+
     public function memberList(){
+
         $data['data'] = DB::table('members')->get();
         return view('memberList',$data);
     }
+
+
+
     public function editMember($id) {
-        $data=Member::find($id);
-        return view('editMember',['data'=>$data]);
+
+        $data = DB::table('members')->get();
+        $memberEditInfo = Member::find($id);
+        //dd($memberEditInfo);
+        return view('memberCreateOrEdit',compact('data','memberEditInfo'));
     }
+
+
+
+
+
     public function memberDetails($id) {
         $data=Member::find($id);
         return view('memberdetail',['data'=>$data]);
     }
     public function deleteMember($id){
+        $data=Member::find($id);
+        if(isset($data)){
+            if(file_exists("uploads/".$data->imagePath)){
+                File::delete("uploads/".$data->imagePath);
+            }
+        }
         Member::destroy($id);
         return redirect()->route("member_create")->with('flash_message', 'Member deleted!');
     }
@@ -104,8 +133,13 @@ class MemberController extends Controller
                 try {
                     $file = $request->file('imagePath');
                     $imagePath = time() . '.' . $file->getClientOriginalExtension();
-        
                     $request->file('imagePath')->move("uploads", $imagePath);
+
+                    $data=Member::find($id);
+                    if(file_exists("uploads/".$data->imagePath)){
+                        File::delete("uploads/".$data->imagePath);
+                    }
+
                 } catch (Illuminate\Filesystem\FileNotFoundException $e) {
         
                 }
