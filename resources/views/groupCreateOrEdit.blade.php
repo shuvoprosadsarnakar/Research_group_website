@@ -10,24 +10,31 @@
 @section('body')
 <div class="container">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-7">
             <div class="well">
                 <h4> Group list</h4>
                 <div class="table-fix">
                     <table class="table-edit" >
                         <tr>
-                            <th>Group Name</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Designation</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>actions</th>
                         </tr>
                         @foreach($data as $group)
                         <tr>
-                            <td> {{ $group->groupName }} </td>
+                            <td> {{ $group->name }} </td>
                             <td>
-                            <a href="{{route('editGroup',$group->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
+                                <img src="{{ asset('uploads/'.$member->imagePath)  }}" alt="" style="width: 200px;"> 
                             </td>
+                            <td> {{ $group->designation }} </td>
+                            <td> {{ $group->email }} </td>
+                            <td> {{ $group->phone }} </td>
                             <td>
-                            <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteGroup',$group->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
+                            <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>|
+                            <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteMember',$member->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
                             </td>
                         </tr>
                         @endforeach                    
@@ -41,17 +48,28 @@
         <div class="col-md-5">
             <div class="well">
                 @if(isset($groupEditInfo)) 
-                    <h4>Update Group</h4>
+                    <h4>Edit member </h4>
                 @else
-                    <h4>Create group </h4>
+                    <h4>Create member </h4>
                 @endif
                 
-                <form action="@if(isset($groupEditInfo)) {{ route ('updateGroup',['id'=>$groupEditInfo->id]) }} @else {{ route ('insertGroup') }}@endif" method="post" enctype="multipart/form-data">
+                <form action="@if(isset($memberEditInfo)) {{ route ('updateMember',['id'=>$memberEditInfo->id]) }} @else {{ route ('member_store') }}@endif" method="post" enctype="multipart/form-data">
                     
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label for="name">Group Name:</label>
-                        <input type="text" name="groupName" class="form-control" id="name" @if(isset($groupEditInfo)) value='{{$groupEditInfo->groupName}}' @endif >
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="form-control" id="name" @if(isset($memberEditInfo)) value='{{$groupEditInfo->name}}' @endif >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="">Groups:</label>
+                        <select name="group[]" size="1" class="chosen-select-group form-control"  data-placeholder="Choose group names..." multiple="multiple">
+                            <option value="A">A</option>
+                            <option value="B" selected>B</option>
+                            <option value="C" disabled>C</option>
+                            <option value="Y work" selected>Y work</option>
+                            <option value="G work">G work</option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-default">
                         @if(isset($groupEditInfo)) 
