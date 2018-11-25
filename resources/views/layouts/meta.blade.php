@@ -108,6 +108,7 @@
                     <a href="{{ route('image_create') }}">Upload image</a>
                     <a href="{{ route('video_create') }}">Upload Video</a>
                     <a href="{{ route('group_create') }}">Create Group</a>
+                    <a href="{{ route('reference_create') }}">Create Reference</a>
                 </div>
             </div>
         </div>
