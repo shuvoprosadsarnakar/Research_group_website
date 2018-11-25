@@ -33,7 +33,7 @@
                             <td> {{ $member->email }} </td>
                             <td> {{ $member->phone }} </td>
                             <td>
-                            <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>|
+                            <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E  </a><br>
                             <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteMember',$member->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
                             </td>
                         </tr>
@@ -94,12 +94,10 @@
                     </div>
                     <div class="form-group">
                         <label for="">Groups:</label>
-                        <select name="group[]" size="1" class="chosen-select-group form-control"  data-placeholder="Choose group names..." multiple="multiple">
-                            <option value="A">A</option>
-                            <option value="B" selected>B</option>
-                            <option value="C" disabled>C</option>
-                            <option value="Y work" selected>Y work</option>
-                            <option value="G work">G work</option>
+                        <select name="groupId" class="chosen-select-group form-control"  data-placeholder="Choose group names..." multiple="multiple">
+                        @foreach ($groupData as $group)
+                            <option value="{{ $group->id }}" > {{ $group->groupName }} </option>
+                        @endforeach 
                         </select>
                     </div>
                     <button type="submit" class="btn btn-default">
