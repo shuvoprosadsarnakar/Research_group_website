@@ -33,7 +33,7 @@
                             <td> {{ $member->email }} </td>
                             <td> {{ $member->phone }} </td>
                             <td>
-                            <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>|
+                            <a href="{{route('editMember',$member->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E  </a><br>
                             <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteMember',$member->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
                             </td>
                         </tr>
