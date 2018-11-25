@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label for="referenceurl">Reference url:</label>
-                        <input type="text" name="referenceurl" class="form-control" id="referenceurl" />
+                        <input type="text" name="link" class="form-control" id="referenceurl" />
                     </div>
                     <div class="form-group">
                         <label for="">Post title:</label>
