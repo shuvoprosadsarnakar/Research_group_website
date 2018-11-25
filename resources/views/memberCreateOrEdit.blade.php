@@ -92,17 +92,22 @@
                         <label for="interest">Interest:</label>
                         <input type="text" name="interest" class="form-control" id="interest" @if(isset($memberEditInfo)) value='{{$memberEditInfo->interest}}' @endif>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="">Groups:</label>
-                        <select name="groupId" class="chosen-select-group form-control"  data-placeholder="Choose group names..." multiple="multiple">
-                        @foreach ($groupData as $group)
-                            <option value="{{ $group->id }}" > {{ $group->groupName }} </option>
-                        @endforeach 
+                        <select name="groupId[]" class="chosen-select-member form-control"  data-placeholder="Choose group names..." multiple="multiple">
+                            @foreach ($groupData as $group)
+                                <option value="{{ $group->id }}" > {{ $group->groupName }} </option>
+                            @endforeach 
+                            @if(isset($gEditInfo))
+                                @foreach($gEditInfo->groups as $group)
+                                    <option value="{{ $group->id }}" selected> {{ $group->groupName }} </option>
+                                @endforeach
+                            @endif
                         </select>
-                    </div>
+                    </div> -->
                     <button type="submit" class="btn btn-default">
                     @if(isset($memberEditInfo)) 
-                        Edit member 
+                        Update member 
                     @else
                         Create member
                     @endif

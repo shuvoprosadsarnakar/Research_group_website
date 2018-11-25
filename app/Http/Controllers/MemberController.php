@@ -138,9 +138,9 @@ class MemberController extends Controller
         } 
         $email = $request->input('email');
         $phone = $request->input('phone');
-        $groupId=$request->input('groupId');
-        $data2=array('groupId'=>$groupId,'memberId'=>$id);
-        MemberGroup::where('memberId',$id)->update($data2);
+        // $groupId=$request->input('groupId');
+        // $data2=array('groupId'=>$groupId,'memberId'=>$id);
+        // MemberGroup::where('memberId',$id)->update($data2);
         $data=array('name'=>$name,'designation'=>$designation,'github'=>$github,'linkedin'=>$linkedin,'researchArea'=>$researchArea,'interest'=>$interest,'email'=>$email,'phone'=>$phone,'imagePath'=>$imagePath);
         Member::where('id',$id)->update($data);
         $request->session()->flash('alert-success', 'Member was successful Updated!');

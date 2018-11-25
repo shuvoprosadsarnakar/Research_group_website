@@ -20,17 +20,19 @@
                         <th>Post title</th>
                         <th>Actions</th>
                     </tr>
+                    @foreach($data as $reference)
                     <tr>
-                        <td> 1 </td>
-                        <td>XXXX harry potter  </td>
-                        <td> https://www.youtube.com/watch?v=a18py61_F_w </td>
-                        <td> 12 </td>
+                        <td> {{ $reference->id }} </td>
+                        <td>{{ $reference->title }}</td>
+                        <td>{{ $reference->link }} </td>
+                        <td>{{ $reference->postId }} </td>
                         <td> Lorem ipsum dolor sit amet consectetur adipisicing </td>
                         <td>
-                            <a href="" class="btn btn-danger">X</a>
-                            <a href="" class="btn btn-info">E</a>
+                        <a href="{{route('reference_edit',$reference->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
+                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('reference_delete',$reference->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
                         </td>
                     </tr>
+                    @endforeach
                 </table>
             </div>
             <div class="text-center">
@@ -40,28 +42,44 @@
         <div class="col-md-4">
             <div class="well">
             
-                <h4> Add reference </h4>
+            @if(isset($rEditInfo)) 
+                    <h4>Update reference </h4>
+                @else
+                    <h4>Create Reference </h4>
+                @endif
                
-                <form action="{{ route ('reference_store') }}" method="post" enctype="multipart/form-data">
+                <form action="@if(isset($rEditInfo)) {{ route ('reference_update',['id'=>$rEditInfo->id]) }} @else {{ route ('reference_store') }}@endif" method="post" enctype="multipart/form-data">
+                    
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="referencetitle">Reference title:</label>
-                        <input type="text" name="referencetitle" class="form-control" id="referencetitle" />
+                        <input type="text" name="title" class="form-control" id="title" @if(isset($rEditInfo)) value='{{$rEditInfo->title}}' @endif />
                     </div>
                     <div class="form-group">
                         <label for="referenceurl">Reference url:</label>
-                        <input type="text" name="link" class="form-control" id="referenceurl" />
+                        <input type="text" name="link" class="form-control" id="link" @if(isset($rEditInfo)) value='{{$rEditInfo->link}}' @endif />
                     </div>
                     <div class="form-group">
-                        <label for="">Post title:</label>
-                        <select name="postid" size="1" class="chosen-select-post form-control"  data-placeholder="Choose a post ..." >
-                            <option value="1">aaaaaaaa</option>
-                            <option value="2">abcdefghijklmnop</option>
-                            <option value="3">sdfgh work</option>
-                            <option value="4">wserdtfgyb work</option>
+                        <label for="">Post Title:</label>
+                        <select name="postId" class="chosen-select-member form-control"  data-placeholder="Choose post...">
+                            @foreach ($postData as $post)
+                                <option value="{{ $post->id }}" > {{ $post->title }} </option>
+                            @endforeach 
+                            @if(isset($rEditInfo))
+                                @foreach($rEditInfo as $postTitle)
+                                    <option value="{{ $postTitle->id }}" selected> {{ $postTitle->title }} </option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default">Add reference</button>
+                    <button type="submit" class="btn btn-default">
+                    @if(isset($rEditInfo)) 
+                        Update Reference 
+                    @else
+                        Create Reference
+                    @endif
+                    </button>
+                    
                 </form>
             </div>
         </div>
