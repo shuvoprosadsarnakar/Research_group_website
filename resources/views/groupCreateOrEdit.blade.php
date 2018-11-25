@@ -10,7 +10,7 @@
 @section('body')
 <div class="container">
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-5">
             <div class="well">
                 <h4> Group list</h4>
                 <div class="table-fix">
@@ -22,11 +22,12 @@
                         </tr>
                         @foreach($groups as $group)
                         <tr>
-                            <td> {{$group->groupName}} </td>
-                            <td> xx </td>
+                            <td> {{ $group->groupName }} </td>
                             <td>
-                            <a href="" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>|
-                            <a onclick="return confirm('Are you sure you want to delete this item?');" href="" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
+                            <a href="{{route('editGroup',$group->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
+                            </td>
+                            <td>
+                            <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('deleteGroup',$group->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
                             </td>
                         </tr>
                         @endforeach                    
@@ -40,19 +41,18 @@
         <div class="col-md-5">
             <div class="well">
                 @if(isset($groupEditInfo)) 
-                    <h4>Edit group </h4>
+                    <h4>Update Group</h4>
                 @else
                     <h4>Create group </h4>
                 @endif
                 
-                <form action="@if(isset($memberEditInfo)) {{ route ('updateMember',['id'=>$memberEditInfo->id]) }} @else {{ route ('member_store') }}@endif" method="post" enctype="multipart/form-data">
+                <form action="@if(isset($groupEditInfo)) {{ route ('updateGroup',['id'=>$groupEditInfo->id]) }} @else {{ route ('insertGroup') }}@endif" method="post" enctype="multipart/form-data">
                     
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" class="form-control" id="name" @if(isset($memberEditInfo)) value='{{$groupEditInfo->name}}' @endif >
+                        <label for="name">Group Name:</label>
+                        <input type="text" name="groupName" class="form-control" id="name" @if(isset($groupEditInfo)) value='{{$groupEditInfo->groupName}}' @endif >
                     </div>
-
                     <button type="submit" class="btn btn-default">
                         @if(isset($groupEditInfo)) 
                             Edit group 

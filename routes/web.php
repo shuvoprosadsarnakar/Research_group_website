@@ -84,40 +84,20 @@ Route::post('/updateMember/{id}', 'MemberController@updateMember')->name('update
 //members end
 
 //group star
-// Route::get('/groups',[
-//     'uses' => 'PostController@index',
-//     'as' => 'posts'
-// ]);
-
-// Route::get('/posts/{criteria}/{order}',[
-//     'uses' => 'PostController@orderedIndex',
-//     'as' => 'posts_order'
-// ]);
-
-Route::get('/group/create',[
-    'uses' => 'GroupController@create',
-    'as' => 'group_create'
+Route::get('/groups',[
+    'uses' => 'GroupController@addGroup',
+    'as' => 'groupCreate'
 ]);
 
-Route::post('/group/store',[
-    'uses' => 'GroupController@store',
-    'as' => 'group_store'
+Route::post('/insertGroup',[
+    'uses' => 'GroupController@insertGroup',
+    'as' => 'insertGroup'
 ]);
+Route::get('/deleteGroup/{id}', 'GroupController@deleteGroup')->name('deleteGroup');
 
-// Route::get('/post/details/{id}',[
-//     'uses' => 'PostController@show',
-//     'as' => 'post_details'
-// ]);
+Route::get('/editGroup/{id}', 'GroupController@editGroup')->name('editGroup');
 
-// Route::get('/post/delete/{id}',[
-//     'uses' => 'PostController@destroy',
-//     'as' => 'post_delete'
-// ]);
-
-// Route::get('/post/edit/{id}',[
-//     'uses' => 'PostController@edit',
-//     'as' => 'post_edit'
-// ]);
+Route::post('/updateGroup/{id}', 'GroupController@updateGroup')->name('updateGroup');
 //group end
 
 //type start
@@ -290,7 +270,8 @@ Route::get('/admindashboard5', [
    //contact view     
 Route::get('/contact', [
         
-    'uses'=>'ContactController@index'
+    'uses'=>'ContactController@index',
+    'as'=>'contact'
         
 ]);
 Route::post('/contact', [

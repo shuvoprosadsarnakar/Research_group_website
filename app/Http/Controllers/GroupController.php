@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Group;
+use Auth;
+use Session;
+use File;
+use DB;
+use App\Http\Requests;
 use App\Member;
+use App\Group;
+use App\MemberGroup;
 
 class GroupController extends Controller
 {
@@ -13,9 +19,10 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    /*
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
     }
 
     /**
@@ -39,51 +46,42 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+    }
+    public function addGroup(){
+        $data['data'] = DB::table('groups')->get();
+        return view('groupCreateOrEdit',$data);
+    }
+
+        
+    public function insertGroup(Request $request){
+        $this->validate($request,[
+            'groupName'=>'required|max:255',
+        ]);
+        $groupName = $request->input('groupName');
+        $data=array('groupName'=>$groupName);
+        DB::table('groups')->insert($data);
+        $request->session()->flash('alert-success', 'Group was successful added!');
+        return redirect()->route("groupCreate");
+    }
+
+    public function editGroup($id) {
+        $data['data'] = DB::table('groups')->get();
+        $groupEditInfo = Member::find($id);
+        return view('memberCreateOrEdit',$data,$groupEditInfo);
+    }
+    public function deleteGroup($id){
+        $data=Group::find($id);
+        Group::destroy($id);
+        return redirect()->route("groupCreate")->with('flash_message', 'Group deleted!');
+    }
+    public function updateGroup(Request $request, $id){
+       
+        $groupName = $request->input('groupName');
+        $data=array('groupName'=>$groupName);
+        Member::where('id',$id)->update($data);
+        $request->session()->flash('alert-success', 'Group was successful Updated!');
+        return redirect()->route("groupCreate");
+        }
+
         
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-}

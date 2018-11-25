@@ -46,8 +46,8 @@ class TypeController extends Controller
         return "Post Type Already Exists";
 
         }else {
-            $rak=array("name"=>$typeName);
-            DB::table('posttypes')->insert($rak);
+            $newData=array("name"=>$typeName);
+            DB::table('posttypes')->insert($newData);
            
         }
 
