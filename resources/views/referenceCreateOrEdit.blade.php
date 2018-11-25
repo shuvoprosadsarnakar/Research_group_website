@@ -42,7 +42,7 @@
             
                 <h4> Add reference </h4>
                
-                <form action="{{ route ('video_store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route ('reference_store') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="referencetitle">Reference title:</label>
