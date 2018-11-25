@@ -178,6 +178,10 @@ Route::get('/type/edit/{id}',[
     'uses' => 'TypeController@edit',
     'as' => 'type_edit'
 ]);
+Route::post('/type/update/{id}',[
+    'uses' => 'TypeController@update',
+    'as' => 'type_update'
+]);
 //type end
 
 //image start

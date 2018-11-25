@@ -146,6 +146,4 @@ class MemberController extends Controller
         $request->session()->flash('alert-success', 'Member was successful Updated!');
         return redirect()->route("member_create");
         }
-
-        
     }
