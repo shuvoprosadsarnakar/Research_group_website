@@ -84,40 +84,40 @@ Route::post('/updateMember/{id}', 'MemberController@updateMember')->name('update
 //members end
 
 //group star
-Route::get('/groups',[
-    'uses' => 'PostController@index',
-    'as' => 'posts'
+// Route::get('/groups',[
+//     'uses' => 'PostController@index',
+//     'as' => 'posts'
+// ]);
+
+// Route::get('/posts/{criteria}/{order}',[
+//     'uses' => 'PostController@orderedIndex',
+//     'as' => 'posts_order'
+// ]);
+
+Route::get('/group/create',[
+    'uses' => 'GroupController@create',
+    'as' => 'group_create'
 ]);
 
-Route::get('/posts/{criteria}/{order}',[
-    'uses' => 'PostController@orderedIndex',
-    'as' => 'posts_order'
+Route::post('/group/store',[
+    'uses' => 'GroupController@store',
+    'as' => 'group_store'
 ]);
 
-Route::get('/post/create/{criteria}/{order}',[
-    'uses' => 'PostController@create',
-    'as' => 'post_create'
-]);
+// Route::get('/post/details/{id}',[
+//     'uses' => 'PostController@show',
+//     'as' => 'post_details'
+// ]);
 
-Route::post('/post/store',[
-    'uses' => 'PostController@store',
-    'as' => 'post_store'
-]);
+// Route::get('/post/delete/{id}',[
+//     'uses' => 'PostController@destroy',
+//     'as' => 'post_delete'
+// ]);
 
-Route::get('/post/details/{id}',[
-    'uses' => 'PostController@show',
-    'as' => 'post_details'
-]);
-
-Route::get('/post/delete/{id}',[
-    'uses' => 'PostController@destroy',
-    'as' => 'post_delete'
-]);
-
-Route::get('/post/edit/{id}',[
-    'uses' => 'PostController@edit',
-    'as' => 'post_edit'
-]);
+// Route::get('/post/edit/{id}',[
+//     'uses' => 'PostController@edit',
+//     'as' => 'post_edit'
+// ]);
 //group end
 
 //type start

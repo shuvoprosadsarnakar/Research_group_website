@@ -107,7 +107,7 @@
                     <a href="{{ route('type_create') }}">Create Type</a>
                     <a href="{{ route('image_create') }}">image create</a>
                     <a href="{{ route('video_create') }}">videocreate</a>
-                    <a href="{{ route('video_create') }}">videocreate</a>
+                    <a href="{{ route('group_create') }}">group create</a>
                 </div>
             </div>
         </div>

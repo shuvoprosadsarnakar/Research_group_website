@@ -65,13 +65,13 @@ class MemberController extends Controller
         }
         $email = $request->input('email');
         $phone = $request->input('phone');
-        $data3=Member::all()->last();
-        $memberId=$data3->id;
-        $groupId=$request->input('groupId');
-        $data=array('id'=>$memberId+1,'name'=>$name,'designation'=>$designation,'github'=>$github,'linkedin'=>$linkedin,'researchArea'=>$researchArea,'interest'=>$interest,'email'=>$email,'phone'=>$phone,'imagePath'=>$imagePath);
+        // $data3=Member::all()->last();
+        // $memberId=$data3->id;
+        //$groupId=$request->input('groupId');
+        $data=array('name'=>$name,'designation'=>$designation,'github'=>$github,'linkedin'=>$linkedin,'researchArea'=>$researchArea,'interest'=>$interest,'email'=>$email,'phone'=>$phone,'imagePath'=>$imagePath);
         DB::table('members')->insert($data);
-        $data2=array('groupId'=>$groupId,'memberId'=>$memberId+1);
-        DB::table('membergroups')->insert($data2);
+        // $data2=array('groupId'=>$groupId,'memberId'=>$memberId+1);
+        // DB::table('membergroups')->insert($data2);
         $request->session()->flash('alert-success', 'User was successful added!');
         return redirect()->route("member_create");
     }
