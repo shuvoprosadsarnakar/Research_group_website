@@ -81,8 +81,44 @@ Route::get('/deleteMember/{id}', 'MemberController@deleteMember')->name('deleteM
 Route::get('/editMember/{id}', 'MemberController@editMember')->name('editMember');
 
 Route::post('/updateMember/{id}', 'MemberController@updateMember')->name('updateMember');
-
 //members end
+
+//group star
+Route::get('/groups',[
+    'uses' => 'PostController@index',
+    'as' => 'posts'
+]);
+
+Route::get('/posts/{criteria}/{order}',[
+    'uses' => 'PostController@orderedIndex',
+    'as' => 'posts_order'
+]);
+
+Route::get('/post/create/{criteria}/{order}',[
+    'uses' => 'PostController@create',
+    'as' => 'post_create'
+]);
+
+Route::post('/post/store',[
+    'uses' => 'PostController@store',
+    'as' => 'post_store'
+]);
+
+Route::get('/post/details/{id}',[
+    'uses' => 'PostController@show',
+    'as' => 'post_details'
+]);
+
+Route::get('/post/delete/{id}',[
+    'uses' => 'PostController@destroy',
+    'as' => 'post_delete'
+]);
+
+Route::get('/post/edit/{id}',[
+    'uses' => 'PostController@edit',
+    'as' => 'post_edit'
+]);
+//group end
 
 //type start
 // Route::get('/types',[
