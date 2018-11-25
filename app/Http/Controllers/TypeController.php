@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use PostType;
+use App\PostType;
 
 
 
@@ -27,7 +27,8 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('typeCreateOrEdit');
+        $data['data'] = DB::table('posttypes')->get();
+        return view('typeCreateOrEdit',$data);
     }
 
     /**
@@ -38,23 +39,14 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        $typeName = $request->input('name');
-        $existingData = DB::table('posttypes')->pluck('name')->toArray();
-        if(in_array($typeName,$existingData)){   //case sensitive data can not be compared
-        //    session()->flash('existmessage','Post Type Already Exists');
-        //    return view('typeCreateOrEdit');
-        return "Post Type Already Exists";
-
-        }else {
-            $newData=array("name"=>$typeName);
-            DB::table('posttypes')->insert($newData);
-           
-        }
-
-        // $insert =PostType::firstOrCreate(['name' => $typeName]);
-        // $insert->save();
-
-        
+        $this->validate($request,[
+            'name'=>'required|max:255',
+        ]);
+        $name = $request->input('name');
+        $data=array('name'=>$name);
+        DB::table('posttypes')->insert($data);
+        $request->session()->flash('alert-success', 'Type was successful added!');
+        return redirect()->route("type_create");
 
      
         
@@ -80,7 +72,9 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = DB::table('posttypes')->get();
+        $typeEditInfo=PostType::find($id);
+        return view('typeCreateOrEdit',compact('data','typeEditInfo'));
     }
 
     /**
@@ -92,7 +86,11 @@ class TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $name = $request->input('name');
+        $data=array('name'=>$name);
+        PostType::where('id',$id)->update($data);
+        $request->session()->flash('alert-success', 'Type was successful Updated!');
+        return redirect()->route("type_create");
     }
 
     /**
@@ -103,6 +101,8 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data=PostType::find($id);
+        PostType::destroy($id);
+        return redirect()->route("type_create")->with('flash_message', 'Type deleted!');
     }
 }
