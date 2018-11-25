@@ -202,7 +202,7 @@ Route::get('/image/create',[
 ]);
 
 Route::post('/image/store',[
-    'uses' => 'TypeController@store',
+    'uses' => 'ImageController@store',
     'as' => 'image_store'
 ]);
 
@@ -210,7 +210,10 @@ Route::post('/image/store',[
 //     'uses' => 'ImageController@show',
 //     'as' => 'image_details'
 // ]);
-
+Route::post('/image/update/{id}',[
+    'uses' => 'ImageController@update',
+    'as' => 'image_update'
+]);
 Route::get('/image/delete/{id}',[
     'uses' => 'ImageController@destroy',
     'as' => 'image_delete'
@@ -251,6 +254,11 @@ Route::get('/video/delete/{id}',[
 Route::get('/video/edit/{id}',[
     'uses' => 'VideoController@edit',
     'as' => 'video_edit'
+]);
+
+Route::post('/video/update/{id}',[
+    'uses' => 'VideoController@update',
+    'as' => 'video_update'
 ]);
 //video end
 

@@ -18,26 +18,24 @@
                         <th>Video preview</th>
                         <th>Title</th>
                         <th>Url</th>
-                        <th>Post id</th>
-                        <th>Post title</th>
+                        <th>PostId</th>
                         <th>Actions</th>
                     </tr>
+                    @foreach($data as $video)
                     <tr>
-                        <td> 1 </td>
-                        <td> 
-                            <div class="">
-                                <iframe width="160" height="120" class="" src="https://www.youtube.com/embed/9S0DJF78-z0"></iframe>
-                            </div> 
-                        </td>
-                        <td>XXXX harry potter  </td>
-                        <td> https://www.youtube.com/watch?v=a18py61_F_w </td>
-                        <td> 12 </td>
-                        <td> Lorem ipsum dolor sit amet consectetur adipisicing </td>
+                        <td> {{ $video->id }} </td>
                         <td>
-                            <a href="" class="btn btn-danger">X</a>
-                            <a href="" class="btn btn-info">E</a>
+                        <iframe width="160" height="120" class="" src="{{$video->link}}"></iframe>
+                        </td>
+                        <td>{{ $video->title }} </td>
+                        <td>{{ $video->link }} </td>
+                        <td>{{ $video->postId }} </td>
+                        <td>
+                        <a href="{{route('video_edit',$video->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
+                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('video_delete',$video->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
                         </td>
                     </tr>
+                    @endforeach
                 </table>
             </div>
             <div class="text-center">
@@ -46,29 +44,42 @@
         </div>
         <div class="col-md-4">
             <div class="well">
-                <h4> Insert youtube video url </h4>
-                <h4> Preview of current video </h4>
-                <iframe width="320" height="240" class="" src="https://www.youtube.com/embed/9S0DJF78-z0"></iframe>
-                <form action="{{ route ('video_store') }}" method="post" enctype="multipart/form-data">
+            @if(isset($rEditInfo)) 
+                    <h4>Update Video Url </h4>
+                @else
+                    <h4>Insert Video Url </h4>
+                @endif
+                <!-- <h4> Preview of current video </h4> -->
+                <!-- <form action="@if(isset($vEditInfo)) {{ route ('video_update',['id'=>$vEditInfo->id]) }} @else {{ route ('video_store') }}@endif" method="post" enctype="multipart/form-data"> -->
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label for="videourl">Video url:</label>
-                        <input type="text" name="videourl" class="form-control" id="videourl" />
+                        <label for="Link">Video url:</label>
+                        <input type="text" name="link" class="form-control" id="videourl" @if(isset($vEditInfo)) value='{{$vEditInfo->link}}' @endif />
                     </div>
                     <div class="form-group">
-                        <label for="videotitle">Video title:</label>
-                        <input type="text" name="videotitle" class="form-control" id="videotitle" />
+                        <label for="videotitle">Video Title:</label>
+                        <input type="text" name="title" class="form-control" id="videotitle" @if(isset($vEditInfo)) value='{{$vEditInfo->title}}' @endif/>
                     </div>
                     <div class="form-group">
-                        <label for="">Post title:</label>
-                        <select name="postid" size="1" class="chosen-select-post form-control"  data-placeholder="Choose a post ...">
-                            <option value="1">aaaaaaaa</option>
-                            <option value="2">abcdefghijklmnop</option>
-                            <option value="3">sdfgh work</option>
-                            <option value="4">wserdtfgyb work</option>
+                        <label for="">Post Title:</label>
+                        <select name="postId" class="chosen-select-member form-control"  data-placeholder="Choose post...">
+                            @foreach ($postData as $post)
+                                <option value="{{ $post->id }}" > {{ $post->title }} </option>
+                            @endforeach 
+                            @if(isset($vEditInfo))
+                                @foreach($vEditInfo as $postTitle)
+                                    <option value="{{ $postTitle->id }}" selected> {{ $postTitle->title }} </option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default">change url</button>
+                    <button type="submit" class="btn btn-default">
+                    @if(isset($vEditInfo)) 
+                        Update Video Link 
+                    @else
+                        Insert Video Link
+                    @endif
+                    </button>
                 </form>
             </div>
         </div>

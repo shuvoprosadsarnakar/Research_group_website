@@ -66,7 +66,8 @@ class GroupController extends Controller
         $groups = Group:: get();
         $members = Member:: get();
         $groupEditInfo = Group::find($id);
-        return view('groupCreateOrEdit',compact('groups','members','groupEditInfo'));
+        $groupWithMembers = Group::with('member')->get();
+        return view('groupCreateOrEdit',compact('groups','members','groupEditInfo','groupWithMembers'));
     }
 
     /**

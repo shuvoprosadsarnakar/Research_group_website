@@ -17,19 +17,21 @@
                         <th>Id</th>
                         <th>Image</th>
                         <th>Post id</th>
-                        <th>Post title</th>
                         <th>Actions</th>
                     </tr>
+                    @foreach($data as $image)
                     <tr>
-                        <td> 1 </td>
-                        <td> <img src="{{asset('images/p.jpg')}}" alt="" style="width:200px"> </td>
-                        <td> 12 </td>
-                        <td> Lorem ipsum dolor sit amet consectetur adipisicing </td>
+                        <td> {{ $image->id }} </td>
                         <td>
-                            <a href="" class="btn btn-danger">X</a>
-                            <a href="" class="btn btn-info">E</a>
+                        <img src="{{ asset('uploads/'.$image->path)  }}" alt="" style="width: 100px;"> 
+                        </td>
+                        <td>{{ $image->postId }} </td>
+                        <td>
+                        <a href="{{route('image_edit',$image->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
+                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('image_delete',$image->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
                         </td>
                     </tr>
+                    @endforeach
                 </table>
             </div>
             <div class="text-center">
@@ -38,25 +40,44 @@
         </div>
         <div class="col-md-4">
             <div class="well">
-                <h4> Upload image </h4>
+            @if(isset($iEditInfo)) 
+                    <h4>Update Image </h4>
+                @else
+                    <h4>Upload Image </h4>
+                @endif
                 <h4> Preview of current image </h4>
-                <img src="{{asset('images/p.jpg')}}" alt="" style="width:100%"> 
+                <form action="@if(isset($iEditInfo)) {{ route ('image_update',['id'=>$iEditInfo->id]) }} @else {{ route ('image_store') }}@endif" method="post" enctype="multipart/form-data">
+                <img  @if(isset($data3)) src="{{ asset('uploads/'.$data3->path)  }}"@endif alt="" style="width:100%"> 
                 <form action="{{ route ('image_store') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label for="image">Choose image:</label>
-                        <input type="file" accept="image/*" name="image" class="form-control" id="image" />
+                        <label for="name"> Title:</label>
+                        <input type="text" name="name" class="form-control" id="title" @if(isset($iEditInfo)) value='{{$iEditInfo->name}}' @endif />
                     </div>
                     <div class="form-group">
-                        <label for="">Post title:</label>
-                        <select name="postid" size="1" class="chosen-select-post form-control"  data-placeholder="Choose a post ...">
-                            <option value="1">aaaaaaaa</option>
-                            <option value="2">abcdefghijklmnop</option>
-                            <option value="3">sdfgh work</option>
-                            <option value="4">wserdtfgyb work</option>
+                        <label for="image">Choose image:</label>
+                        <input type="file" accept="image/*" name="path" class="form-control" id="image" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Post Title:</label>
+                        <select name="postId" class="chosen-select-member form-control"  data-placeholder="Choose post...">
+                            @foreach ($postData as $post)
+                                <option value="{{ $post->id }}" > {{ $post->title }} </option>
+                            @endforeach 
+                            @if(isset($rEditInfo))
+                                @foreach($iEditInfo as $postTitle)
+                                    <option value="{{ $postTitle->id }}" selected> {{ $postTitle->title }} </option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default">change image</button>
+                   <button type="submit" class="btn btn-default">
+                    @if(isset($iEditInfo)) 
+                        Update Image 
+                    @else
+                        Upload Image
+                    @endif
+                    </button>
                 </form>
             </div>
         </div>

@@ -8,7 +8,7 @@
 @section('body')
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="well">
                 <h4> Reference list</h4>
                 <table class="table-edit" >
@@ -16,8 +16,7 @@
                         <th>Id</th>
                         <th>Title</th>
                         <th>Link</th>
-                        <th>Post id</th>
-                        <th>Post title</th>
+                        <th>PostId</th>
                         <th>Actions</th>
                     </tr>
                     @foreach($data as $reference)
@@ -26,7 +25,6 @@
                         <td>{{ $reference->title }}</td>
                         <td>{{ $reference->link }} </td>
                         <td>{{ $reference->postId }} </td>
-                        <td> Lorem ipsum dolor sit amet consectetur adipisicing </td>
                         <td>
                         <a href="{{route('reference_edit',$reference->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
                         <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('reference_delete',$reference->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>

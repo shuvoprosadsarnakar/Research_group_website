@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Reference;
 use DB;
-
+use App\Post;
+use App\Image;
+use App\Video;
 class VideoController extends Controller
 {
     /**
@@ -24,7 +27,11 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('videoCreateOrEdit');
+        $data = DB::table('videos')->get();
+        $postData=DB::table('posts')->get();
+        $data3=Video::all()->last();
+        //dd($data3);
+        return view('videoCreateOrEdit',compact('data', 'postData','data3'));
     }
 
     /**
@@ -33,15 +40,20 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-        //
-        $postId = $req->input('postid');
-        $link = $req->input('videourl');
-        $title = DB::table('posts')->where(['id'=>$postId])->value('title');
-
-        $data = array('title'=> $title,'link'=> $link,'postid'=> $postId);
+        $this->validate($request,[
+            'title'=>'required|max:255',
+            'postId'=>'required',
+            'link'=>'required|url'
+        ]);
+        $title = $request->input('title');
+        $link = $request->input('link');
+        $postId = $request->input('postId');
+        $data=array('title'=>$title,'postId'=>$postId,'link'=>$link);
         DB::table('videos')->insert($data);
+        $request->session()->flash('alert-success', 'Video was successful added!');
+        return redirect()->route("video_create");
         
     }
 
@@ -64,7 +76,11 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = DB::table('videos')->get();
+        $postData=DB::table('posts')->get();
+        $vEditInfo = Video::with('post')->find($id);
+        // dd($groupData);
+        return view('videoCreateOrEdit',compact('data','postData','vEditInfo'));
     }
 
     /**
@@ -76,7 +92,13 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $title = $request->input('title');
+        $postId = $request->input('postId');
+        $link = $request->input('link');
+        $data=array('title'=>$title,'postId'=>$postId,'link'=>$link);
+        Video::where('id',$id)->update($data);
+        $request->session()->flash('alert-success', 'Video Link was successful Updated!');
+        return redirect()->route("video_create");
     }
 
     /**
@@ -87,6 +109,8 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data=Video::find($id);
+        Video::destroy($id);
+        return redirect()->route("video_create")->with('flash_message', 'Video Link deleted!');
     }
 }
