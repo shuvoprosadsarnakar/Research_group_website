@@ -86,11 +86,11 @@ class MemberController extends Controller
 
 
     public function editMember($id) {
-        //dd($memberEditInfo);
-        $data['data'] = DB::table('members')->get()->toArray();
-        $groupData['groupData']=DB::table('groups')->get()->toArray();
+        $data['data'] = DB::table('members')->get();
+        $groupData['groupData']=DB::table('groups')->get();
         $memberEditInfo = Member::find($id);
-        return view('memberCreateOrEdit',$data,['memberEditInfo'=>$memberEditInfo],$groupData);
+        // dd($groupData);
+        return view('memberCreateOrEdit',compact('data','groupData','memberEditInfo'));
     }
 
 
