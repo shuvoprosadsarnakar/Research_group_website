@@ -54,11 +54,11 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             <li {{{ (Request::is('papers') ? 'class=active' : '') }}}>
-                                <a href="{{ route('members') }}">Papers</a>
+                                <a href="">Papers</a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li {{{ (Request::is('publications') ? 'class=active' : '') }}}>
-                                <a href="{{ route('members') }}">Publication</a>
+                                <a href="">Publication</a>
                             </li>
                         </ul>
                     </li>
@@ -66,7 +66,7 @@
                         <a href="{{ route('members') }}">Members</a>
                     </li>
                     <li {{{ (Request::is('openpositions') ? 'class=active' : '') }}}>
-                        <a href="/openpositions">Open positions</a>
+                        <a href="">Open positions</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -107,7 +107,7 @@
                     <a href="{{ route('type_create') }}">Create Type</a>
                     <a href="{{ route('image_create') }}">Upload image</a>
                     <a href="{{ route('video_create') }}">Upload Video</a>
-                    
+                    <a href="{{ route('groupCreate') }}">Create Group</a>
                 </div>
             </div>
         </div>

@@ -85,39 +85,19 @@ Route::post('/updateMember/{id}', 'MemberController@updateMember')->name('update
 
 //group star
 Route::get('/groups',[
-    'uses' => 'PostController@index',
-    'as' => 'posts'
+    'uses' => 'GroupController@addGroup',
+    'as' => 'groupCreate'
 ]);
 
-Route::get('/posts/{criteria}/{order}',[
-    'uses' => 'PostController@orderedIndex',
-    'as' => 'posts_order'
+Route::post('/insertGroup',[
+    'uses' => 'GroupController@insertGroup',
+    'as' => 'insertGroup'
 ]);
+Route::get('/deleteGroup/{id}', 'GroupController@deleteGroup')->name('deleteGroup');
 
-Route::get('/post/create/{criteria}/{order}',[
-    'uses' => 'PostController@create',
-    'as' => 'post_create'
-]);
+Route::get('/editGroup/{id}', 'GroupController@editGroup')->name('editGroup');
 
-Route::post('/post/store',[
-    'uses' => 'PostController@store',
-    'as' => 'post_store'
-]);
-
-Route::get('/post/details/{id}',[
-    'uses' => 'PostController@show',
-    'as' => 'post_details'
-]);
-
-Route::get('/post/delete/{id}',[
-    'uses' => 'PostController@destroy',
-    'as' => 'post_delete'
-]);
-
-Route::get('/post/edit/{id}',[
-    'uses' => 'PostController@edit',
-    'as' => 'post_edit'
-]);
+Route::post('/updateGroup/{id}', 'GroupController@updateGroup')->name('updateGroup');
 //group end
 
 //type start
@@ -292,7 +272,6 @@ Route::get('/contact', [
         
     'uses'=>'ContactController@index',
     'as'=>'contact'
-
         
 ]);
 Route::post('/contact', [
@@ -300,3 +279,4 @@ Route::post('/contact', [
     'uses'=>'ContactController@email'
         
 ]);
+
