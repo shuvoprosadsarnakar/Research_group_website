@@ -43,7 +43,6 @@ class MemberController extends Controller
             'imagePath'=>'required|image',
             'email'=>'required|max:1024',
             'phone'=>'required|max:255',
-            'groupId'=>'nullable'
         ]);
         $name = $request->input('name');
         $designation = $request->input('designation');
@@ -65,13 +64,9 @@ class MemberController extends Controller
         }
         $email = $request->input('email');
         $phone = $request->input('phone');
-        $data3=Member::all()->last();
-        $memberId=$data3->id;
-        $groupId=$request->input('groupId');
+
         $data=array('id'=>$memberId+1,'name'=>$name,'designation'=>$designation,'github'=>$github,'linkedin'=>$linkedin,'researchArea'=>$researchArea,'interest'=>$interest,'email'=>$email,'phone'=>$phone,'imagePath'=>$imagePath);
         DB::table('members')->insert($data);
-        $data2=array('groupId'=>$groupId,'memberId'=>$memberId+1);
-        DB::table('membergroups')->insert($data2);
         $request->session()->flash('alert-success', 'User was successful added!');
         return redirect()->route("member_create");
     }
@@ -87,10 +82,9 @@ class MemberController extends Controller
 
     public function editMember($id) {
         $data['data'] = DB::table('members')->get();
-        $groupData['groupData']=DB::table('groups')->get();
         $memberEditInfo = Member::find($id);
         // dd($groupData);
-        return view('memberCreateOrEdit',compact('data','groupData','memberEditInfo'));
+        return view('memberCreateOrEdit',compact('data','memberEditInfo'));
     }
 
 
@@ -138,9 +132,6 @@ class MemberController extends Controller
         } 
         $email = $request->input('email');
         $phone = $request->input('phone');
-        $groupId=$request->input('groupId');
-        $data2=array('groupId'=>$groupId,'memberId'=>$id);
-        MemberGroup::where('memberId',$id)->update($data2);
         $data=array('name'=>$name,'designation'=>$designation,'github'=>$github,'linkedin'=>$linkedin,'researchArea'=>$researchArea,'interest'=>$interest,'email'=>$email,'phone'=>$phone,'imagePath'=>$imagePath);
         Member::where('id',$id)->update($data);
         $request->session()->flash('alert-success', 'Member was successful Updated!');

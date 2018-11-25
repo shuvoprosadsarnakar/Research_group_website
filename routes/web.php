@@ -290,7 +290,9 @@ Route::get('/admindashboard5', [
    //contact view     
 Route::get('/contact', [
         
-    'uses'=>'ContactController@index'
+    'uses'=>'ContactController@index',
+    'as'=>'contact'
+
         
 ]);
 Route::post('/contact', [
