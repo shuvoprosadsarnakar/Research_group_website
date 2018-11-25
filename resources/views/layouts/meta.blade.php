@@ -105,9 +105,8 @@
                     <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">post create</a>
                     <a href="{{ route('member_create') }}">Add Member</a>
                     <a href="{{ route('type_create') }}">Create Type</a>
-                    <a href="{{ route('image_create') }}">image create</a>
-                    <a href="{{ route('video_create') }}">videocreate</a>
-                    <a href="{{ route('video_create') }}">videocreate</a>
+                    <a href="{{ route('image_create') }}">Upload image</a>
+                    <a href="{{ route('video_create') }}">Upload Video</a>
                 </div>
             </div>
         </div>
