@@ -65,7 +65,7 @@ class MemberController extends Controller
         $email = $request->input('email');
         $phone = $request->input('phone');
 
-        $data=array('id'=>$memberId+1,'name'=>$name,'designation'=>$designation,'github'=>$github,'linkedin'=>$linkedin,'researchArea'=>$researchArea,'interest'=>$interest,'email'=>$email,'phone'=>$phone,'imagePath'=>$imagePath);
+        $data=array('name'=>$name,'designation'=>$designation,'github'=>$github,'linkedin'=>$linkedin,'researchArea'=>$researchArea,'interest'=>$interest,'email'=>$email,'phone'=>$phone,'imagePath'=>$imagePath);
         DB::table('members')->insert($data);
         $request->session()->flash('alert-success', 'User was successful added!');
         return redirect()->route("member_create");
@@ -84,7 +84,7 @@ class MemberController extends Controller
         $data['data'] = DB::table('members')->get();
         $memberEditInfo = Member::find($id);
         // dd($groupData);
-        return view('memberCreateOrEdit',compact('data','memberEditInfo'));
+        return view('memberCreateOrEdit',$data,['memberEditInfo'=>$memberEditInfo]);
     }
 
 
