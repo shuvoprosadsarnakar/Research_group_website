@@ -71,7 +71,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li {{{ (Request::is('contact') ? 'class=active' : '') }}}>
-                        <a href="/contact">Contact</a>
+                        <a href="{{ route('contact') }}">Contact</a>
                     </li>
                     @if(Auth::check())
                     <li>
@@ -102,7 +102,7 @@
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <a href="{{ route('admin') }}">Admin Panel</a>
-                    <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">post create</a>
+                    <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">Create Post</a>
                     <a href="{{ route('member_create') }}">Add Member</a>
                     <a href="{{ route('type_create') }}">Create Type</a>
                     <a href="{{ route('image_create') }}">Upload image</a>
