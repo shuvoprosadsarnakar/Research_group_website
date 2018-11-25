@@ -85,19 +85,45 @@ Route::post('/updateMember/{id}', 'MemberController@updateMember')->name('update
 
 //group star
 Route::get('/groups',[
-    'uses' => 'GroupController@addGroup',
-    'as' => 'groupCreate'
+    'uses' => 'GroupController@create',
+    'as' => 'group_create'
 ]);
 
-Route::post('/insertGroup',[
-    'uses' => 'GroupController@insertGroup',
-    'as' => 'insertGroup'
+Route::post('/group/store',[
+    'uses' => 'GroupController@store',
+    'as' => 'group_store'
 ]);
-Route::get('/deleteGroup/{id}', 'GroupController@deleteGroup')->name('deleteGroup');
 
-Route::get('/editGroup/{id}', 'GroupController@editGroup')->name('editGroup');
+Route::get('/group/edit/{id}',[
+    'uses' => 'GroupController@edit',
+    'as' => 'group_edit'
+]);
 
-Route::post('/updateGroup/{id}', 'GroupController@updateGroup')->name('updateGroup');
+Route::post('/group/update/{id}',[
+    'uses' => 'GroupController@update',
+    'as' => 'group_update'
+]);
+
+Route::get('/group/delete/{id}',[
+    'uses' => 'GroupController@destroy',
+    'as' => 'group_delete'
+]);
+
+Route::post('/groupmembers/store',[
+    'uses' => 'GroupController@gmStore',
+    'as' => 'gm_store'
+]);
+
+Route::get('/groupmembers/edit/{id}',[
+    'uses' => 'GroupController@gmEdit',
+    'as' => 'gm_edit'
+]);
+
+Route::post('/groupmembers/update/{id}',[
+    'uses' => 'GroupController@gmUpdate',
+    'as' => 'gm_update'
+]);
+
 //group end
 
 //type start

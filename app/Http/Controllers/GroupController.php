@@ -10,6 +10,7 @@ use DB;
 use App\Http\Requests;
 use App\Member;
 use App\Group;
+use App\GroupPost;
 use App\MemberGroup;
 
 class GroupController extends Controller
@@ -26,7 +27,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new group.
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,54 +35,116 @@ class GroupController extends Controller
     {
         $groups = Group:: get();
         $members = Member:: get();
-        
-        return view('groupCreateOrEdit',compact('groups','members'));
+        $groupWithMembers = Group::with('member')->get();
+        //dd($groupWithMembers);
+        //var_dump($groupWithMembers);
+        return view('groupCreateOrEdit',compact('groups','members','groupWithMembers'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created group in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        $group = new Group;
+        $group->groupName = $request->groupName;
+        $group->save();
+        Session::flash('success','Group created ');            
+        return redirect()->back();
     }
-    public function addGroup(){
-        $data['data'] = DB::table('groups')->get();
-        return view('groupCreateOrEdit',$data);
-    }
-
-        
-    public function insertGroup(Request $request){
-        $this->validate($request,[
-            'groupName'=>'required|max:255',
-        ]);
-        $groupName = $request->input('groupName');
-        $data=array('groupName'=>$groupName);
-        DB::table('groups')->insert($data);
-        $request->session()->flash('alert-success', 'Group was successful added!');
-        return redirect()->route("groupCreate");
-    }
-
-    public function editGroup($id) {
-        $data = DB::table('groups')->get();
+    /**
+     * Show the form for editing the specified group.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $groups = Group:: get();
+        $members = Member:: get();
         $groupEditInfo = Group::find($id);
-        return view('groupCreateOrEdit',compact('data','groupEditInfo'));
+        return view('groupCreateOrEdit',compact('groups','members','groupEditInfo'));
     }
-    public function deleteGroup($id){
+
+    /**
+     * Update the specified group in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $group = Group::find($id);
+        $group->groupName = $request->groupName;
+        $group->save();
+        Session::flash('success','Group name updated ');            
+        return redirect()->route("group_create");
+    }
+
+    /**
+     * Remove the specified group from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
         $data=Group::find($id);
         Group::destroy($id);
-        return redirect()->route("groupCreate")->with('flash_message', 'Group deleted!');
+        Session::flash('success','Group deleted');            
+        return redirect()->back();
     }
-    public function updateGroup(Request $request, $id){
-       
-        $groupName = $request->input('groupName');
-        $data=array('groupName'=>$groupName);
-        Group::where('id',$id)->update($data);
-        $request->session()->flash('alert-success', 'Group was successful Updated!');
-        return redirect()->route("groupCreate");
-        }
 
+    /**
+     * Store a newly created groupmember in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function gmStore(Request $request)
+    {
         
+        $Group=Group::find($request->groupId);
+        $Group->member()->sync($request->memberId,false);
+        Session::flash('success','Members are added to the group ');            
+        return redirect()->back();
     }
+    /**
+     * Show the form for editing the specified groupmember.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function gmEdit($id)
+    {
+        $groups = Group:: get();
+        $members = Member:: get();
+        $groupWithMembers = Group::with('member')->get();
+        $gmEditInfo = Group::with('member')->find($id);
+        return view('groupCreateOrEdit',compact('groups','members','groupWithMembers','gmEditInfo'));
+    }
+
+    /**
+     * Update the specified groupmember in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function gmUpdate(Request $request, $id)
+    {
+        //dd($request);
+        if($request->previousSelectedGroupId != $request->groupId){
+            $Group=Group::find($request->previousSelectedGroupId);
+            $Group->member()->toggle($request->memberId,false);
+        }
+        $Group=Group::find($request->groupId);
+        $Group->member()->sync($request->memberId,false);
+        Session::flash('success','Group member associations updated ');            
+        return redirect()->route("group_create");
+    }
+}
