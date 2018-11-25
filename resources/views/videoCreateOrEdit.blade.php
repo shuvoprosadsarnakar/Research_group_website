@@ -16,6 +16,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Video preview</th>
+                        <th>Title</th>
                         <th>Url</th>
                         <th>Post id</th>
                         <th>Post title</th>
@@ -28,6 +29,7 @@
                                 <iframe width="160" height="120" class="" src="https://www.youtube.com/embed/9S0DJF78-z0"></iframe>
                             </div> 
                         </td>
+                        <td>XXXX harry potter  </td>
                         <td> https://www.youtube.com/watch?v=a18py61_F_w </td>
                         <td> 12 </td>
                         <td> Lorem ipsum dolor sit amet consectetur adipisicing </td>
@@ -52,6 +54,10 @@
                     <div class="form-group">
                         <label for="videourl">Video url:</label>
                         <input type="text" name="videourl" class="form-control" id="videourl" />
+                    </div>
+                    <div class="form-group">
+                        <label for="videotitle">Video title:</label>
+                        <input type="text" name="videotitle" class="form-control" id="videotitle" />
                     </div>
                     <div class="form-group">
                         <label for="">Post title:</label>
