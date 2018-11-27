@@ -9,8 +9,10 @@ use Session;
 use File;
 use DB;
 
-
 use App\Post;
+use App\PostType;
+use App\Group;
+use App\Member;
 
 
 class PostController extends Controller
@@ -22,14 +24,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //$posts = Post::with('group')->orderBy('startDate','asc')->get();
         $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(3);
-        //$posts = Post::with('group')->orderBy('title','asc')->get();
-        //$posts = Post::with('group')->orderBy('title','desc')->get();
-        //$posts = Post::with('group')->orderBy('finishDate','asc')->get();
-        //$posts = Post::with('group')->orderBy('finishDate','desc')->get();
-        //dd($posts);
-        return view('postList')->with('posts',$posts);
+        return view('postList',compact('groups'));
     }
     /**
      * Display a listing of the posts ordered by user preference.
@@ -58,9 +54,11 @@ class PostController extends Controller
         if(isset($criteria) && isset($order)){
             if( $criteria=='title' || $criteria=='description' || $criteria=='startDate' || $criteria=='finishDate' && $order=='asc' || $order=='desc'){
                 
-                $posts = Post::with('group')->orderBy($criteria,$order)->simplePaginate(3);
-                
-                return view('postCreateOrEdit')->with('posts',$posts);
+                $posts = Post::with('group','postType')->orderBy($criteria,$order)->simplePaginate(3);
+                $groups = Group:: get();
+                $members = Member:: get();
+                $types = PostType:: get();
+                return view('postCreateOrEdit',compact('groups','members','posts','types'));
             }
         }
         return redirect()->back();   
@@ -72,47 +70,25 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-        //var_dump($request);
-        //dd($request);
-        $title = $req->input('title');
-        $status = $req->input('status');
-        $description = $req->input('description');
-        $startDate = $req->input('startDate');
-        $finishDate = $req->input('finishDate');
-        $image = $req->input('image');
-        $type = $req->input('type');
-        $group = $req->input('group[]');
-        $member = $req->input('member[]');
+        $post = new Post;
+        $post->title = $request->title;
+        $post->status = $request->status;
+        $post->description = $request->description;
+        $post->startDate = $request->startDate;
+        $post->finishDate = $request->finishDate;
+        //$post->image = $request->image;
+        $post->typeId = $request->type;
+        $post->startDate = $request->startDate;
+        $post->finishDate = $request->finishDate;
+        $post->save();
 
-       
-        $types = array('name'=> $type);
-    
-        $typesId = DB::table('posttypes')->where(['name'=>$types])->value('id');
-        $data = array('title'=> $title,'typeId'=> $typesId,'status'=> $status,'description'=> $description,
-        'startDate'=> $startDate,'finishDate'=> $finishDate);
+        $post->group()->sync($request->groupId,false);
+        $post->member()->sync($request->memberId,false);
 
-        //$groups = array('groupName')
-
-        $groupId = DB::table('groups')->where(['name'=>$group])->value('id');
-        $memberId = DB::table('members')->where(['name'=>$member])->value('id');
-        $postId =  DB::table('posts')->where(['title'=>$title])->value('id');
-
-        $groupPostData = array('groupId'=> $groupId,'postId'=> $postId);
-        $memberPostData = array('memberId'=> $memberId,'postId'=> $postId);
-        
-        DB::table('groupposts')->insert($groupPostData);
-        DB::table('memberposts')->insert($groupPostData);
-        DB::table('posts')->insert($data);
-
-
-
-
-
-
-        //Session::flash('success','post created ');
-        //return redirect()->back();
+        Session::flash('success','post created ');
+        return redirect()->back();
     }
 
     /**
@@ -135,7 +111,18 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //return view('postCreateOrEdit')->with('post',$post);
+        $posts = Post::with('group','postType')->simplePaginate(3);
+        $groups = Group:: get();
+        $members = Member:: get();
+        $types = PostType:: get();
+
+        $postEditInfo = Post::with('group','postType','member')
+                        ->get()
+                        ->whereIn('id', $id)
+                        ->first();
+                        
+        //dd($postEditInfo);
+        return view('postCreateOrEdit',compact('groups','members','posts','types','postEditInfo'));
     }
 
     /**
@@ -147,7 +134,22 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post=Post::find($id);
+        $post->title = $request->title;
+        $post->status = $request->status;
+        $post->description = $request->description;
+        $post->startDate = $request->startDate;
+        $post->finishDate = $request->finishDate;
+        //$post->image = $request->image;
+        $post->typeId = $request->type;
+        $post->startDate = $request->startDate;
+        $post->finishDate = $request->finishDate;
+        $post->save();
+
+        $post->group()->sync($request->groupId,false);
+        $post->member()->sync($request->memberId,false);
+        Session::flash('success','Post updated ');            
+        return redirect()->route('post_create',['criteria' => 'startDate','order' => 'desc']);
     }
 
     /**
@@ -158,6 +160,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post=Post::find($id);
+        $post->group()->detach();
+        $post->member()->detach();
+        Post::destroy($id);
+        Session::flash('success','Post deleted');            
+        return redirect()->back();
     }
 }

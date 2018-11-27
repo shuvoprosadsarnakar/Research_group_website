@@ -8,10 +8,11 @@ class Post extends Model
 {
 
     protected $table = 'posts';
+    
 
     public function postType()
     {
-        return $this->belongsTo('App\PostType', 'id', 'typeId');
+        return $this->belongsTo('App\PostType', 'typeId', 'id');
     }
 
     public function image()
@@ -36,7 +37,7 @@ class Post extends Model
 
     public function member()
     {
-        return $this->belongsToMany('App\Member', 'membergroups', 'postId', 'memberId');
+        return $this->belongsToMany('App\Member', 'memberposts', 'postId', 'memberId');
     }
 
 }

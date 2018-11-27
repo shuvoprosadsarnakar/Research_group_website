@@ -109,7 +109,7 @@ class GroupController extends Controller
     public function gmStore(Request $request)
     {
         
-        $Group=Group::find($request->groupId);
+        $Group = Group::find($request->groupId);
         $Group->member()->sync($request->memberId,false);
         Session::flash('success','Members are added to the group ');            
         return redirect()->back();
@@ -141,7 +141,7 @@ class GroupController extends Controller
         //dd($request);
         if($request->previousSelectedGroupId != $request->groupId){
             $Group=Group::find($request->previousSelectedGroupId);
-            $Group->member()->toggle($request->memberId,false);
+            $Group->member()->detach($request->memberId,false);
         }
         $Group=Group::find($request->groupId);
         $Group->member()->sync($request->memberId,false);

@@ -13,4 +13,9 @@ class Member extends Model
     {
         return $this->belongsToMany('App\Group', 'membergroups', 'memberId', 'postId');
     }
+
+    public function post()
+    {
+        return $this->belongsToMany('App\Post', 'memberposts', 'memberId', 'postId');
+    }
 }

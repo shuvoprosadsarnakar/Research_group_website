@@ -54,6 +54,11 @@ Route::get('/post/edit/{id}',[
     'uses' => 'PostController@edit',
     'as' => 'post_edit'
 ]);
+
+Route::post('/post/update/{id}',[
+    'uses' => 'PostController@update',
+    'as' => 'post_update'
+]);
 //posts end
 
 //members start
