@@ -77,7 +77,7 @@
                         <select name="type" size="1" class="chosen-select-type form-control"  data-placeholder="Choose a post type...">
                             <!-- Post types -->
                             @foreach($types as $type)
-                                <option value="{{$type->id}}" @if(isset($postEditInfo) && )>{{$type->name}}</option>
+                                <option value="{{$type->id}}" >{{$type->name}}</option>
                             @endforeach
                             @if(isset($postEditInfo))
                                 <option value="{{ $postEditInfo->postType->id }}" selected> {{ $postEditInfo->postType->name }} </option>
@@ -139,6 +139,30 @@
     <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript" charset="utf-8"></script>
     
     <script>
+        $(document).ready(function () {
+            var usedgroup = {};
+            $(".chosen-select-group option").each(function () {
+                if (usedNames[this.value] && !$(this).is(':selected')) {
+                    $(this).remove();
+                } else {
+                    usedNames[this.value] = this.text;
+                }
+            });
+        });
+        </script>
+        <script>
+        $(document).ready(function () {
+            var usedgroup = {};
+            $(".chosen-select-member option").each(function () {
+                if (usedNames[this.value] && !$(this).is(':selected')) {
+                    $(this).remove();
+                } else {
+                    usedNames[this.value] = this.text;
+                }
+            });
+        });
+        </script>
+        <script>
         $(".chosen-select-type").chosen({
             no_results_text: "Oops, nothing found!",
             width: "100%"
@@ -166,5 +190,6 @@
             inline: true,
             changeYear: true
         });
+
     </script>
 @endsection
