@@ -45,9 +45,9 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Categories
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="#">Page 1-1</a></li>
-                          <li><a href="#">Page 1-2</a></li>
-                          <li><a href="#">Page 1-3</a></li>
+                          <li><a href="#">Thesis</a></li>
+                          <li><a href="#">Project</a></li>
+                          <li><a href="#">Research</a></li>
                         </ul>
                       </li>
                     <li {{ (Request::is('posts') ? 'class=active' : '') }}>
