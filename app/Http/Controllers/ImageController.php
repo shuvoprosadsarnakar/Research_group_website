@@ -7,6 +7,7 @@ use App\Reference;
 use DB;
 use App\Post;
 use App\Image;
+use Auth;
 class ImageController extends Controller
 {
     /**
@@ -14,11 +15,11 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *

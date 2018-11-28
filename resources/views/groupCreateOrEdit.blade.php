@@ -8,6 +8,9 @@
 
 
 @section('body')
+@component('edit')
+@endcomponent
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">

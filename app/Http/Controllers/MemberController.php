@@ -19,12 +19,12 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /*
+    
     public function __construct()
     {
         $this->middleware('auth');
     }
-    */
+    
     public function add_member(){
         $data['data'] = DB::table('members')->get();
         $groupData['groupData']=DB::table('groups')->get();
@@ -77,12 +77,7 @@ class MemberController extends Controller
     }
 
 
-    public function memberList(){
-
-        $data['data'] = DB::table('members')->get();
-        return view('memberList',$data);
-    }
-
+   
 
 
     public function editMember($id) {
@@ -93,11 +88,6 @@ class MemberController extends Controller
         return view('memberCreateOrEdit',compact('data','groupData','memberEditInfo'));
     }
 
-
-    public function memberDetails($id) {
-        $data=Member::find($id);
-        return view('memberdetail',['data'=>$data]);
-    }
     public function deleteMember($id){
         $data=Member::find($id);
         if(isset($data)){

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Diu research lab</title>
+    <title>Ambient Intelligence Lab</title>
 
     <!-- Fav icon -->
     <link rel="icon" href="https://daffodilvarsity.edu.bd/images/diu/favicon.ico" type="image/gif">
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/stars.css')}}">
 
 </head>
 
@@ -39,28 +40,16 @@
                     <li {{{ (Request::is( '/') ? 'class=active' : '') }}}>
                         <a href="{{ route('home') }}">Home</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Research
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li {{{ (Request::is('project') ? 'class=active' : '') }}}>
-                                <a href="">Projects</a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li {{{ (Request::is('deliverable') ? 'class=active' : '') }}}>
-                                <a href="">Deliverable</a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li {{{ (Request::is('papers') ? 'class=active' : '') }}}>
-                                <a href="">Papers</a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li {{{ (Request::is('publications') ? 'class=active' : '') }}}>
-                                <a href="">Publication</a>
-                            </li>
-                        </ul>
+                    <li {{{ (Request::is('project') ? 'class=active' : '') }}}>
+                        <a href="">Projects</a>
+                    </li>
+                    
+                    <li {{{ (Request::is('papers') ? 'class=active' : '') }}}>
+                        <a href="">Papers</a>
+                    </li>
+                
+                    <li {{{ (Request::is('publications') ? 'class=active' : '') }}}>
+                        <a href="">Publications</a>
                     </li>
                     <li {{{ (Request::is('members') ? 'class=active' : '') }}}>
                         <a href="{{ route('members') }}">Members</a>
@@ -75,7 +64,10 @@
                     </li>
                     @if(Auth::check())
                     <li>
-                        <a href="{{route('logout')}}" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('lo').submit();">Logout</a>
+                        <a href="{{route('admin')}}">Admin Panel</a>
+                    </li>
+                    <li>
+                        <a href="{{route('logout')}}" class="" onclick="event.preventDefault();document.getElementById('lo').submit();">Logout</a>
                         <form action="{{route('logout')}}" method="post" id="lo" style="display:none">
                             {{csrf_field()}}
                         </form>
@@ -86,29 +78,14 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
-
     <div class="wrap">
         @yield('body')
     </div>
-
-       
-
     <footer class="navbar navbar-static-bottom navbar-fix footer-down">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
                     <img id="diulogo" src="{{asset('images/diu.png')}}" alt="Daffodil international university">
-                </div>
-
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <a href="{{ route('admin') }}">Admin Panel</a>
-                    <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">Create Post</a>
-                    <a href="{{ route('member_create') }}">Add Member</a>
-                    <a href="{{ route('type_create') }}">Create Type</a>
-                    <a href="{{ route('image_create') }}">Upload image</a>
-                    <a href="{{ route('video_create') }}">Upload Video</a>
-                    <a href="{{ route('group_create') }}">Create Group</a>
-                    <a href="{{ route('reference_create') }}">Create Reference</a>
                 </div>
             </div>
         </div>

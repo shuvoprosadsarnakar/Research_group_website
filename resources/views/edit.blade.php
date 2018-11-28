@@ -3,34 +3,52 @@
 
         <div class="col-md-2">
 
-            <a href="/admindashboard">
-                <h4>edit members</h4>
+            <a href="{{ route('member_create') }}">
+                <h4>Add Member</h4>
             </a>
         </div>
         <div class="col-md-2">
 
-            <a href="/admindashboard2">
-                <h4>edit publications</h4>
+            <a href="{{ route('type_create') }}">
+                <h4>Create Type</h4>
             </a>
         </div>
         <div class="col-md-2">
 
-            <a href="/admindashboard3">
-                <h4>edit projects</h4>
+            <a href="{{ route('image_create') }}">
+                <h4>Upload image</h4>
             </a>
         </div>
         <div class="col-md-2">
 
-            <a href="/admindashboard4">
-                <h4>edit open positions</h4>
+             <a href="{{ route('video_create') }}">
+                <h4>Upload Video</h4>
             </a>
         </div>
         <div class="col-md-2">
 
-            <a href="/admindashboard5">
-                <h4>edit deliverable</h4>
+           <a href="{{ route('group_create') }}">
+                <h4>Create Group</h4>
             </a>
         </div>
+        <div class="col-md-2">
 
+           <a href="{{ route('reference_create') }}">
+                <h4>Create Reference</h4>
+            </a>
+        </div>
+        <div class="col-md-2">
+
+            <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">
+            <h4>Create Post</h4>
+            </a>
+            </div>
     </div>
 </div>
+
+                    
+                    
+                    
+                   
+                    
+                    

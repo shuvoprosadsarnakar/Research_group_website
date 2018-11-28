@@ -44,7 +44,7 @@ html,body{
 }
 
 #diulogo{
-    width: 80px;
+    width: 30px;
 }
 
 .navbar-static-bottom{
@@ -95,13 +95,13 @@ html,body{
 
 .footer-up{
     width: 100%;
-    height: 300px;
+    height: 30px;
     background-color:#000000a8;
 }
 
 .footer-down{
     width: 100%;
-    height: 100px;
+    height: 30px;
     background-color:#000000cc;
 }
 
