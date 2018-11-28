@@ -13,5 +13,5 @@ official website
 
 ## Work Left
 - Views of Projects, Publications, Papers.
-- Need to solve bug in Image, Video, Refrence Update
+- Need to solve bug in Video, Refrence Update
 - Implementation of Mailing Option in Contact
