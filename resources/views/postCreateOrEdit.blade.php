@@ -85,12 +85,19 @@
                     <div class="form-group">
                         <label for="">Groups:</label>
                         <select name="groupId[]" size="1" class="chosen-select-group form-control"  data-placeholder="Choose group names..." multiple="multiple">
-                            @foreach($groups as $group)
-                                <option value="{{$group->id}}">{{$group->groupName}}</option>
-                            @endforeach
                             @if(isset($postEditInfo))
-                                @foreach($postEditInfo->group as $group)
-                                    <option value="{{ $group->id }}" selected> {{ $group->groupName }} </option>
+                                @for ($j = 0; $j < count($groups); $j++)
+                                    <option value="{{ $groups[$j]->id }}"  
+                                    @for ($i = 0; $i < count($postEditInfo->group); $i++)
+                                        @if($groups[$j]->id == $postEditInfo->group[$i]->id) 
+                                            selected 
+                                        @endif 
+                                    @endfor > 
+                                    {{ $groups[$j]->groupName }} </option>
+                                @endfor
+                            @else
+                                @foreach($groups as $group)
+                                    <option value="{{$group->id}}">{{$group->groupName}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -98,12 +105,19 @@
                     <div class="form-group">
                         <label for="">Members:</label>
                         <select name="memberId[]" size="1" class="chosen-select-member form-control"  data-placeholder="Choose members..." multiple="multiple">
-                            @foreach($members as $member)
-                                <option value="{{$member->id}}">{{$member->name}}</option>
-                            @endforeach
                             @if(isset($postEditInfo))
-                                @foreach($postEditInfo->member as $member)
-                                    <option value="{{ $member->id }}" selected> {{ $member->name }} </option>
+                                @for ($j = 0; $j < count($members); $j++)
+                                    <option value="{{ $members[$j]->id }}"  
+                                    @for ($i = 0; $i < count($postEditInfo->member); $i++)
+                                        @if($members[$j]->id == $postEditInfo->member[$i]->id) 
+                                            selected 
+                                        @endif 
+                                    @endfor > 
+                                    {{ $members[$j]->name }} </option>
+                                @endfor
+                            @else
+                                @foreach($members as $member)
+                                    <option value="{{$member->id}}">{{$member->name}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -135,32 +149,8 @@
     <script src="{{asset('js/chosenJs/chosen.jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/chosenJs/prism.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript" charset="utf-8"></script>
-    
+
     <script>
-        $(document).ready(function () {
-            var usedgroup = {};
-            $(".chosen-select-group option").each(function () {
-                if (usedNames[this.value] && !$(this).is(':selected')) {
-                    $(this).remove();
-                } else {
-                    usedNames[this.value] = this.text;
-                }
-            });
-        });
-        </script>
-        <script>
-        $(document).ready(function () {
-            var usedgroup = {};
-            $(".chosen-select-member option").each(function () {
-                if (usedNames[this.value] && !$(this).is(':selected')) {
-                    $(this).remove();
-                } else {
-                    usedNames[this.value] = this.text;
-                }
-            });
-        });
-        </script>
-        <script>
         $(".chosen-select-type").chosen({
             no_results_text: "Oops, nothing found!",
             width: "100%"
