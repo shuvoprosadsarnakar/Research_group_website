@@ -8,6 +8,7 @@ use DB;
 use App\Post;
 use App\Image;
 use Auth;
+use File;
 class ImageController extends Controller
 {
     /**
@@ -105,7 +106,7 @@ class ImageController extends Controller
     {
         $name = $request->input('name');
         $postId = $request->input('postId');
-        if ($request->hasFile('imagePath')) {
+        if ($request->hasFile('path')) {
             if($request->file('path')->isValid()) {
                 try {
                     $file = $request->file('path');

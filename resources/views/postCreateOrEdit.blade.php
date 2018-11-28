@@ -30,7 +30,7 @@
                             <tr>
                                 <td> {{$post->id}} </td>
                                 <td> {{$post->title}} </td>
-                                <td> {{$post->postType->name}} </td>
+                                <td>  </td>
                                 <td> {{$post->status}} </td>
                                 <td> {{$post->startDate}} </td>
                                 <td> {{$post->finishDate}} </td>
@@ -69,10 +69,6 @@
                         <textarea name="description" class="form-control" id="description" rows="3">
                             @if(isset($postEditInfo)) "{{$postEditInfo->description}}" @endif
                         </textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Image:</label>
-                        <input type="file" accept="image/*" name="image" class="form-control" id="image" />
                     </div>
                     <div class="form-group">
                         <label for="">Type:</label>

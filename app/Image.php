@@ -8,6 +8,6 @@ class Image extends Model
 {
     public function post()
     {
-        return $this->belongsTo('App\Post','id','postId');
+        return $this->belongsTo('App\Post','postId','id');
     }
 }

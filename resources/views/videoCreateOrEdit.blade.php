@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-4">
             <div class="well">
-            @if(isset($rEditInfo)) 
+            @if(isset($vEditInfo)) 
                     <h4>Update Video Url </h4>
                 @else
                     <h4>Insert Video Url </h4>
