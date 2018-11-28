@@ -18,7 +18,7 @@ Route::get('/', [
     'as'=>'home'
 
 ]);
-
+Auth::routes();
 //posts start
 Route::get('/posts',[
     'uses' => 'PostController@index',
@@ -54,7 +54,6 @@ Route::get('/post/edit/{id}',[
     'uses' => 'PostController@edit',
     'as' => 'post_edit'
 ]);
-
 Route::post('/post/update/{id}',[
     'uses' => 'PostController@update',
     'as' => 'post_update'
@@ -63,7 +62,7 @@ Route::post('/post/update/{id}',[
 
 //members start
 Route::get('/members',[
-    'uses' => 'MemberController@memberList',
+    'uses' => 'HomeController@memberList',
     'as' => 'members'
 ]);
 
@@ -78,7 +77,7 @@ Route::post('/member/store',[
 ]);
 
 Route::get('/memberDetails/{id}',[
-    'uses' => 'MemberController@memberDetails',
+    'uses' => 'HomeController@memberDetails',
     'as' => 'memberDetails'
 ]);
 Route::get('/deleteMember/{id}', 'MemberController@deleteMember')->name('deleteMember');
@@ -271,25 +270,11 @@ Route::post('/video/update/{id}',[
 
 Route::get('/admin', [
 
-    'uses'=>'AdminController@index',
+    'uses'=>'HomeController@admin',
     'as'=>'admin'
 
 ]);
 
-//start admin panel
-Route::post('/adminlogin', [
-
-    'uses'=>'AdminController@login'
-
-]);
-
-Route::post('/adminlogout', [
-
-    'uses'=>'AdminController@logout',
-    'as'=>'logout'
-
-]);
-//end admin panel
 
 //contact view     
 Route::get('/contact', [
