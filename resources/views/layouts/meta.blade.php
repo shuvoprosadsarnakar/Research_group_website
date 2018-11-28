@@ -37,29 +37,24 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li {{{ (Request::is( '/') ? 'class=active' : '') }}}>
+                    <li {{ (Request::is( '/') ? 'class=active' : '') }}>
                         <a href="{{ route('home') }}">Home</a>
                     </li>
-                    <li {{{ (Request::is('project') ? 'class=active' : '') }}}>
-                        <a href="">Projects</a>
-                    </li>
-                    
-                    <li {{{ (Request::is('papers') ? 'class=active' : '') }}}>
-                        <a href="">Papers</a>
-                    </li>
-                
-                    <li {{{ (Request::is('publications') ? 'class=active' : '') }}}>
-                        <a href="">Publications</a>
-                    </li>
-                    <li {{{ (Request::is('members') ? 'class=active' : '') }}}>
-                        <a href="{{ route('members') }}">Members</a>
-                    </li>
-                    <li {{{ (Request::is('openpositions') ? 'class=active' : '') }}}>
-                        <a href="">Open positions</a>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Categories
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Page 1-1</a></li>
+                          <li><a href="#">Page 1-2</a></li>
+                          <li><a href="#">Page 1-3</a></li>
+                        </ul>
+                      </li>
+                    <li {{ (Request::is('posts') ? 'class=active' : '') }}>
+                        <a href="{{ route('posts') }}">Posts</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li {{{ (Request::is('contact') ? 'class=active' : '') }}}>
+                    <li {{ (Request::is('contact') ? 'class=active' : '') }}>
                         <a href="{{ route('contact') }}">Contact</a>
                     </li>
                     @if(Auth::check())

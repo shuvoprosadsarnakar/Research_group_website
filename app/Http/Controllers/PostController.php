@@ -25,7 +25,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(3);
-        return view('postList',compact('groups'));
+        return view('postList',compact('posts'));
     }
     /**
      * Display a listing of the posts ordered by user preference.
