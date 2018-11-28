@@ -36,13 +36,13 @@ class MemberController extends Controller
         $this->validate($request,[
             'name'=>'required|max:255',
             'designation'=>'required|max:255',
-            'github'=>'nullable|max:255|url',
-            'linkedin'=>'required|max:255|url',
+            'github'=>'nullable|max:255|url|unique:members',
+            'linkedin'=>'required|max:255|url|unique:members',
             'researchArea'=>'required|max:1024',
             'interest'=>'nullable|max:1024',
             'imagePath'=>'required|image',
-            'email'=>'required|max:1024',
-            'phone'=>'required|max:255',
+            'email'=>'required|max:1024|unique:members',
+            'phone'=>'required|max:255|unique:members',
             'groupId'=>'nullable'
         ]);
         $name = $request->input('name');

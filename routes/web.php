@@ -11,15 +11,19 @@
 |
 */
 
-//home / starting page
 Route::get('/', [
 
     'uses'=>'HomeController@index',
     'as'=>'home'
 
 ]);
+
 Auth::routes();
+
+
+
 //posts start
+
 Route::get('/posts',[
     'uses' => 'PostController@index',
     'as' => 'posts'
@@ -60,6 +64,8 @@ Route::post('/post/update/{id}',[
 ]);
 //posts end
 
+
+
 //members start
 Route::get('/members',[
     'uses' => 'HomeController@memberList',
@@ -80,12 +86,14 @@ Route::get('/memberDetails/{id}',[
     'uses' => 'HomeController@memberDetails',
     'as' => 'memberDetails'
 ]);
+
 Route::get('/deleteMember/{id}', 'MemberController@deleteMember')->name('deleteMember');
 
 Route::get('/editMember/{id}', 'MemberController@editMember')->name('editMember');
 
 Route::post('/updateMember/{id}', 'MemberController@updateMember')->name('updateMember');
 //members end
+
 
 //group star
 Route::get('/groups',[

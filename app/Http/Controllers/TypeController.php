@@ -40,7 +40,7 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name'=>'required|max:255',
+            'name'=>'required|max:255|unique:members',
         ]);
         $name = $request->input('name');
         $data=array('name'=>$name);
