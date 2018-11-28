@@ -10,8 +10,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
     protected $fillable = [
-        'name', 'email', 'password', 'type','description',
+        'name', 'email', 'password',
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -21,4 +22,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

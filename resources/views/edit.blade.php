@@ -42,7 +42,12 @@
             <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">
             <h4>Create Post</h4>
             </a>
-            </div>
+        </div>
+         <div class="col-md-2">
+            <a href="{{ route('user_create') }}">
+            <h4>Create User</h4>
+            </a>
+        </div>
     </div>
 </div>
 

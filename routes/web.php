@@ -289,3 +289,25 @@ Route::post('/contact', [
         
 ]);
 
+Route::get('/user/create',[
+    'uses' => 'RegisterController@create',
+    'as' => 'user_create'
+]);
+
+Route::post('/user/store',[
+    'uses' => 'RegisterController@store',
+    'as' => 'user_store'
+]);
+Route::get('/user/delete/{id}',[
+    'uses' => 'RegisterController@destroy',
+    'as' => 'user_delete'
+]);
+
+Route::get('/user/edit/{id}',[
+    'uses' => 'RegisterController@edit',
+    'as' => 'user_edit'
+]);
+Route::post('/user/update/{id}',[
+    'uses' => 'RegisterController@update',
+    'as' => 'user_update'
+]);
