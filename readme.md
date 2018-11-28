@@ -9,4 +9,4 @@ official website
 - Insert id,name,email manually in databse.
 - Insert password  $2y$10$GXoeK7GWlVH7m3lkw0YgR.Vt7RQngKON1xPiIiU5ld3rW6U/iTlJO
 - password is encrypted by bcrypt
-- password is 1123456
+- password is 123456
