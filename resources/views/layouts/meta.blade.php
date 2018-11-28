@@ -20,7 +20,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/stars.css')}}">
-
+    @yield('stylesheet_after')
+    
 </head>
 
 <body>

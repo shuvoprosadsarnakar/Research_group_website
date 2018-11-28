@@ -1,13 +1,12 @@
 @extends('layouts.meta') 
 
-@section('stylesheet')
-
+@section('stylesheet_after')
+    <link rel="stylesheet" href="{{asset('css/postlist.css')}}">
 @endsection
 
 
 @section('body')
-@component('edit')
-@endcomponent
+
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -57,31 +56,20 @@
                     </th>
                 </tr>
             </table>
-            <ul class="media-list">
+            <ul class="cards">
 <!-- start list of posts repeat this list item to add more posts -->
-                @foreach($posts as $post)
-                    <li class="media card">
-                        <div class="media-left">
-                            <a href="{{ route('post_details',['id' => $post->id]) }}">
-                                <!-- Image/thumbnail of the post -->
-                                <img class="media-object" src="{{asset('images/p.jpg')}}" alt="..." style="width:100px">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <a href="{{ route('post_details',['id' => $post->id]) }}">
-                                <!-- Title/name of the post -->
-                                <h4 class="media-heading">
-                                    {{$post->title}}
-                                </h4>
-                            </a>
-                            <!-- Description of the post -->
-                            <p>
-                                {{$post->description}}
-                            </p>
-                            <p>Start Date: {{$post->startDate}}</p>
-                            <p>Finish Date: {{$post->finishDate}}</p>
-                        </div>
-                    </li>
+                @foreach($posts as $post)               
+                <li class="cards__item">
+                    <div class="card">
+                    <div class="card__image" style="background-image: url(https://unsplash.it/800/600?image=59);"></div>
+                    <div class="card__content">
+                        <div class="card__title">{{substr($post->title, 0, 60)}}</div>
+                        <p class="card__text">{{substr($post->description, 0, 100)}}</p>
+                        <p class="card__text">Start Date: {{$post->startDate}} &nbsp; Finish Date: {{$post->finishDate}}</p>
+                        <a  href="{{ route('post_details',['id' => $post->id]) }}" class="btn btn--block card__btn">Open</a>
+                    </div>
+                    </div>
+                </li>
                 @endforeach
 <!-- end list of posts repeat this list item to add more posts -->
             </ul>
