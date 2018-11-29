@@ -28,11 +28,9 @@ class VideoController extends Controller
      */
     public function create()
     {
-        $data = DB::table('videos')->get();
-        $postData=DB::table('posts')->get();
-        $data3=Video::all()->last();
-        //dd($data3);
-        return view('videoCreateOrEdit',compact('data', 'postData','data3'));
+        $videos = Video::with('post')->simplePaginate(10);
+        $postData = Post::get();
+        return view('videoCreateOrEdit',compact('videos', 'postData'));
     }
 
     /**
@@ -77,11 +75,11 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        $data = DB::table('videos')->get();
+        $videos = Video::with('post')->simplePaginate(10);
         $postData=DB::table('posts')->get();
         $vEditInfo = Video::with('post')->find($id);
-        // dd($groupData);
-        return view('videoCreateOrEdit',compact('data','postData','vEditInfo'));
+        //dd($vEditInfo);
+        return view('videoCreateOrEdit',compact('videos','postData','vEditInfo'));
     }
 
     /**
@@ -110,7 +108,6 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        $data=Video::find($id);
         Video::destroy($id);
         return redirect()->route("video_create")->with('flash_message', 'Video Link deleted!');
     }

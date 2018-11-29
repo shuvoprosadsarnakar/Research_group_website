@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(3);
+        $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(10);
         return view('postList',compact('posts'));
     }
     /**
@@ -54,7 +54,7 @@ class PostController extends Controller
         if(isset($criteria) && isset($order)){
             if( $criteria=='title' || $criteria=='description' || $criteria=='startDate' || $criteria=='finishDate' && $order=='asc' || $order=='desc'){
                 
-                $posts = Post::with('group','postType')->orderBy($criteria,$order)->simplePaginate(3);
+                $posts = Post::with('group','postType')->orderBy($criteria,$order)->simplePaginate(10);
                 $groups = Group:: get();
                 $members = Member:: get();
                 $types = PostType:: get();
@@ -111,7 +111,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $posts = Post::with('group','postType')->simplePaginate(3);
+        $posts = Post::with('group','postType')->simplePaginate(10);
         $groups = Group:: get();
         $members = Member:: get();
         $types = PostType:: get();

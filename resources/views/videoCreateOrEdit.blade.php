@@ -15,34 +15,38 @@
         <div class="col-md-8">
             <div class="well">
                 <h4> Videos list</h4>
-                <table class="table-edit" >
-                    <tr>
-                        <th>Id</th>
-                        <th>Video preview</th>
-                        <th>Title</th>
-                        <th>Url</th>
-                        <th>PostId</th>
-                        <th>Actions</th>
-                    </tr>
-                    @foreach($data as $video)
-                    <tr>
-                        <td> {{ $video->id }} </td>
-                        <td>
-                        <iframe width="160" height="120" class="" src="{{$video->link}}"></iframe>
-                        </td>
-                        <td>{{ $video->title }} </td>
-                        <td>{{ $video->link }} </td>
-                        <td>{{ $video->postId }} </td>
-                        <td>
-                        <a href="{{route('video_edit',$video->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
-                        <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('video_delete',$video->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </table>
+                <div class="table-fix">
+                    <table class="table-edit" >
+                        <tr>
+                            <th>Id</th>
+                            <th>Video preview</th>
+                            <th>Title</th>
+                            <th>Post_title</th>
+                            <th>Url</th>
+                            <th>Post Id</th>
+                            <th>Actions</th>
+                        </tr>
+                        @foreach($videos as $video)
+                        <tr>
+                            <td> {{ $video->id }} </td>
+                            <td>
+                            <iframe width="240" height="160" class="" src="{{$video->link}}"></iframe>
+                            </td>
+                            <td >{{ $video->title }} </td>
+                            <td >{{ $video->post->title }} </td>
+                            <td>{{ $video->link }} </td>
+                            <td>{{ $video->postId }} </td>
+                            <td>
+                            <a href="{{route('video_edit',$video->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
+                            <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('video_delete',$video->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
             </div>
             <div class="text-center">
-                
+                {{$videos->links()}}
             </div>
         </div>
         <div class="col-md-4">
@@ -65,14 +69,20 @@
                     </div>
                     <div class="form-group">
                         <label for="">Post Title:</label>
-                        <select name="postId" class="chosen-select-member form-control"  data-placeholder="Choose post...">
-                            @foreach ($postData as $post)
-                                <option value="{{ $post->id }}" > {{ $post->title }} </option>
-                            @endforeach 
+                        <select name="postId" class="chosen-select-post form-control"  data-placeholder="Choose post...">
                             @if(isset($vEditInfo))
-                                @foreach($vEditInfo as $postTitle)
-                                    <option value="{{ $postTitle->id }}" selected> {{ $postTitle->title }} </option>
-                                @endforeach
+                                @for ($j = 0; $j < count($postData); $j++)
+                                    <option value="{{ $postData[$j]->id }}"  
+                                        @if($postData[$j]->id == $vEditInfo->post->id) 
+                                            selected 
+                                        @endif
+                                        > 
+                                    {{ $postData[$j]->title }} </option>
+                                @endfor
+                            @else
+                                @foreach ($postData as $post)
+                                    <option value="{{ $post->id }}" > {{ $post->title }} </option>
+                                @endforeach 
                             @endif
                         </select>
                     </div>
