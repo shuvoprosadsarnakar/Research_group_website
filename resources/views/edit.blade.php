@@ -1,51 +1,47 @@
 <div class="container">
     <div class="well row">
 
-        <div class="col-md-2">
+        <div class="col-md-1">
+            <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">
+                <h4>Posts</h4>
+            </a>
+        </div>
+        <div class="col-md-1">
 
             <a href="{{ route('member_create') }}">
-                <h4>Add Member</h4>
+                <h4>Member</h4>
             </a>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
 
             <a href="{{ route('type_create') }}">
-                <h4>Create Type</h4>
+                <h4>Type</h4>
             </a>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
 
             <a href="{{ route('image_create') }}">
-                <h4>Upload image</h4>
+                <h4>Images</h4>
             </a>
         </div>
-        <div class="col-md-2">
-
+        <div class="col-md-1">
              <a href="{{ route('video_create') }}">
-                <h4>Upload Video</h4>
+                <h4>Videos</h4>
             </a>
         </div>
-        <div class="col-md-2">
-
+        <div class="col-md-1">
            <a href="{{ route('group_create') }}">
-                <h4>Create Group</h4>
+                <h4>Groups</h4>
             </a>
         </div>
-        <div class="col-md-2">
-
+        <div class="col-md-1">
            <a href="{{ route('reference_create') }}">
-                <h4>Create Reference</h4>
+                <h4>References</h4>
             </a>
         </div>
-        <div class="col-md-2">
-
-            <a href="{{ route('post_create',['criteria' => 'startDate','order' => 'desc']) }}">
-            <h4>Create Post</h4>
-            </a>
-        </div>
-         <div class="col-md-2">
+         <div class="col-md-1">
             <a href="{{ route('user_create') }}">
-            <h4>Create User</h4>
+                <h4>Users</h4>
             </a>
         </div>
     </div>

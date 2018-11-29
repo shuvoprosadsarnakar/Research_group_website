@@ -1,7 +1,8 @@
 @extends('layouts.meta')
 
 @section('stylesheet')
-
+    <link rel="stylesheet" href="{{asset('css/chosenCss/prism.css')}}">
+    <link rel="stylesheet" href="{{asset('css/chosenCss/chosen.min.css')}}">
 @endsection
 
 
@@ -63,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Post Title:</label>
-                        <select name="postId" class="chosen-select-member form-control"  data-placeholder="Choose post...">
+                        <select name="postId" class="chosen-select-post form-control"  data-placeholder="Choose post...">
                             @foreach ($postData as $post)
                                 <option value="{{ $post->id }}" > {{ $post->title }} </option>
                             @endforeach 
@@ -91,7 +92,7 @@
 
 
 @section('javascript')
-<script src="{{asset('js/chosenJs/chosen.jquery.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/chosenJs/chosen.jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/chosenJs/prism.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript" charset="utf-8"></script>
     
@@ -100,4 +101,5 @@
             no_results_text: "Oops, nothing found!",
             width: "100%"
         });
+    </script>
 @endsection

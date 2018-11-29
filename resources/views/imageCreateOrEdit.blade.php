@@ -19,6 +19,7 @@
                         <th>Id</th>
                         <th>Image</th>
                         <th>Post id</th>
+                        <th>Post title</th>
                         <th>Actions</th>
                     </tr>
                     @foreach($data as $image)
@@ -28,6 +29,7 @@
                         <img src="{{ asset('uploads/'.$image->path)  }}" alt="" style="width: 100px;"> 
                         </td>
                         <td>{{ $image->postId }} </td>
+                        <td>  </td>
                         <td>
                         <a href="{{route('image_edit',$image->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
                         <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('image_delete',$image->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
@@ -62,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Post Title:</label>
-                        <select name="postId" class="chosen-select-member form-control"  data-placeholder="Choose post...">
+                        <select name="postId" class="chosen-select-post form-control"  data-placeholder="Choose post...">
                             @foreach ($postData as $post)
                                 <option value="{{ $post->id }}" > {{ $post->title }} </option>
                             @endforeach 
@@ -73,12 +75,8 @@
                             @endif
                         </select>
                     </div>
-                   <button type="submit" class="btn btn-default">
-                    @if(isset($iEditInfo)) 
-                        Update Image 
-                    @else
+                    <button type="submit" class="btn btn-default">
                         Upload Image
-                    @endif
                     </button>
                 </form>
             </div>
