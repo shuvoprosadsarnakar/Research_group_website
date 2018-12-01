@@ -12,44 +12,34 @@
 
         <!-- Post Content Column -->
         <div class="col-md-8">
-
           <!-- Title -->
           <h1 class="">{{$post->title}}</h1>
-
           <!-- Author -->
           <p class="lead">
             Type
             <a href="#">{{$post->type}}</a>
           </p>
-
           <hr>
-
           <!-- Date/Time -->
           <p>Starting from: {{$post->startDate}} to: {{$post->finishDate}}</p>
-
           <hr>
-
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-
+          <img class="img-fluid rounded" src="{{ asset('uploads/'.$image->path)  }}" alt="" style="width: 80%;">
           <hr>
-
           <!-- Post Content -->
           <p class="lead">Status: {{$post->status}}</p>
-
           <p>{{$post->description}}</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-
           <hr>
 
 
         </div>
-
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
@@ -65,15 +55,13 @@
               <div class="row">
                 <div class="col-lg-6">
                   <ul class="list-unstyled mb-0">
+                  @foreach($members as $m)
                     <li>
-                      <a href="#">Mujahid</a>
+                    @foreach($m->member as $m)
+                      <a href="#">{{$m->name}}</a><br>
+                      @endforeach 
                     </li>
-                    <li>
-                      <a href="#">Shuvo</a>
-                    </li>
-                    <li>
-                      <a href="#">Arif</a>
-                    </li>
+                    @endforeach    
                   </ul>
                 </div>
               </div>
@@ -89,7 +77,14 @@
             </div>
             
             <div class="panel-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+            @foreach($groups as $g)
+                    <li>
+                    @foreach($g->group as $g)
+                      <a href="#">{{$g->groupName}}</a><br>
+                      @endforeach 
+                    </li>
+                    @endforeach   
+                  </ul>
             </div>
           </div>
 

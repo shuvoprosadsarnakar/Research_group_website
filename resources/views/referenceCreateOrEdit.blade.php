@@ -65,13 +65,19 @@
                     <div class="form-group">
                         <label for="">Post Title:</label>
                         <select name="postId" class="chosen-select-post form-control"  data-placeholder="Choose post...">
-                            @foreach ($postData as $post)
-                                <option value="{{ $post->id }}" > {{ $post->title }} </option>
-                            @endforeach 
-                            @if(isset($rEditInfo))
-                                @foreach($rEditInfo as $postTitle)
-                                    <option value="{{ $postTitle->id }}" selected> {{ $postTitle->title }} </option>
-                                @endforeach
+                        @if(isset($rEditInfo))
+                                @for ($j = 0; $j < count($postData); $j++)
+                                    <option value="{{ $postData[$j]->id }}"  
+                                        @if($postData[$j]->id == $rEditInfo->post->id) 
+                                            selected 
+                                        @endif
+                                        > 
+                                    {{ $postData[$j]->title }} </option>
+                                @endfor
+                            @else
+                                @foreach ($postData as $post)
+                                    <option value="{{ $post->id }}" > {{ $post->title }} </option>
+                                @endforeach 
                             @endif
                         </select>
                     </div>

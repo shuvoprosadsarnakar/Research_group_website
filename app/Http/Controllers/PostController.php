@@ -13,6 +13,9 @@ use App\Post;
 use App\PostType;
 use App\Group;
 use App\Member;
+use App\Image;
+use App\MemberPost;
+use App\GroupPost;
 
 
 class PostController extends Controller
@@ -100,7 +103,11 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::where('id', $id)->first();
-        return view('postDetails')->with('post',$post);
+        $image =Image::where('postId',$id)->first();
+        //$members =MemberPost::where('postId',$id)->get();
+        $members = Post::with('member')->get();
+        $groups =Post::with('group')->get();
+        return view('postDetails',compact('image','post','members','groups'));
     }
 
     /**
