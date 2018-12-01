@@ -57,13 +57,13 @@
               <div class="row">
                 <div class="col-lg-6">
                   <ul class="list-unstyled mb-0">
-                  @foreach($members as $m)
+                  
                     <li>
-                    @foreach($m->member as $m)
-                      <a href="#">{{$m->name}}</a><br>
+                    @foreach($post->member as $m)
+                      <a href="{{route('memberDetails',$m->id)}}">{{$m->name}}</a><br>
                       @endforeach 
                     </li>
-                    @endforeach    
+                        
                   </ul>
                 </div>
               </div>
@@ -79,13 +79,12 @@
             </div>
             
             <div class="panel-body">
-            @foreach($groups as $g)
+            <ul class="list-unstyled mb-0">
                     <li>
-                    @foreach($g->group as $g)
-                      <a href="#">{{$g->groupName}}</a><br>
+                      @foreach($post->group as $g)
+                        <a href="">{{$g->groupName}}</a><br>
                       @endforeach 
                     </li>
-                    @endforeach   
                   </ul>
             </div>
           </div>
