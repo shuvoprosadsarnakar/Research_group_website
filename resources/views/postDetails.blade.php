@@ -94,6 +94,11 @@
       </div>
       <!-- /.row -->
 
+<!-- Image sider -->
+    <div>
+
+    </div>
+<!-- end Image sider -->
     </div>
 
 @endsection
