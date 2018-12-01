@@ -96,7 +96,9 @@
 
 <!-- Image sider -->
     <div>
-
+        @foreach($post->image as $image)
+          <img src="{{ asset('uploads/'.$image->path) }}" alt="">
+        @endforeach
     </div>
 <!-- end Image sider -->
     </div>

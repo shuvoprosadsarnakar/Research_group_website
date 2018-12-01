@@ -17,17 +17,17 @@ class Post extends Model
 
     public function image()
     {
-        return $this->hasMany('App\Image', 'id', 'postId');
+        return $this->hasMany('App\Image', 'postId', 'id');
     }
 
     public function video()
     {
-        return $this->hasMany('App\Video', 'id', 'postId');
+        return $this->hasMany('App\Video', 'postId', 'id');
     }
 
     public function reference()
     {
-        return $this->hasMany('App\Reference', 'id', 'postId');
+        return $this->hasMany('App\Reference', 'postId', 'id');
     }
 
     public function group()

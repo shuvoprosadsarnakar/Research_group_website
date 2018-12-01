@@ -73,20 +73,6 @@
                         </div>
                     </div>
                 </li>
-                <li class="cards__item">
-                    <div class="card">
-                        <div class="card__image" style="background-image: url({{ asset('uploads/'.$post->thumbNail)}});">
-                        </div>
-                        <div class="card__content">
-                            <div class="card__title">
-                                {{substr($post->title, 0, 60)}}
-                            </div>
-                            <p class="card__text">{{substr($post->description, 0, 100)}}</p>
-                            <p class="card__text">Type: {{$post->postType->name}} &nbsp; Finish Date: {{$post->finishDate}}</p>
-                            <a  href="{{ route('post_details',['id' => $post->id]) }}" class="btn btn--block card__btn">Open</a>
-                        </div>
-                    </div>
-                </li>
                 @endforeach
                 <!-- end list of posts repeat this list item to add more posts -->
             </ul>
