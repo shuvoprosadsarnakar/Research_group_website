@@ -61,7 +61,11 @@
                 @foreach($posts as $post)               
                 <li class="cards__item">
                     <div class="card">
-                    <div class="card__image" style="background-image: url(https://unsplash.it/800/600?image=59);"></div>
+                    @foreach($image as $i) 
+                    <div class="card__image">
+                    <img class="img-fluid rounded" src="{{ asset('uploads/'.$i->path)  }}" alt="" style="width: 80%;">
+                    </div>
+                    @endforeach
                     <div class="card__content">
                         <div class="card__title">{{substr($post->title, 0, 60)}}</div>
                         <p class="card__text">{{substr($post->description, 0, 100)}}</p>
