@@ -10,7 +10,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="diu research lab,research lab,artificial intelligence researh lab,ai research lab,daffodil international university research lab,Daffodil,University,DIU,Private University,daffodil university Bangladesh,daffodil university,private university of Bangladesh,daffodil varsity">
+    <meta name="keywords" content="ambient intelligene research lab, diu research lab,research lab,artificial intelligence researh lab,ai research lab,daffodil international university research lab,Daffodil,University,DIU,Private University,daffodil university Bangladesh,daffodil university,private university of Bangladesh,daffodil varsity">
     <meta name="description" content="Daffodil International University Research lab is a ">
 
     <!-- CSS -->
@@ -41,20 +41,24 @@
                     <li {{ (Request::is( '/') ? 'class=active' : '') }}>
                         <a href="{{ route('home') }}">Home</a>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Categories
-                        <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Thesis</a></li>
-                          <li><a href="#">Project</a></li>
-                          <li><a href="#">Research</a></li>
-                        </ul>
-                      </li>
                     <li {{ (Request::is('posts') ? 'class=active' : '') }}>
                         <a href="{{ route('posts') }}">Posts</a>
                     </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{ route('posts_type',['type' => 'research','criteria' => 'startDate','order' => 'desc']) }}">Research</a></li>
+                          <li><a href="{{ route('posts_type',['type' => 'project','criteria' => 'startDate','order' => 'desc']) }}">Project</a></li>
+                          <li><a href="{{ route('posts_type',['type' => 'thesis','criteria' => 'startDate','order' => 'desc']) }}">Thesis</a></li>
+                        </ul>
+                      </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li {{ (Request::is('members') ? 'class=active' : '') }}>
+                        <a href="{{ route('members') }}">Members</a>
+                    </li>
                     <li {{ (Request::is('contact') ? 'class=active' : '') }}>
                         <a href="{{ route('contact') }}">Contact</a>
                     </li>

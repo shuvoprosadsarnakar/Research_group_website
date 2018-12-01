@@ -20,6 +20,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Title</th>
+                                <th>Image</th>
                                 <th>Type</th>
                                 <th>Status</th>
                                 <th>Start date</th>
@@ -30,13 +31,16 @@
                             <tr>
                                 <td> {{$post->id}} </td>
                                 <td> {{$post->title}} </td>
-                                <td>  </td>
+                                <td> 
+                                    <img src="{{ asset('uploads/'.$post->thumbNail)  }}" alt="" style="width: 100px;"> 
+                                </td>
+                                <td> {{$post->postType->name}} </td>
                                 <td> {{$post->status}} </td>
                                 <td> {{$post->startDate}} </td>
                                 <td> {{$post->finishDate}} </td>
                                 <td>
                                     <a href="{{route('post_delete',['id'=>$post->id])}}" class="btn btn-danger">X</a>
-                                    <a href="{{route('post_edit',['id'=>$post->id])}}" class="btn btn-info">E</a>
+                                    <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('post_edit',['id'=>$post->id])}}" class="btn btn-info">E</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -71,14 +75,21 @@
                         </textarea>
                     </div>
                     <div class="form-group">
+                        <label for="image">Image:</label>
+                        <input type="file" accept="image/*" name="imagePath" class="form-control" id="image" />
+                    </div>
+                    <div class="form-group">
                         <label for="">Type:</label>
                         <select name="type" size="1" class="chosen-select-type form-control"  data-placeholder="Choose a post type...">
                             <!-- Post types -->
-                            @foreach($types as $type)
-                                <option value="{{$type->id}}" >{{$type->name}}</option>
-                            @endforeach
                             @if(isset($postEditInfo))
-                                <option value="{{ $postEditInfo->postType->id }}" selected> {{ $postEditInfo->postType->name }} </option>
+                                @foreach($types as $type)
+                                    <option value="{{$type->id}}" @if($postEditInfo->postType->id==$type->id) selected @endif>{{$type->name}}</option>
+                                @endforeach
+                            @else
+                                @foreach($types as $type)
+                                    <option value="{{$type->id}}" >{{$type->name}}</option>
+                                @endforeach
                             @endif
                         </select>
                     </div>

@@ -19,18 +19,18 @@
           <!-- Author -->
           <p class="lead">
             Type
-            <a href="#">{{$post->type}}</a>
+            <a href="{{ route('posts_type',['type' => $post->postType->name,'criteria' => 'title','order' => 'asc']) }}">{{$post->postType->name}}</a>
           </p>
 
           <hr>
 
           <!-- Date/Time -->
-          <p>Starting from: {{$post->startDate}} to: {{$post->finishDate}}</p>
+          <p>Starting date: {{$post->startDate}} &nbsp; Finish date: {{$post->finishDate}}</p>
 
           <hr>
 
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
+          <img class="img-fluid rounded" src="{{ asset('uploads/'.$post->thumbNail)}}" alt="">
 
           <hr>
 
@@ -89,8 +89,22 @@
             </div>
             
             <div class="panel-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">Mujahid</a>
+                    </li>
+                    <li>
+                      <a href="#">Shuvo</a>
+                    </li>
+                    <li>
+                      <a href="#">Arif</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
           </div>
 
         </div>

@@ -41,6 +41,22 @@ img {
     width: 33.3333%;
   }
 }
+.cards__item_m {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+}
+@media (min-width: 40rem) {
+  .cards__item_m {
+    width: 50%;
+  }
+}
+@media (min-width: 56rem) {
+  .cards__item_m {
+    width: 25%;
+  }
+}
 .card {
   background-color: white;
   border-radius: 0.25rem;
@@ -53,6 +69,9 @@ img {
       -ms-flex-direction: column;
           flex-direction: column;
   overflow: hidden;
+}
+.card a {
+	color: black;
 }
 .card:hover .card__image {
   -webkit-filter: contrast(100%);
@@ -98,11 +117,11 @@ img {
 }
 
 .card__title {
-  color: #696969;
-  font-size: 1.5rem;
-  font-weight: 300;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+	color: #4d4d4d;
+	font-size: 1.5rem;
+	font-weight: 300;
+	letter-spacing: 1px;
+	text-transform: uppercase;
 }
 .card__text {
   -webkit-box-flex: 1;

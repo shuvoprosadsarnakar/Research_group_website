@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('group')->orderBy('startDate','desc')->simplePaginate(10);
+        $posts = Post::with('group','postType')->orderBy('startDate','desc')->simplePaginate(10);
         return view('postList',compact('posts'));
     }
     /**
@@ -36,9 +36,35 @@ class PostController extends Controller
         if(isset($criteria) && isset($order)){
             if( $criteria=='title' || $criteria=='description' || $criteria=='startDate' || $criteria=='finishDate' && $order=='asc' || $order=='desc'){
                 
-                $posts = Post::with('group')->orderBy($criteria,$order)->simplePaginate(3);
+                $posts = Post::with('group','postType')->orderBy($criteria,$order)->simplePaginate(3);
                 
                 return view('postList')->with('posts',$posts);
+            }
+        }
+        return redirect()->back();
+    }
+    /**
+     * Display a listing of the posts by type.
+     *
+     */
+    public function typedIndex($type,$criteria,$order)
+    {
+        if(isset($criteria) && isset($order) && isset($type)){
+            if( $criteria=='title' || $criteria=='description' || $criteria=='startDate' || $criteria=='finishDate' && $order=='asc' || $order=='desc'){
+                
+                $postType = PostType::where('name',$type)
+                ->get()
+                ->first();
+
+                if(isset($postType->id)){
+                    $posts = Post::with('group','postType')
+                    ->orderBy($criteria,$order)
+                    ->where('typeId',$postType->id)
+                    ->simplePaginate(12);
+                    return view('postListType',compact('posts','postType'));
+                }
+                Session::flash('alert','Post type dosent exists');
+                return redirect()->back();
             }
         }
         return redirect()->back();
@@ -78,7 +104,18 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->startDate = $request->startDate;
         $post->finishDate = $request->finishDate;
-        //$post->image = $request->image;
+        if ($request->hasFile('imagePath')) {
+            if($request->file('imagePath')->isValid()) {
+                try {
+                    $file = $request->file('imagePath');
+                    $imagePath = time() . '.' . $file->getClientOriginalExtension();
+                    $request->file('imagePath')->move("uploads", $imagePath);
+                    $post->thumbNail = $imagePath;
+                } catch (Illuminate\Filesystem\FileNotFoundException $e) {
+        
+                }
+            } 
+        }
         $post->typeId = $request->type;
         $post->startDate = $request->startDate;
         $post->finishDate = $request->finishDate;
@@ -140,7 +177,26 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->startDate = $request->startDate;
         $post->finishDate = $request->finishDate;
-        //$post->image = $request->image;
+        if ($request->hasFile('imagePath')) {
+            if($request->file('imagePath')->isValid()) {
+                try {
+                    $file = $request->file('imagePath');
+                    $imagePath = time() . '.' . $file->getClientOriginalExtension();
+                    $request->file('imagePath')->move("uploads", $imagePath);
+                    $post->thumbNail = $imagePath;
+                    $data=Post::find($id);
+                    if(file_exists("uploads/".$data->thumbNail)){
+                        File::delete("uploads/".$data->thumbNail);
+                    }
+
+                } catch (Illuminate\Filesystem\FileNotFoundException $e) {
+        
+                }
+            }
+        }else{
+            $data=Post::find($id);
+            $post->thumbNail=$data->thumbNail;
+        } 
         $post->typeId = $request->type;
         $post->startDate = $request->startDate;
         $post->finishDate = $request->finishDate;
@@ -161,6 +217,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post=Post::find($id);
+        if(isset($post)){
+            if(file_exists("uploads/".$post->thumbNail)){
+                File::delete("uploads/".$post->thumbNail);
+            }
+        }
         $post->group()->detach();
         $post->member()->detach();
         Post::destroy($id);

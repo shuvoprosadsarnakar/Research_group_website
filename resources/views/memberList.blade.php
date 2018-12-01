@@ -1,7 +1,7 @@
 @extends('layouts.meta')
 
-@section('stylesheet')
-
+@section('stylesheet_after')
+    <link rel="stylesheet" href="{{asset('css/postlist.css')}}">
 @endsection
 
 @section('body')
@@ -13,30 +13,36 @@
             </h2>
         </div>
         <div class="panel-body">
-        @foreach ($data as $member)
-            <div class="row-fluid">
-<!-- start list of posts repeat this item to add more member -->
-                <a href="{{route('memberDetails',$member->id)}}">
-                    <div class="col-md-3 col-sm-4 col-xs-12">
-                        <div class="card">
-                            <!-- Image/thumbnail of the member -->
-                            <img src="{{ asset('uploads/'.$member->imagePath) }}" alt="{{$member->name}}" style="width:100%">
-                            <div class="cardcontainer">
-                                <h5>
-                                    <!-- Name of the member -->
-                                    <b>{{ $member->name }}</b>
-                                </h5>
-                                <!-- Designation of the member -->
-                                <p>{{ $member->designation }} </p>
-                                <!-- Institution of the member -->
-                                <p>{{ $member->email }}</p>
+            <ul class="cards">
+<!-- start list of posts repeat this list item to add more posts -->
+                @foreach($data as $member)               
+                <li class="cards__item_m">
+                    <div class="card">
+                        <div class="card__image" style="background-image: url({{ asset('uploads/'.$member->imagePath) }});"></div>
+                            <a  href="{{route('memberDetails',$member->id)}}" >
+                            <div class="card__content">
+                                <div class="card__title">{{$member->name}}</div>
+                                <p class="card__text">{{ $member->designation }}</p>
+                                <p class="card__text">{{ $member->email }} &nbsp; </p>
                             </div>
-                        </div>
+                            </a>
                     </div>
-                </a>
-<!-- end list of posts repeat this item to add more members -->
-            </div>
-            @endforeach
+                </li>
+                <li class="cards__item_m">
+                    <div class="card">
+                        <div class="card__image" style="background-image: url({{ asset('uploads/'.$member->imagePath) }});"></div>
+                            <a  href="{{route('memberDetails',$member->id)}}" >
+                            <div class="card__content">
+                                <div class="card__title">{{$member->name}}</div>
+                                <p class="card__text">{{ $member->designation }}</p>
+                                <p class="card__text">{{ $member->email }} &nbsp; </p>
+                            </div>
+                            </a>
+                    </div>
+                </li>
+                @endforeach
+<!-- end list of posts repeat this list item to add more posts -->
+            </ul>
         </div>
     </div>
 </div>

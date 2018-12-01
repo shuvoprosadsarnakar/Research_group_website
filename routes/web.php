@@ -34,6 +34,11 @@ Route::get('/posts/{criteria}/{order}',[
     'as' => 'posts_order'
 ]);
 
+Route::get('/posts/{type}/{criteria}/{order}',[
+    'uses' => 'PostController@typedIndex',
+    'as' => 'posts_type'
+]);
+
 Route::get('/post/create/{criteria}/{order}',[
     'uses' => 'PostController@create',
     'as' => 'post_create'

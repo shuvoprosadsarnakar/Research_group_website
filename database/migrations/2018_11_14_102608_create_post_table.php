@@ -19,6 +19,7 @@ class CreatePostTable extends Migration
             $table->unsignedInteger('typeId');
             $table->string('status');
             $table->string('description',10000);
+            $table->string('thumbNail',5000);
             $table->date('startDate');
             $table->date('finishDate');
             $table->timestamps();

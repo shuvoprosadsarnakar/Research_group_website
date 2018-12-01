@@ -19,7 +19,7 @@
                 <tr>
 
                     <th>
-                        <a href="@if(Request::path()=='posts/title/asc')
+                        <a href="@if(Request::path()=='posts/*/title/asc')
                                     {{ route('posts_order',['criteria' => 'title','order' => 'desc']) }}
                                 @else
                                     {{ route('posts_order',['criteria' => 'title','order' => 'asc']) }}
@@ -57,21 +57,38 @@
                 </tr>
             </table>
             <ul class="cards">
-<!-- start list of posts repeat this list item to add more posts -->
+                <!-- start list of posts repeat this list item to add more posts -->
                 @foreach($posts as $post)               
                 <li class="cards__item">
                     <div class="card">
-                    <div class="card__image" style="background-image: url(https://unsplash.it/800/600?image=59);"></div>
-                    <div class="card__content">
-                        <div class="card__title">{{substr($post->title, 0, 60)}}</div>
-                        <p class="card__text">{{substr($post->description, 0, 100)}}</p>
-                        <p class="card__text">Start Date: {{$post->startDate}} &nbsp; Finish Date: {{$post->finishDate}}</p>
-                        <a  href="{{ route('post_details',['id' => $post->id]) }}" class="btn btn--block card__btn">Open</a>
+                        <div class="card__image" style="background-image: url({{ asset('uploads/'.$post->thumbNail)}});">
+                        </div>
+                        <div class="card__content">
+                            <div class="card__title">
+                                {{substr($post->title, 0, 60)}}
+                            </div>
+                            <p class="card__text">{{substr($post->description, 0, 100)}}</p>
+                            <p class="card__text">Type: {{$post->postType->name}} &nbsp; Finish Date: {{$post->finishDate}}</p>
+                            <a  href="{{ route('post_details',['id' => $post->id]) }}" class="btn btn--block card__btn">Open</a>
+                        </div>
                     </div>
+                </li>
+                <li class="cards__item">
+                    <div class="card">
+                        <div class="card__image" style="background-image: url({{ asset('uploads/'.$post->thumbNail)}});">
+                        </div>
+                        <div class="card__content">
+                            <div class="card__title">
+                                {{substr($post->title, 0, 60)}}
+                            </div>
+                            <p class="card__text">{{substr($post->description, 0, 100)}}</p>
+                            <p class="card__text">Type: {{$post->postType->name}} &nbsp; Finish Date: {{$post->finishDate}}</p>
+                            <a  href="{{ route('post_details',['id' => $post->id]) }}" class="btn btn--block card__btn">Open</a>
+                        </div>
                     </div>
                 </li>
                 @endforeach
-<!-- end list of posts repeat this list item to add more posts -->
+                <!-- end list of posts repeat this list item to add more posts -->
             </ul>
         </div>
     </div>
