@@ -12,44 +12,36 @@
 
         <!-- Post Content Column -->
         <div class="col-md-8">
-
           <!-- Title -->
           <h1 class="">{{$post->title}}</h1>
-
           <!-- Author -->
           <p class="lead">
             Type
             <a href="{{ route('posts_type',['type' => $post->postType->name,'criteria' => 'title','order' => 'asc']) }}">{{$post->postType->name}}</a>
           </p>
-
           <hr>
-
           <!-- Date/Time -->
           <p>Starting date: {{$post->startDate}} &nbsp; Finish date: {{$post->finishDate}}</p>
 
           <hr>
-
           <!-- Preview Image -->
           <img class="img-fluid rounded" src="{{ asset('uploads/'.$post->thumbNail)}}" alt="">
 
           <hr>
-
           <!-- Post Content -->
           <p class="lead">Status: {{$post->status}}</p>
-
           <p>{{$post->description}}</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-
           <hr>
 
 
         </div>
-
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
@@ -65,15 +57,13 @@
               <div class="row">
                 <div class="col-lg-6">
                   <ul class="list-unstyled mb-0">
+                  @foreach($members as $m)
                     <li>
-                      <a href="#">Mujahid</a>
+                    @foreach($m->member as $m)
+                      <a href="#">{{$m->name}}</a><br>
+                      @endforeach 
                     </li>
-                    <li>
-                      <a href="#">Shuvo</a>
-                    </li>
-                    <li>
-                      <a href="#">Arif</a>
-                    </li>
+                    @endforeach    
                   </ul>
                 </div>
               </div>
@@ -89,22 +79,15 @@
             </div>
             
             <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
+            @foreach($groups as $g)
                     <li>
-                      <a href="#">Mujahid</a>
+                    @foreach($g->group as $g)
+                      <a href="#">{{$g->groupName}}</a><br>
+                      @endforeach 
                     </li>
-                    <li>
-                      <a href="#">Shuvo</a>
-                    </li>
-                    <li>
-                      <a href="#">Arif</a>
-                    </li>
+                    @endforeach   
                   </ul>
-                </div>
-              </div>
-          </div>
+            </div>
           </div>
 
         </div>

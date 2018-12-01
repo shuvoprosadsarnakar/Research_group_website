@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reference extends Model
 {
     protected $table = 'references';
-    public function post()
-    {
+    public function post(){
         return $this->belongsTo('App\Post','postId','id');
     }
 }
