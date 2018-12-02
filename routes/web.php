@@ -69,8 +69,15 @@ Route::post('/post/update/{id}',[
 ]);
 //posts end
 
+Route::get('/group',[
+    'uses' => 'HomeController@groupList',
+    'as' => 'groups'
+]);
 
-
+Route::get('/groupDetails/{id}',[
+    'uses' => 'HomeController@groupDetails',
+    'as' => 'groupDetails'
+]);
 //members start
 Route::get('/members',[
     'uses' => 'HomeController@memberList',
