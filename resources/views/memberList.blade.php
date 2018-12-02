@@ -18,19 +18,7 @@
                 @foreach($data as $member)               
                 <li class="cards__item_m">
                     <div class="card">
-                        <div class="card__image" style="background-image: url({{ asset('uploads/'.$member->imagePath) }});"></div>
-                            <a  href="{{route('memberDetails',$member->id)}}" >
-                            <div class="card__content">
-                                <div class="card__title">{{$member->name}}</div>
-                                <p class="card__text">{{ $member->designation }}</p>
-                                <p class="card__text">{{ $member->email }} &nbsp; </p>
-                            </div>
-                            </a>
-                    </div>
-                </li>
-                <li class="cards__item_m">
-                    <div class="card">
-                        <div class="card__image" style="background-image: url({{ asset('uploads/'.$member->imagePath) }});"></div>
+                        <div class="card__image" style="background-image: url({{ asset('uploads/'.$member->imagePath) }}); " style="width:100%"></div>
                             <a  href="{{route('memberDetails',$member->id)}}" >
                             <div class="card__content">
                                 <div class="card__title">{{$member->name}}</div>

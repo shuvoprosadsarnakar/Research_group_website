@@ -25,7 +25,7 @@
         <div class="panel-body">
         <div class="row">
             <div class="col-md-6 img">
-            <img src="{{ asset('uploads/'.$data->imagePath) }}"  alt="{{$data->name}}" class="img-rounded">
+            <img src="{{ asset('uploads/'.$data->imagePath) }}"  alt="{{$data->name}}" class="img-rounded" style="width:100%">
             </div>
             <div class="col-md-6 details">
                 <blockquote>
