@@ -61,7 +61,7 @@
                     </li>
                     <li {{ (Request::is('contact') ? 'class=active' : '') }}>
                         <a href="{{ route('contact') }}">Contact</a>
-                    </li>
+                    </li> 
                     @if(Auth::check())
                     <li>
                         <a href="{{route('admin')}}">Admin Panel</a>

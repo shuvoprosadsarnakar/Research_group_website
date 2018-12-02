@@ -39,8 +39,8 @@
                                 <td> {{$post->startDate}} </td>
                                 <td> {{$post->finishDate}} </td>
                                 <td>
-                                    <a href="{{route('post_delete',['id'=>$post->id])}}" class="btn btn-danger">X</a>
-                                    <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('post_edit',['id'=>$post->id])}}" class="btn btn-info">E</a>
+                                    <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('post_delete',['id'=>$post->id])}}" class="btn btn-danger">X</a>
+                                    <a href="{{route('post_edit',['id'=>$post->id])}}" class="btn btn-info">E</a>
                                 </td>
                             </tr>
                             @endforeach
