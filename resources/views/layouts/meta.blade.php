@@ -78,9 +78,9 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="wrap">
-        @yield('body')
-    </div>
+
+    @yield('body')
+
     <footer class="navbar navbar-static-bottom navbar-fix footer-down">
         <div class="container">
             <div class="row">
