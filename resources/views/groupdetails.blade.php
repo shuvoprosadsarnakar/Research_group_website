@@ -19,35 +19,31 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2>
-                Member details
+                Group details
             </h2>
         </div>
         <div class="panel-body">
         <div class="row">
-            <div class="col-md-6 img">
-            <img src="{{ asset('uploads/'.$data->imagePath) }}"  alt="{{$data->name}}" class="img-rounded" style="width:100%">
-            </div>
+           
             <div class="col-md-6 details">
-                <blockquote>
-                    <h5>{{ $data->name }}</h5>
-                    <small>{{$data->designation}}</small>
-                </blockquote>
-                <p>
-                    Email: {{$data->email}} <br>
-                    Git: {{$data->github}} <br>
-                    Linkedin: {{$data->linkedin}}
-                </p>
                 <div class="row">
                     <div class="col-md-6">
                         <blockquote>
-                            <h5>Interests</h5>
-                            <p>{{$data->interest}}</p>
+                        @foreach($groupWithMembers as $gm)
+                        <tr>
+                            <th>Group Name: {{$gm->groupName}}</th><br>
+                            <td> Members: 
+                                @foreach($gm->member as $member) 
+                                    {{$member->name}}
+                                @endforeach
+                            </td>
+                        </tr>
+                        @endforeach        
                         </blockquote>
                     </div>
                     <div class="col-md-6">
                         <blockquote>
-                            <h5>Working area</h5>
-                            <p>{{$data->researchArea}}</p>
+                            
                         </blockquote>
                     </div>
                 </div>

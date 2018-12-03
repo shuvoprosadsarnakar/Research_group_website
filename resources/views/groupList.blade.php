@@ -9,21 +9,19 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2>
-                Members
+                Groups
             </h2>
         </div>
         <div class="panel-body">
             <ul class="cards">
 <!-- start list of posts repeat this list item to add more posts -->
-                @foreach($data as $member)               
+                @foreach($data as $group)               
                 <li class="cards__item_m">
                     <div class="card">
-                        <div class="card__image" style="background-image: url({{ asset('uploads/'.$member->imagePath) }}); " style="width:100%"></div>
-                            <a  href="{{route('memberDetails',$member->id)}}" >
+                        
+                            <a  href="{{route('groupDetails',$group->id)}}" >
                             <div class="card__content">
-                                <div class="card__title">{{$member->name}}</div>
-                                <p class="card__text">{{ $member->designation }}</p>
-                                <p class="card__text">{{ $member->email }} &nbsp; </p>
+                                <div class="card__title">{{$group->groupName}}</div>
                             </div>
                             </a>
                     </div>

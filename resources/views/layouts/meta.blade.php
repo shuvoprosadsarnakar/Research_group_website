@@ -59,6 +59,9 @@
                     <li {{ (Request::is('members') ? 'class=active' : '') }}>
                         <a href="{{ route('members') }}">Members</a>
                     </li>
+                    <li {{ (Request::is('members') ? 'class=active' : '') }}>
+                        <a href="{{ route('groups') }}">Groups</a>
+                    </li>
                     <li {{ (Request::is('contact') ? 'class=active' : '') }}>
                         <a href="{{ route('contact') }}">Contact</a>
                     </li> 
