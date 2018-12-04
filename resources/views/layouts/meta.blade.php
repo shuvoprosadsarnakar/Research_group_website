@@ -59,7 +59,7 @@
                     <li {{ (Request::is('members') ? 'class=active' : '') }}>
                         <a href="{{ route('members') }}">Members</a>
                     </li>
-                    <li {{ (Request::is('members') ? 'class=active' : '') }}>
+                    <li {{ (Request::is('group') ? 'class=active' : '') }}>
                         <a href="{{ route('groups') }}">Groups</a>
                     </li>
                     <li {{ (Request::is('contact') ? 'class=active' : '') }}>
@@ -81,8 +81,9 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
-
-    @yield('body')
+    <div class="wrap">
+        @yield('body')
+    </div>
 
     <footer class="navbar navbar-static-bottom navbar-fix footer-down">
         <div class="container">

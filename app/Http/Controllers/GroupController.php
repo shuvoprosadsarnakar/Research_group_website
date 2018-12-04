@@ -51,6 +51,19 @@ class GroupController extends Controller
     {
         $group = new Group;
         $group->groupName = $request->groupName;
+        $group->groupDescription = $request->description;
+        if ($request->hasFile('imagePath')) {
+            if($request->file('imagePath')->isValid()) {
+                try {
+                    $file = $request->file('imagePath');
+                    $imagePath = time() . '.' . $file->getClientOriginalExtension();
+                    $request->file('imagePath')->move("uploads", $imagePath);
+                    $group->thumbNail = $imagePath;
+                } catch (Illuminate\Filesystem\FileNotFoundException $e) {
+        
+                }
+            } 
+        }
         $group->save();
         Session::flash('success','Group created ');            
         return redirect()->back();

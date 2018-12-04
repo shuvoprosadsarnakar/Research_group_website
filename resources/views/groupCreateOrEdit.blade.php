@@ -21,12 +21,18 @@
                         <tr>
                             <th>Id</th>
                             <th>Group name</th>
+                            <th>Image</th>
+                            <th>Description</th>
                             <th>Action </th>
                         </tr>
                         @foreach($groups as $group)
                         <tr>
                             <td> {{ $group->id }} </td>
                             <td> {{ $group->groupName }} </td>
+                            <td> 
+                                <img src="{{ asset('uploads/'.$group->thumbNail)  }}" alt="" style="width: 100px;">
+                            </td>
+                            <td> {{ $group->groupDescription }} </td>
                             <td>
                                 <a href="{{route('group_edit',$group->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
                                 <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('group_delete',$group->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
@@ -34,6 +40,9 @@
                         </tr>
                         @endforeach                    
                     </table>
+                </div>
+                <div class="text-center">
+                
                 </div>
             </div>
             <div class="well">
@@ -81,6 +90,16 @@
                         <label for="name">Group Name:</label>
                         <input type="text" name="groupName" class="form-control" id="name" @if(isset($groupEditInfo)) value='{{$groupEditInfo->groupName}}' @endif >
                     </div>
+                    <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea name="description" class="form-control" id="description" rows="3">
+                                @if(isset($groupEditInfo)) "{{$groupEditInfo->groupDescription}}" @endif
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Image:</label>
+                            <input type="file" accept="image/*" name="imagePath" class="form-control" id="image" />
+                        </div>
                     <button type="submit" class="btn btn-default">
                         @if(isset($groupEditInfo)) 
                             Edit group 
