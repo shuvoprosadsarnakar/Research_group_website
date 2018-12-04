@@ -30,7 +30,7 @@
             <div class="col-md-6 details">
                 <blockquote>
                     <h5>{{ $data->name }}</h5>
-                    <small>{{$data->designation}}</small>
+                    <p>{{$data->designation}}</p>
                 </blockquote>
                 <p>
                     Email: {{$data->email}} <br>

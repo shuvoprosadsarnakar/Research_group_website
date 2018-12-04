@@ -124,7 +124,10 @@ class PostController extends Controller
         $post->finishDate = $request->finishDate;
         $post->save();
 
+        if($request->groupId > 0)
         $post->group()->sync($request->groupId,false);
+
+        if($request->memberId > 0)
         $post->member()->sync($request->memberId,false);
 
         Session::flash('success','post created ');
@@ -157,8 +160,7 @@ class PostController extends Controller
         $types = PostType:: get();
 
         $postEditInfo = Post::with('group','postType','member')
-                        ->get()
-                        ->whereIn('id', $id)
+                        ->where('id', $id)
                         ->first();
                         
         //dd($postEditInfo);
@@ -205,8 +207,19 @@ class PostController extends Controller
         $post->finishDate = $request->finishDate;
         $post->save();
 
-        $post->group()->sync($request->groupId,false);
-        $post->member()->sync($request->memberId,false);
+        if($request->groupId > 0){
+            $post->group()->sync($request->groupId,false);
+        }
+        else {
+            $post->group()->detach();
+        }
+
+        if($request->memberId > 0){
+            $post->member()->sync($request->memberId,false);
+        }else {
+            $post->member()->detach();
+        }
+
         Session::flash('success','Post updated ');            
         return redirect()->route('post_create',['criteria' => 'startDate','order' => 'desc']);
     }

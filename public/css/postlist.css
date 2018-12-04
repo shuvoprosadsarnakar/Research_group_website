@@ -69,6 +69,7 @@ img {
       -ms-flex-direction: column;
           flex-direction: column;
   overflow: hidden;
+  width: 100%;
 }
 .card a {
 	color: black;

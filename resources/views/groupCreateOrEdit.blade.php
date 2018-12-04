@@ -42,7 +42,7 @@
                     </table>
                 </div>
                 <div class="text-center">
-                
+                    {{ $groups->links() }}
                 </div>
             </div>
             <div class="well">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="text-center">
-                
+                {{ $groupWithMembers->links() }}
             </div>
         </div>
         <div class="col-md-6">
@@ -92,9 +92,7 @@
                     </div>
                     <div class="form-group">
                             <label for="description">Description:</label>
-                            <textarea name="description" class="form-control" id="description" rows="3">
-                                @if(isset($groupEditInfo)) "{{$groupEditInfo->groupDescription}}" @endif
-                            </textarea>
+                            <textarea name="description" class="form-control" id="description" rows="3">@if(isset($groupEditInfo)){{$groupEditInfo->groupDescription}}@endif</textarea>
                         </div>
                         <div class="form-group">
                             <label for="image">Image:</label>
@@ -123,30 +121,43 @@
                     <div class="form-group">
                         <label for="">Select the group:</label>
                         <select name="groupId" class="chosen-select-group form-control"  data-placeholder="Choose group names..." >
-                            @foreach ($groups as $group)
-                                <option value="{{ $group->id }}" > {{ $group->groupName }} </option>
-                            @endforeach 
-
                             @if(isset($gmEditInfo))
-                                <option value="{{ $gmEditInfo->id }}" selected> {{ $gmEditInfo->groupName }} </option>
+                                @foreach($groupAll as $group)
+                                    <option value="{{ $group->id }}" 
+                                        @if($group->id == $gmEditInfo->id) 
+                                            selected 
+                                        @endif > 
+                                    {{ $group->groupName }} </option>
+                                @endforeach
+                            @else
+                                @foreach($groupAll as $group)
+                                    <option value="{{$group->id}}">{{$group->groupName}}</option>
+                                @endforeach
                             @endif
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="">Add members to the group:</label>
                         <select name="memberId[]" class="chosen-select-member form-control"  data-placeholder="Choose group names..." multiple="multiple">
-                            @foreach ($members as $member)
-                                <option value="{{ $member->id }}" > {{ $member->name }} </option>
-                            @endforeach 
                             @if(isset($gmEditInfo))
-                                @foreach($gmEditInfo->member as $member)
-                                    <option value="{{ $member->id }}" selected> {{ $member->name }} </option>
+                                @for ($j = 0; $j < count($members); $j++)
+                                    <option value="{{ $members[$j]->id }}"  
+                                    @for ($i = 0; $i < count($gmEditInfo->member); $i++)
+                                        @if($members[$j]->id == $gmEditInfo->member[$i]->id) 
+                                            selected 
+                                        @endif 
+                                    @endfor > 
+                                    {{ $members[$j]->name }} </option>
+                                @endfor
+                            @else
+                                @foreach($members as $member)
+                                    <option value="{{$member->id}}">{{$member->name}}</option>
                                 @endforeach
                             @endif
                         </select>
                     </div>
                     <button type="submit" class="btn btn-default">
-                       Add member
+                        save
                     </button>
                 </form>
             </div>

@@ -57,7 +57,8 @@ class HomeController extends Controller
         return view('groupList',compact('data'));
     }
     public function groupDetails($id) {
-        $group = Group::with('member','post')->find($id)->get();
+        $group = Group::with('member','post')->where('id', $id)->first();
+        //dd($group);
         return view('groupdetails',compact('group'));
         
     }

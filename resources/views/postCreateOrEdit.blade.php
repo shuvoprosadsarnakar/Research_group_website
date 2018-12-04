@@ -70,9 +70,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description:</label>
-                        <textarea name="description" class="form-control" id="description" rows="3">
-                            @if(isset($postEditInfo)) "{{$postEditInfo->description}}" @endif
-                        </textarea>
+                        <textarea name="description" class="form-control" id="description" rows="3">@if(isset($postEditInfo)){{$postEditInfo->description}}@endif</textarea>
                     </div>
                     <div class="form-group">
                         <label for="image">Image:</label>

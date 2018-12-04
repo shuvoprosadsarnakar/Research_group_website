@@ -33,12 +33,13 @@ class GroupController extends Controller
      */
     public function create()
     {
-        $groups = Group:: get();
+        $groups = Group:: simplePaginate(10);
+        $groupAll = Group:: get();
         $members = Member:: get();
-        $groupWithMembers = Group::with('member')->get();
+        $groupWithMembers = Group::with('member')->simplePaginate(10);
         //dd($groupWithMembers);
         //var_dump($groupWithMembers);
-        return view('groupCreateOrEdit',compact('groups','members','groupWithMembers'));
+        return view('groupCreateOrEdit',compact('groups','groupAll','members','groupWithMembers'));
     }
 
     /**
@@ -76,10 +77,11 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $groups = Group:: get();
+        $groups = Group:: simplePaginate(10);
+        $groupAll = Group:: get();
         $members = Member:: get();
+        $groupWithMembers = Group::with('member')->simplePaginate(10);
         $groupEditInfo = Group::find($id);
-        $groupWithMembers = Group::with('member')->get();
         return view('groupCreateOrEdit',compact('groups','members','groupEditInfo','groupWithMembers'));
     }
 
@@ -94,8 +96,29 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
         $group->groupName = $request->groupName;
+        $group->groupDescription = $request->description;
+        if ($request->hasFile('imagePath')) {
+            if($request->file('imagePath')->isValid()) {
+                try {
+                    $file = $request->file('imagePath');
+                    $imagePath = time() . '.' . $file->getClientOriginalExtension();
+                    $request->file('imagePath')->move("uploads", $imagePath);
+                    $group->thumbNail = $imagePath;
+                    $data=Group::find($id);
+                    if(file_exists("uploads/".$data->thumbNail)){
+                        File::delete("uploads/".$data->thumbNail);
+                    }
+
+                } catch (Illuminate\Filesystem\FileNotFoundException $e) {
+        
+                }
+            }
+        }else{
+            $data=Group::find($id);
+            $group->thumbNail=$data->thumbNail;
+        } 
         $group->save();
-        Session::flash('success','Group name updated ');            
+        Session::flash('success','Group updated ');            
         return redirect()->route("group_create");
     }
 
@@ -107,7 +130,8 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        $data=Group::find($id);
+        $Group=Group::find($id);
+        $Group->member()->detach();
         Group::destroy($id);
         Session::flash('success','Group deleted');            
         return redirect()->back();
@@ -135,11 +159,12 @@ class GroupController extends Controller
      */
     public function gmEdit($id)
     {
-        $groups = Group:: get();
+        $groups = Group:: simplePaginate(10);
+        $groupAll = Group:: get();
         $members = Member:: get();
-        $groupWithMembers = Group::with('member')->get();
+        $groupWithMembers = Group::with('member')->simplePaginate(10);
         $gmEditInfo = Group::with('member')->find($id);
-        return view('groupCreateOrEdit',compact('groups','members','groupWithMembers','gmEditInfo'));
+        return view('groupCreateOrEdit',compact('groups','groupAll','members','groupWithMembers','gmEditInfo'));
     }
 
     /**
@@ -156,8 +181,15 @@ class GroupController extends Controller
             $Group=Group::find($request->previousSelectedGroupId);
             $Group->member()->detach($request->memberId,false);
         }
+
+        if($request->memberId > 0){
         $Group=Group::find($request->groupId);
         $Group->member()->sync($request->memberId,false);
+        }
+        else{
+            $Group=Group::find($request->groupId);
+            $Group->member()->detach();
+        }
         Session::flash('success','Group member associations updated ');            
         return redirect()->route("group_create");
     }
