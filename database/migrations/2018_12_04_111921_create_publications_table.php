@@ -15,6 +15,9 @@ class CreatePublicationsTable extends Migration
     {
         Schema::create('publications', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
+            $table->string('link');
+            $table->unsignedInteger('postId');
             $table->timestamps();
         });
     }

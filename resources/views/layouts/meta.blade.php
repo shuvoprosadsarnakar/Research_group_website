@@ -41,21 +41,22 @@
                     <li {{ (Request::is( '/') ? 'class=active' : '') }}>
                         <a href="{{ route('home') }}">Home</a>
                     </li>
-                    <li {{ (Request::is('posts') ? 'class=active' : '') }}>
-                        <a href="{{ route('posts') }}">Posts</a>
+                    <li {{ (Request::is( 'posts_type') ? 'class=active' : '') }}>
+                        <a href="{{ route('posts_type',['type' => 'thesis','criteria' => 'startDate','order' => 'desc']) }}">Thesis</a>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a href="{{ route('posts_type',['type' => 'research','criteria' => 'startDate','order' => 'desc']) }}">Research</a></li>
-                          <li><a href="{{ route('posts_type',['type' => 'project','criteria' => 'startDate','order' => 'desc']) }}">Project</a></li>
-                          <li><a href="{{ route('posts_type',['type' => 'thesis','criteria' => 'startDate','order' => 'desc']) }}">Thesis</a></li>
-                        </ul>
-                      </li>
+                    </li>
+                    <li {{ (Request::is( 'posts_type') ? 'class=active' : '') }}>
+                        <a href="{{ route('posts_type',['type' => 'thesis','criteria' => 'startDate','order' => 'desc']) }}">Project</a>
+                    </li>
+                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li {{ (Request::is('publications') ? 'class=active' : '') }}>
+                        <a href="{{ route('publications') }}">Publications</a>
+                    </li>
+                    <li {{ (Request::is('reports') ? 'class=active' : '') }}>
+                        <a href="{{ route('reports') }}">Reports</a>
+                    </li>
                     <li {{ (Request::is('members') ? 'class=active' : '') }}>
                         <a href="{{ route('members') }}">Members</a>
                     </li>

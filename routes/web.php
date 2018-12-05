@@ -177,6 +177,70 @@ Route::get('/reference/delete/{id}',[
 ]);
 //end reference
 
+//start publication
+Route::get('/publications',[
+    'uses' => 'PublicationController@index',
+    'as' => 'publications'
+]);
+
+Route::get('/publication',[
+    'uses' => 'PublicationController@create',
+    'as' => 'publication_create'
+]);
+
+Route::post('/publication/store',[
+    'uses' => 'PublicationController@store',
+    'as' => 'publication_store'
+]);
+
+Route::get('/publication/edit/{id}',[
+    'uses' => 'PublicationController@edit',
+    'as' => 'publication_edit'
+]);
+
+Route::post('/publication/update/{id}',[
+    'uses' => 'PublicationController@update',
+    'as' => 'publication_update'
+]);
+
+Route::get('/publication/delete/{id}',[
+    'uses' => 'PublicationController@destroy',
+    'as' => 'publication_delete'
+]);
+//end publication
+
+//start report
+Route::get('/reports',[
+    'uses' => 'ReportController@index',
+    'as' => 'reports'
+]);
+
+Route::get('/report',[
+    'uses' => 'ReportController@create',
+    'as' => 'report_create'
+]);
+
+Route::post('/report/store',[
+    'uses' => 'ReportController@store',
+    'as' => 'report_store'
+]);
+
+Route::get('/report/edit/{id}',[
+    'uses' => 'ReportController@edit',
+    'as' => 'report_edit'
+]);
+
+Route::post('/report/update/{id}',[
+    'uses' => 'ReportController@update',
+    'as' => 'report_update'
+]);
+
+Route::get('/report/delete/{id}',[
+    'uses' => 'ReportController@destroy',
+    'as' => 'report_delete'
+]);
+//end publication
+
 //type start
 Route::get('/type/create',[
     'uses' => 'TypeController@create',
