@@ -35,6 +35,11 @@
             </a>
         </div>
         <div class="col-md-1">
+           <a href="{{ route('publication_create') }}">
+                <h4>Publication</h4>
+            </a>
+        </div>
+        <div class="col-md-1">
            <a href="{{ route('reference_create') }}">
                 <h4>References</h4>
             </a>

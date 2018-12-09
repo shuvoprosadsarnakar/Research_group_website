@@ -183,7 +183,7 @@ Route::get('/publications',[
     'as' => 'publications'
 ]);
 
-Route::get('/publication',[
+Route::get('/publication/create',[
     'uses' => 'PublicationController@create',
     'as' => 'publication_create'
 ]);
@@ -206,6 +206,11 @@ Route::post('/publication/update/{id}',[
 Route::get('/publication/delete/{id}',[
     'uses' => 'PublicationController@destroy',
     'as' => 'publication_delete'
+]);
+
+Route::post('/publication/api',[
+    'uses' => 'PublicationController@api',
+    'as' => 'publication_api'
 ]);
 //end publication
 

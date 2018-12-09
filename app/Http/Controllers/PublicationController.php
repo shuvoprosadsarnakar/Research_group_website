@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Response;
+use App\Reference;
+use App\Post;
 
 class PublicationController extends Controller
 {
@@ -13,7 +17,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -22,8 +26,9 @@ class PublicationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   $data['data'] = DB::table('references')->get();
+        $postData['postData']=DB::table('posts')->get();
+        return view('publicationCreateOrEdit',$data, $postData);
     }
 
     /**
@@ -80,5 +85,17 @@ class PublicationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function api(Request $request)
+    {
+        
+        return Response::json("shuvo");
     }
 }
