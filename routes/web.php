@@ -246,6 +246,38 @@ Route::get('/report/delete/{id}',[
 ]);
 //end publication
 
+//start citation
+Route::get('/citations',[
+    'uses' => 'CitationController@index',
+    'as' => 'citations'
+]);
+
+Route::get('/citation',[
+    'uses' => 'CitationController@create',
+    'as' => 'citation_create'
+]);
+
+Route::post('/citation/store',[
+    'uses' => 'CitationController@store',
+    'as' => 'citation_store'
+]);
+
+Route::get('/citation/edit/{id}',[
+    'uses' => 'CitationController@edit',
+    'as' => 'citation_edit'
+]);
+
+Route::post('/citation/update/{id}',[
+    'uses' => 'CitationController@update',
+    'as' => 'citation_update'
+]);
+
+Route::get('/citation/delete/{id}',[
+    'uses' => 'CitationController@destroy',
+    'as' => 'citation_delete'
+]);
+//end citation
+
 //type start
 Route::get('/type/create',[
     'uses' => 'TypeController@create',

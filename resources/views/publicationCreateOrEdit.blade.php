@@ -52,7 +52,7 @@
                 @else
                     <h4>Create publication </h4>
                 @endif
-               
+            
                 <form action="@if(isset($rEditInfo)) {{ route ('publication_update',['id'=>$rEditInfo->id]) }} @else {{ route ('publication_store') }}@endif" method="post" enctype="multipart/form-data">
                     
                     {{csrf_field()}}
@@ -134,10 +134,10 @@
                     document.getElementById("demo").innerHTML =
                     this.responseText;
                 }
-                };
-                xhttp.open("POST", "{{ route ('publication_api') }}", true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("fname=Henry&lname=Ford");
-            }
+            };
+        xhttp.open("POST", "{{ route ('publication_api') }}", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("fname=Henry&lname=Ford");
+        }
     </script>
 @endsection
