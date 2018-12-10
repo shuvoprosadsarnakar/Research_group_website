@@ -20,20 +20,22 @@
         <p class="lead">
             Type
             <a href="{{ route('posts_type',['type' => $post->postType->name,'criteria' => 'title','order' => 'asc']) }}">{{$post->postType->name}}</a>
-          </p>
-          <hr>
-          <!-- Date/Time -->
-          <p>Starting date: {{$post->startDate}} &nbsp; Finish date: {{$post->finishDate}}</p>
+        </p>
+        <hr>
+        <!-- Date/Time -->
+        <p>Starting date: {{$post->startDate}} &nbsp; Finish date: {{$post->finishDate}}</p>
 
-          <hr>
-          <!-- Preview Image -->
-          <img class="img-fluid rounded" src="{{ asset('uploads/'.$post->thumbNail)}}" alt="">
+        <hr>
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="{{ asset('uploads/'.$post->thumbNail)}}" alt="" style="max-width: 100%;">
+        
+        
 
-          <hr>
-          <!-- Post Content -->
-          <p class="lead">Status: {{$post->status}}</p>
-          <p>{{$post->description}}</p>
-          <hr>
+        <hr>
+        <!-- Post Content -->
+        <p class="lead">Status: {{$post->status}}</p>
+        <p>{{$post->description}}</p>
+        <hr>
 
 
     </div>
@@ -47,7 +49,7 @@
         <!-- Sidebar Widgets Column -->
     <div class="col-md-4">
 
-          <!-- Categories Widget -->
+        <!-- Categories Widget -->
         <div class="panel panel-default">
             <div class="panel-heading">
             <h5>
@@ -82,28 +84,23 @@
             
             <div class="panel-body">
             <ul class="list-unstyled mb-0">
-                    <li>
-                      @foreach($post->group as $g)
-                        <a href="">{{$g->groupName}}</a><br>
-                      @endforeach 
-                    </li>
-                  </ul>
+                <li>
+                    @foreach($post->group as $g)
+                        <a href="{{route('groupDetails',$g->id)}}">{{$g->groupName}}</a><br>
+                    @endforeach 
+                </li>
+            </ul>
             </div>
-          </div>
+        </div>
 
         </div>
 
     </div>
-      <!-- /.row -->
+    <!-- /.row -->
 
 
 
-      <!-- Image sider -->
-    <div>
-        
-          <img src="" alt="">
-        
-    </div>
+    <!-- Image sider -->
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -146,7 +143,19 @@
     </a>
 </div>
 <!-- end Image sider -->
+<hr>
+<div class="row">
+    @foreach($post->video as $video)
+    <div class="col-md-6">
+        <div class="embed-responsive embed-responsive-4by3">
+        <iframe class="embed-responsive-item" src="{{$video->link}}"></iframe>
+        </div>
+        <hr>
+    </div>
+    @endforeach
 </div>
+
+
 
 @endsection
 

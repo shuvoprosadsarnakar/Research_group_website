@@ -142,7 +142,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::with('group','member','image')->where('id', $id)->first();
+        $post = Post::with('group','member','image','video')->where('id', $id)->first();
         return view('postDetails',compact('post'));
     }
 

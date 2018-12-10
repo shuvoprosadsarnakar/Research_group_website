@@ -18,6 +18,7 @@
         <div class="col-md-7">
             <div class="well">
                 <h4> Publication list</h4>
+                <div class="table-fix">
                 <table class="table-edit" >
                     <tr>
                         <th>Id</th>
@@ -39,6 +40,7 @@
                     </tr>
                     @endforeach
                 </table>
+                </div>
             </div>
             <div class="text-center">
                 

@@ -46,7 +46,7 @@
                     </li>
                     </li>
                     <li {{ (Request::is( 'posts_type') ? 'class=active' : '') }}>
-                        <a href="{{ route('posts_type',['type' => 'thesis','criteria' => 'startDate','order' => 'desc']) }}">Project</a>
+                        <a href="{{ route('posts_type',['type' => 'project','criteria' => 'startDate','order' => 'desc']) }}">Project</a>
                     </li>
                     
                 </ul>
@@ -84,6 +84,19 @@
     </nav>
     <div class="wrap">
         @yield('body')
+    </div>
+
+    <div class="footer-col">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Daffodil international univesity</h5>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="navbar navbar-static-bottom navbar-fix footer-down">

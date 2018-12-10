@@ -262,6 +262,11 @@ Route::post('/citation/store',[
     'as' => 'citation_store'
 ]);
 
+Route::post('/citation/saveCite',[
+    'uses' => 'CitationController@saveCite',
+    'as' => 'citation_saveCite'
+]);
+
 Route::get('/citation/edit/{id}',[
     'uses' => 'CitationController@edit',
     'as' => 'citation_edit'

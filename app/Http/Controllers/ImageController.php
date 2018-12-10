@@ -28,11 +28,10 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $data = DB::table('images')->get();
-        $postData=DB::table('posts')->get();
-        $data3=Image::all()->last();
+        $data = Image::with('post')->simplePaginate(10);
+        $postData=Post::get();
         //dd($data3);
-        return view('imageCreateOrEdit',compact('data', 'postData','data3'));
+        return view('imageCreateOrEdit',compact('data', 'postData'));
     }
 
     /**
@@ -88,8 +87,8 @@ class ImageController extends Controller
      */
     public function edit($id)
     {
-        $data = DB::table('images')->get();
-        $postData=DB::table('posts')->get();
+        $data = Image::with('post')->simplePaginate(10);
+        $postData=Post::get();
         $iEditInfo = Image::with('post')->find($id);
         // dd($groupData);
         return view('imageCreateOrEdit',compact('data','postData','iEditInfo'));

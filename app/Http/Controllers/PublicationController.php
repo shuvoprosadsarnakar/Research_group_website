@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Response;
 use App\Reference;
+use App\Publication;
 use App\Post;
 
 class PublicationController extends Controller
@@ -17,7 +18,8 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        
+        $publications = Publication::with('post')->orderBy('created_at','desc')->simplePaginate(15);
+        return view('publicationList',compact('publications'));
     }
 
     /**
@@ -26,9 +28,9 @@ class PublicationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $data['data'] = DB::table('references')->get();
-        $postData['postData']=DB::table('posts')->get();
-        return view('publicationCreateOrEdit',$data, $postData);
+    {   $data = Publication::with('post')->orderBy('created_at','desc')->simplePaginate(15);
+        $postData = Post::get();
+        return view('publicationCreateOrEdit',compact('data', 'postData'));
     }
 
     /**

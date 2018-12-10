@@ -14,6 +14,7 @@
         <div class="col-md-8">
             <div class="well">
                 <h4> Images list</h4>
+                <div class="table-fix">
                 <table class="table-edit" >
                     <tr>
                         <th>Id</th>
@@ -26,10 +27,10 @@
                     <tr>
                         <td> {{ $image->id }} </td>
                         <td>
-                        <img src="{{ asset('uploads/'.$image->path)  }}" alt="" style="width: 100px;"> 
+                        <img src="{{ asset('uploads/'.$image->path)  }}" alt="" style="width: 300px;"> 
                         </td>
                         <td>{{ $image->postId }} </td>
-                        <td>  </td>
+                        <td> {{ $image->post->title }} </td>
                         <td>
                         <a href="{{route('image_edit',$image->id)}}" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i>E</a>
                         <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{route('image_delete',$image->id)}}" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i>X</a>
@@ -37,9 +38,10 @@
                     </tr>
                     @endforeach
                 </table>
+                </div>
             </div>
             <div class="text-center">
-                
+                    {{$data->links()}}
             </div>
         </div>
         <div class="col-md-4">
