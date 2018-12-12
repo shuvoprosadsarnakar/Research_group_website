@@ -53,9 +53,6 @@
                     <li {{ (Request::is( 'posts_type') ? 'class=active' : '') }}>
                         <a href="{{ route('posts_type',['type' => 'Project','criteria' => 'startDate','order' => 'desc']) }}">Project</a>
                     </li>
-                    
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
                     <li {{ (Request::is('publications') ? 'class=active' : '') }}>
                         <a href="{{ route('publications') }}">Publications</a>
                     </li>
@@ -68,6 +65,9 @@
                     <li {{ (Request::is('group') ? 'class=active' : '') }}>
                         <a href="{{ route('groups') }}">Groups</a>
                     </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    
                     <li {{ (Request::is('contact') ? 'class=active' : '') }}>
                         <a href="{{ route('contact') }}">Contact</a>
                     </li> 
