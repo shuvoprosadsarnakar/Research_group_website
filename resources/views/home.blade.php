@@ -134,15 +134,7 @@ a.next span:hover i {
     <div id="inner">
       <h1>Ambient Intelligence Lab</h1>
       <h3>Daffodil international university</h3>
-    </div>
-  </div>
-</div>
-
-<div>
-
-</div>
-
-<!-- Start image slider or carousel home page -->
+      <!-- Start image slider or carousel home page -->
 <div class="wrapper">
     <div class="slider">
         <img class="active slide" src="https://source.unsplash.com/gKk9rpyDryU">
@@ -169,6 +161,15 @@ a.next span:hover i {
     </nav>
 </div>
 <!-- End image slider or carousel home page -->
+    </div>
+  </div>
+</div>
+
+<div>
+
+</div>
+
+
 @endsection
 
 

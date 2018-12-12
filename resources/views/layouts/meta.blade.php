@@ -20,6 +20,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/stars.css')}}">
+    <style>
+        #diulogo{
+    width: 86px;
+}
+    </style>
     @yield('stylesheet_after')
     
 </head>
@@ -42,11 +47,11 @@
                         <a href="{{ route('home') }}">Home</a>
                     </li>
                     <li {{ (Request::is( 'posts_type') ? 'class=active' : '') }}>
-                        <a href="{{ route('posts_type',['type' => 'thesis','criteria' => 'startDate','order' => 'desc']) }}">Thesis</a>
+                        <a href="{{ route('posts_type',['type' => 'Thesis','criteria' => 'startDate','order' => 'desc']) }}">Thesis</a>
                     </li>
                     </li>
                     <li {{ (Request::is( 'posts_type') ? 'class=active' : '') }}>
-                        <a href="{{ route('posts_type',['type' => 'project','criteria' => 'startDate','order' => 'desc']) }}">Project</a>
+                        <a href="{{ route('posts_type',['type' => 'Project','criteria' => 'startDate','order' => 'desc']) }}">Project</a>
                     </li>
                     
                 </ul>
@@ -54,8 +59,8 @@
                     <li {{ (Request::is('publications') ? 'class=active' : '') }}>
                         <a href="{{ route('publications') }}">Publications</a>
                     </li>
-                    <li {{ (Request::is('reports') ? 'class=active' : '') }}>
-                        <a href="{{ route('reports') }}">Reports</a>
+                    <li {{ (Request::is( 'posts_type') ? 'class=active' : '') }}>
+                        <a href="{{ route('posts_type',['type' => 'Report','criteria' => 'startDate','order' => 'desc']) }}">Reports</a>
                     </li>
                     <li {{ (Request::is('members') ? 'class=active' : '') }}>
                         <a href="{{ route('members') }}">Members</a>
@@ -86,18 +91,7 @@
         @yield('body')
     </div>
 
-    <div class="footer-col">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>Daffodil international univesity</h5>
-                </div>
-                <div class="col-md-6">
 
-                </div>
-            </div>
-        </div>
-    </div>
 
     <footer class="navbar navbar-static-bottom navbar-fix footer-down">
         <div class="container">

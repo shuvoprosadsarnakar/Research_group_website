@@ -64,7 +64,7 @@ class PostController extends Controller
                     ->orderBy($criteria,$order)
                     ->where('typeId',$postType->id)
                     ->simplePaginate(12);
-                    return view('postListType',compact('posts','postType'));
+                    return view('postListType',compact('posts','postType','type'));
                 }
                 Session::flash('alert','Post type dosent exists');
                 return redirect()->back();

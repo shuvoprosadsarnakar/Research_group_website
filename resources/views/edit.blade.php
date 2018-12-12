@@ -39,9 +39,9 @@
                 <h4>Publication</h4>
             </a>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
             <a href="{{ route('citation_create') }}">
-                <h4>Citation generator</h4>
+                <h4>Citation Generator</h4>
             </a>
         </div>
         <div class="col-md-1">
