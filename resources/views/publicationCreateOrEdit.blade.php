@@ -91,18 +91,12 @@
                     
                     <button type="submit" class="btn btn-default">
                     @if(isset($rEditInfo)) 
-                        Update Reference 
+                        Update Publication 
                     @else
-                        Create Reference
+                        Create Publication
                     @endif
                     </button>
                 </form>
-                <h5 id="demo">x</h5>
-                <button class="btn btn-default" onclick="loadDoc()">
-                        <span>
-                            <i class="fas fa-sync-alt"></i>
-                        </span>
-                </button>
             </div>
         </div>
     </div>

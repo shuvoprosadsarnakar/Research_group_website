@@ -9,13 +9,13 @@
         <div class="col-md-1">
 
             <a href="{{ route('member_create') }}">
-                <h4>Member</h4>
+                <h4>Members</h4>
             </a>
         </div>
         <div class="col-md-1">
 
             <a href="{{ route('type_create') }}">
-                <h4>Type</h4>
+                <h4>Types</h4>
             </a>
         </div>
         <div class="col-md-1">
@@ -34,14 +34,14 @@
                 <h4>Groups</h4>
             </a>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
             <a href="{{ route('publication_create') }}">
-                <h4>Publication</h4>
+                <h4>Publications</h4>
             </a>
         </div>
         <div class="col-md-2">
             <a href="{{ route('citation_create') }}">
-                <h4>Citation Generator</h4>
+                <h4>Citation Generators</h4>
             </a>
         </div>
         <div class="col-md-1">
