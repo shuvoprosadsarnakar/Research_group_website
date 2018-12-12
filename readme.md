@@ -12,6 +12,5 @@ official website
 - password is 123456
 
 ## Work Left
-- Views of Projects, Publications, Papers.
-- Need to solve bug in Video, Refrence Update
-- Implementation of Mailing Option in Contact
+- Implementation of Update & Delete Option in Report, Publication
+- Need to fixed video previewing problem
