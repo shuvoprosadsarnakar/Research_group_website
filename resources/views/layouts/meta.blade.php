@@ -60,7 +60,7 @@
                         <a href="{{ route('publications') }}">Publications</a>
                     </li>
                     <li {{ (Request::is( 'posts_type') ? 'class=active' : '') }}>
-                        <a href="{{ route('posts_type',['type' => 'Report','criteria' => 'startDate','order' => 'desc']) }}">Reports</a>
+                        <a href="{{ route('reports') }}">Reports</a>
                     </li>
                     <li {{ (Request::is('members') ? 'class=active' : '') }}>
                         <a href="{{ route('members') }}">Members</a>

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Report;
+use App\Post;
 class ReportController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Report::with('post')->orderBy('created_at','desc')->simplePaginate(15);
+        return view('reportList',compact('reports'));
     }
 
     /**
@@ -22,9 +24,11 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   $data = Report::with('post')->orderBy('created_at','desc')->simplePaginate(15);
+        $postData = Post::get();
+        return view('reportCreateOrEdit',compact('data', 'postData'));
     }
+
 
     /**
      * Store a newly created resource in storage.

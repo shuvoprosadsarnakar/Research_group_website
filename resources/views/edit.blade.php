@@ -34,6 +34,11 @@
                 <h4>Groups</h4>
             </a>
         </div>
+        <div class="col-md-1">
+            <a href="{{ route('report_create') }}">
+                <h4>Reports</h4>
+            </a>
+        </div>
         <div class="col-md-2">
             <a href="{{ route('publication_create') }}">
                 <h4>Publications</h4>

@@ -15,47 +15,7 @@
             </h2>
         </div>
         <div class="panel-body">
-            <table class="table">
-                <tr>
-
-                    <th>
-                        <a href="@if(Request::path()=='posts/'.$postType->name.'/title/asc')
-                                    {{ route('posts_type',['type' => $postType->name,'criteria' => 'title','order' => 'desc']) }}
-                                @else
-                                    {{ route('posts_type',['type' => $postType->name,'criteria' => 'title','order' => 'asc']) }}
-                                @endif">
-                            Title
-                        </a>
-                    </th>
-                    <th>
-                        <a href="@if(Request::path()=='posts/'.$postType->name.'/description/asc')
-                                    {{ route('posts_type',['type' => $postType->name,'criteria' => 'description','order' => 'desc']) }}
-                                @else
-                                    {{ route('posts_type',['type' => $postType->name,'criteria' => 'description','order' => 'asc']) }}
-                                @endif">
-                            Description
-                        </a>
-                    </th>
-                    <th>
-                        <a href="@if(Request::path()=='posts/'.$postType->name.'/startDate/asc')
-                                    {{ route('posts_type',['type' => $postType->name,'criteria' => 'startDate','order' => 'desc']) }}
-                                @else
-                                    {{ route('posts_type',['type' => $postType->name,'criteria' => 'startDate','order' => 'asc']) }}
-                                @endif">
-                            Start date
-                        </a>
-                    </th>
-                    <th>
-                        <a href="@if(Request::path()=='posts/'.$postType->name.'/startDate/asc')
-                                    {{ route('posts_type',['type' => $postType->name,'criteria' => 'finishDate','order' => 'desc']) }}
-                                @else
-                                    {{ route('posts_type',['type' => $postType->name,'criteria' => 'finishDate','order' => 'asc']) }}
-                                @endif">
-                            Finish date
-                        </a>
-                    </th>
-                </tr>
-            </table>
+   
             <ul class="cards">
 <!-- start list of posts repeat this list item to add more posts -->
                 @foreach($posts as $post)               
